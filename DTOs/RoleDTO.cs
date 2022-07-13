@@ -1,5 +1,3 @@
-﻿#nullable disable
-
 using System.Collections.Generic;
 
 namespace OJTManagementAPI.DTOS
@@ -8,12 +6,12 @@ namespace OJTManagementAPI.DTOS
     {
         public RoleDTO()
         {
-            Users = new HashSet<UserDTO>();
+            AccountDtos = new HashSet<AccountDTO>();
         }
 
         public int RoleId { get; set; }
         public string RoleName { get; set; }
 
-        public virtual ICollection<UserDTO> Users { get; set; }
+        public virtual ICollection<AccountDTO> AccountDtos { get; set; }
     }
 }

@@ -26,7 +26,8 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetCompany()
         {
             var result = await _companyService.GetCompanyList();
-            if (result == null || result.Count == 0) return NotFound("No company found in database");
+            if (result == null || result.Count == 0) 
+                return NotFound("No company found in database");
 
             var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
 

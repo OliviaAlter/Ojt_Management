@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
-using OJTManagementAPI.Enums;
 using OJTManagementAPI.RepoInterfaces;
 
 namespace OJTManagementAPI.Repositories
@@ -19,17 +20,37 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<Student> AddStudent(Student student)
         {
-            return null;
+            await _context.Student.AddAsync(student);
+            await _context.SaveChangesAsync();
+            return student;
         }
 
-        public async Task<bool> DeleteStudent(int studentId)
+        public async Task<bool> DeleteStudent(int accountId)
         {
+            var foundInStudent = await _context.Student.FirstOrDefaultAsync(s => s.AccountId == accountId);
+
+            var foundInAccount = await _context.Account.FirstOrDefaultAsync(a => a.AccountId == accountId);
+
+            if (foundInStudent == null || foundInAccount == null)
+                return false;
+
+            _context.Student.Remove(foundInStudent);
+            _context.Account.Remove(foundInAccount);
+            
+            await _context.SaveChangesAsync();
             return true;
         }
 
+        /*
         public IQueryable<Student> GetStudentList()
         {
-            return null;
+            return _context.Student.Where(c => c.Account.Roles.RoleId == (int)2);
+        }
+        */
+        
+        public async Task<List<Student>> GetStudentList()
+        {
+            return await _context.Student.ToListAsync();
         }
 
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId)
@@ -49,6 +70,8 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<Student> UpdateStudent(Student student)
         {
+            _context.Student.Update(student);
+            await _context.SaveChangesAsync();
             return student;
         }
     }

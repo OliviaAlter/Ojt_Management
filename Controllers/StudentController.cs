@@ -3,7 +3,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using OJTManagementAPI.CustomEntities;
 using OJTManagementAPI.DTOS;
+using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -24,29 +27,16 @@ namespace OJTManagementAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [SwaggerOperation(Summary = "Get all student")]
-        public async Task<IActionResult> GetStudents(int? page, int? size)
+        public async Task<IActionResult> GetStudents()
         {
-            var result = await _studentService.GetStudentList(page, size);
-            if (result == null || result.Count == 0) return NotFound("Empty Student List");
+            var result = await _studentService.GetStudentList();
+            if (result == null || result.Count == 0) 
+                return NotFound("Empty Student List");
 
-            var response = _mapper.Map<IEnumerable<UserDTO>>(result);
+            var response = _mapper.Map<IEnumerable<StudentDTO>>(result);
 
             return Ok(response);
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetStudentListBMajor(int majorId, int? page, int? size)
-        {
-            var result = await _studentService.GetStudentListByMajorId(majorId, page, size);
-            if (result == null || result.Count == 0) return NotFound("Empty student list");
-            
-            var response = _mapper.Map<IEnumerable<UserDTO>>(result);
-
-            return Ok(response);
-        }
-
 
 
     }

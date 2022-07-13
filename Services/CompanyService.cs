@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,10 +16,10 @@ namespace OJTManagementAPI.Services
         private readonly ICompanyRepository _companyRepository;
         private readonly PaginationOptions _paginationOptions;
 
-        public CompanyService(ICompanyRepository companyRepository, PaginationOptions paginationOptions)
+        public CompanyService(ICompanyRepository companyRepository, IOptions<PaginationOptions> options)
         {
             _companyRepository = companyRepository;
-            _paginationOptions = paginationOptions;
+            _paginationOptions = options.Value;
         }
 
         public async Task<Company> AddCompany(Company company)
@@ -48,6 +49,7 @@ namespace OJTManagementAPI.Services
         public async Task<List<Company>> GetCompanyByName(string name)
         {
             var companyList = await _companyRepository.GetCompanyByName(name);
+            Console.WriteLine(companyList.Count);
             return companyList;
         }
 

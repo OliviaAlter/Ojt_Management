@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using OJTManagementAPI.CustomEntities;
 using OJTManagementAPI.Entities;
@@ -32,6 +34,20 @@ namespace OJTManagementAPI.Services
             return isDeleted;
         }
 
+        /*
+        public async Task<PagedList<Student>> GetStudentList(int? page, int? pageSize)
+        {
+            var studentList = await _studentRepository.GetStudentList();
+            return studentList ?? null;
+            
+            //var pageNum = page ?? _paginationOptions.DefaultPageNumber;
+            //var size = pageSize ?? _paginationOptions.DefaultPageSize;
+
+            //var pagedList = await PagedList<Student>.Create(studentList, pageNum, size);
+        }
+        */
+        
+        /*
         public async Task<PagedList<Student>> GetStudentList(int? page, int? pageSize)
         {
             var studentList = _studentRepository.GetStudentList();
@@ -42,6 +58,13 @@ namespace OJTManagementAPI.Services
             var pagedList = await PagedList<Student>.Create(studentList, pageNum, size);
 
             return pagedList;
+        }
+        */
+
+        public async Task<List<Student>> GetStudentList()
+        {
+            var studentList = await _studentRepository.GetStudentList();
+            return studentList;
         }
 
         public async Task<PagedList<Student>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize)

@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using System.Collections.Generic;
+using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.DTOS
 {
@@ -8,12 +9,15 @@ namespace OJTManagementAPI.DTOS
     {
         public MajorDTO()
         {
-            Users = new HashSet<UserDTO>();
+            StudentDtos = new HashSet<StudentDTO>();
+            RecruitInfoDtos = new HashSet<RecruitInfoDTO>();
         }
-
+        
         public int MajorId { get; set; }
         public string MajorName { get; set; }
 
-        public virtual ICollection<UserDTO> Users { get; set; }
+        public virtual ICollection<StudentDTO> StudentDtos { get; set; }
+        public virtual ICollection<RecruitInfoDTO> RecruitInfoDtos { get; set; }
     }
+
 }

@@ -42,17 +42,12 @@ namespace OJTManagementAPI
             services.Configure<PaginationOptions>(Configuration.GetSection("Pagination"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
-            /*
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
-            
-            services.AddScoped<IMajorService, MajorService>();
-            services.AddScoped<IMajorRepository, MajorRepository>();
-            
+
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            */
-            
+
             services.AddDbContext<OjtManagementContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
@@ -72,10 +67,7 @@ namespace OJTManagementAPI
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseCors(
-                options => options.WithOrigins("http://localhost:4200").AllowAnyMethod());
-
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             app.UseHttpsRedirection();
         }
