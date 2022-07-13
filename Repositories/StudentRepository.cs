@@ -17,56 +17,38 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<User> AddStudent(User student)
+        public async Task<Student> AddStudent(Student student)
         {
-            await _context.Users.AddAsync(student);
-            await _context.SaveChangesAsync();
-            return student;
+            return null;
         }
 
         public async Task<bool> DeleteStudent(int studentId)
         {
-            var studentFound = await _context.Users
-                .FirstOrDefaultAsync(s => s.UserId == studentId && s.RoleId == (int)RoleEnum.Student);
-
-            if (studentFound == null) 
-                return false;
-            
-            _context.Users.Remove(studentFound);
-            await _context.SaveChangesAsync();
             return true;
         }
 
-        public IQueryable<User> GetStudentList()
+        public IQueryable<Student> GetStudentList()
         {
-            return _context.Users.Where(u => u.RoleId == (int)RoleEnum.Student);
+            return null;
         }
 
-        public IQueryable<User> GetStudentListAppliedByCompanyId(int companyId)
+        public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId)
         {
-            return _context.Users.Where(u => u.RoleId == (int)RoleEnum.Student)
-                .Include(s => s.UserCompanies)
-                .Where(s => s.UserCompanies.Any(uc => uc.CompanyId == companyId));
+            return null;
         }
 
-        public IQueryable<User> GetStudentListByMajorId(int majorId)
+        public IQueryable<Student> GetStudentListByMajorId(int majorId)
         {
-            return _context.Users.Where(u => u.RoleId == (int)RoleEnum.Student)
-                .Include(s => s.Major)
-                .Where(s => s.MajorId == majorId);
+            return null;
         }
 
-        public IQueryable<User> GetStudentListBySemesterId(int semesterId)
+        public IQueryable<Student> GetStudentListBySemesterId(int semesterId)
         {
-            return _context.Users.Where(u => u.RoleId == (int)RoleEnum.Student)
-                .Include(s => s.UserSemesters)
-                .Where(s => s.UserSemesters.Any(uc => uc.SemesterId == semesterId));
+            return null;
         }
 
-        public async Task<User> UpdateStudent(User student)
+        public async Task<Student> UpdateStudent(Student student)
         {
-            _context.Users.Update(student);
-            await _context.SaveChangesAsync();
             return student;
         }
     }

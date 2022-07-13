@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
@@ -20,50 +21,39 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<List<Company>> GetCompanyList()
         {
-            return await _context.Companies.ToListAsync();
+            return null;
         }
 
         public Task<List<Company>> GetCompanyByName(string companyName)
         {
-            return _context.Companies.Where(c => c.CompanyName.Contains(companyName)).ToListAsync();
+            return null;
         }
 
         public async Task<Company> AddCompany(Company company)
         {
-            await _context.Companies.AddAsync(company);
-            await _context.SaveChangesAsync();
             return company;
 
         }
 
         public async Task<Company> UpdateCompany(Company company)
         {
-            _context.Companies.Update(company);
-            await _context.SaveChangesAsync();
             return company;        
         }
 
         public async Task<bool> DeleteCompany(int companyId)
         {
-            var companyFound = await _context.Companies
-                .FirstOrDefaultAsync(s => s.CompanyId == companyId);
-
-            if (companyFound == null) 
-                return false;
             
-            _context.Companies.Remove(companyFound);
-            await _context.SaveChangesAsync();
             return true;
         }
 
         public IQueryable<Company> GetPagedListCompanyByName(string name)
         {
-            return _context.Companies.Where(c => c.CompanyName.Contains(name));
+            return null;
         }
 
         public IQueryable<Company> GetPagedListCompany()
         {
-            return _context.Companies;
+            return null;
         }
         
     }

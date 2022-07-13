@@ -41,6 +41,8 @@ namespace OJTManagementAPI
             }));
             services.Configure<PaginationOptions>(Configuration.GetSection("Pagination"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
+            /*
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             
@@ -49,6 +51,7 @@ namespace OJTManagementAPI
             
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            */
             
             services.AddDbContext<OjtManagementContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

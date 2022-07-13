@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OJTManagementAPI.Entities
 {
@@ -8,14 +9,16 @@ namespace OJTManagementAPI.Entities
     {
         public Semester()
         {
-            SemesterCompanies = new HashSet<SemesterCompany>();
-            UserSemesters = new HashSet<UserSemester>();
+            RecruitInfos = new HashSet<RecruitInfo>();
         }
-
+        
+        [Required]
         public int SemesterId { get; set; }
+        
+        [Required]
         public int SemesterNumber { get; set; }
 
-        public virtual ICollection<SemesterCompany> SemesterCompanies { get; set; }
-        public virtual ICollection<UserSemester> UserSemesters { get; set; }
+        public virtual ICollection<RecruitInfo> RecruitInfos { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

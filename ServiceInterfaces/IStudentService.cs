@@ -7,12 +7,12 @@ namespace OJTManagementAPI.ServiceInterfaces
 {
     public interface IStudentService
     {
-        public Task<PagedList<User>> GetStudentList(int? page, int? pageSize);
-        public Task<PagedList<User>> GetStudentListBySemesterId(int semesterId, int? page, int? pageSize);
-        public Task<PagedList<User>> GetStudentListByMajorId(int majorId, int? page, int? pageSize);
-        public Task<PagedList<User>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize);
-        public Task<User> AddStudent(User student);
-        public Task<User> UpdateStudent(User student);
+        public Task<PagedList<Student>> GetStudentList(int? page, int? pageSize);
+        public Task<PagedList<Student>> GetStudentListBySemesterId(int semesterId, int? page, int? pageSize);
+        public Task<PagedList<Student>> GetStudentListByMajorId(int majorId, int? page, int? pageSize);
+        public Task<PagedList<Student>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize);
+        public Task<Student> AddStudent(Student student);
+        public Task<Student> UpdateStudent(Student student);
         public Task<bool> DeleteStudent(int studentId);
     }
 }

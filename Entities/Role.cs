@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OJTManagementAPI.Entities
 {
@@ -8,12 +9,15 @@ namespace OJTManagementAPI.Entities
     {
         public Role()
         {
-            Users = new HashSet<User>();
+            Accounts = new HashSet<Account>();
         }
 
-        public int RoleId { get; set; }
+        [Required]
+        public int RoleId { get; set; } 
+        
+        [Required]
         public string RoleName { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

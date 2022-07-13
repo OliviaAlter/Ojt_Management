@@ -8,14 +8,14 @@ namespace OJTManagementAPI.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<Company, CompanyDTO>().ReverseMap();
-            CreateMap<Major, MajorDTO>().ReverseMap();
-            CreateMap<Role, RoleDTO>().ReverseMap();
-            CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
-            CreateMap<Semester, SemesterDTO>().ReverseMap();
-            CreateMap<UserCompany, UserCompanyDTO>().ReverseMap();
-            CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<UserSemester, UserSemesterDTO>().ReverseMap();
+            //CreateMap<Company, CompanyDTO>().ReverseMap();
+            //CreateMap<Major, MajorDTO>().ReverseMap();
+            //CreateMap<Role, RoleDTO>().ReverseMap();
+            //CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
+            //CreateMap<Semester, SemesterDTO>().ReverseMap();
+            //CreateMap<UserCompany, UserCompanyDTO>().ReverseMap();
+            //CreateMap<User, UserDTO>().ReverseMap();
+            //CreateMap<UserSemester, UserSemesterDTO>().ReverseMap();
         }
     }
 }

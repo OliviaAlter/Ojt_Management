@@ -6,12 +6,12 @@ namespace OJTManagementAPI.RepoInterfaces
 {
     public interface IStudentRepository
     {
-        public IQueryable<User> GetStudentList();
-        public IQueryable<User> GetStudentListBySemesterId(int semesterId);
-        public IQueryable<User> GetStudentListByMajorId(int majorId);
-        public IQueryable<User> GetStudentListAppliedByCompanyId(int companyId);
-        public Task<User> AddStudent(User student);
-        public Task<User> UpdateStudent(User student);
+        public IQueryable<Student> GetStudentList();
+        public IQueryable<Student> GetStudentListBySemesterId(int semesterId);
+        public IQueryable<Student> GetStudentListByMajorId(int majorId);
+        public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId);
+        public Task<Student> AddStudent(Student student);
+        public Task<Student> UpdateStudent(Student student);
         public Task<bool> DeleteStudent(int studentId);
     }
 }

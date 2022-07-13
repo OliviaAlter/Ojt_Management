@@ -20,46 +20,31 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<List<Major>> GetMajorList()
         {
-            return await _context.Majors.ToListAsync();
+            return null;
         }
 
         public IQueryable<Major> GetMajorListByName(string majorName)
         {
-            return _context.Majors.Where(u =>
-                    string.Equals(u.MajorName, majorName, StringComparison.CurrentCultureIgnoreCase))
-                .Include(s => s.MajorId);
+            return null;
         }
 
         public IQueryable<Major> GetMajorListBbyId(int majorId)
         {
-            return _context.Majors
-                .Where(u => u.MajorId == majorId);
+            return null;
         }
 
         public async Task<Major> AddMajor(Major major)
         {
-            await _context.Majors.AddAsync(major);
-            await _context.SaveChangesAsync();
-            return major;
+            return null;
         }
 
         public async Task<Major> UpdateMajor(Major major)
-        { 
-            _context.Majors.Update(major);
-            await _context.SaveChangesAsync();
-            return major;
+        {
+            return null;
         }
 
         public async Task<bool> DeleteMajor(int majorId)
         {
-            var majorExist = await _context.Majors
-                .FirstOrDefaultAsync(s => s.MajorId == majorId);
-
-            if (majorExist == null) 
-                return false;
-            
-            _context.Majors.Remove(majorExist);
-            await _context.SaveChangesAsync();
             return true;
         }
     }
