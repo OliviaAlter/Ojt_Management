@@ -10,7 +10,6 @@ namespace OJTManagementAPI.Entities
         public Major()
         {
             Students = new HashSet<Student>();
-            RecruitInfos = new HashSet<RecruitInfo>();
         }
         
         [Required]
@@ -20,7 +19,6 @@ namespace OJTManagementAPI.Entities
         public string MajorName { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<RecruitInfo> RecruitInfos { get; set; }
 
     }
 }

@@ -16,11 +16,10 @@ namespace OJTManagementAPI.DataContext
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<JobApplication> JobApplication { get; set; }
-        public virtual DbSet<JobApplicationStatus> JobApplicationStatus { get; set; }
         public virtual DbSet<Major> Major { get; set; }
-        public virtual DbSet<RecruitInfo> RecruitInfo { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Semester> Semester { get; set; }
+        public virtual DbSet<SemesterCompany> SemesterCompany { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,7 +31,7 @@ namespace OJTManagementAPI.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //
+            //throw new NotImplementedException();
         }
 
         private void OnModelCreatingPartial(ModelBuilder modelBuilder)

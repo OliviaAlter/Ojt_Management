@@ -37,17 +37,12 @@ namespace OJTManagementAPI.Repositories
             _context.Student.Remove(foundInStudent);
             _context.Account.Remove(foundInAccount);
             
+            //TODO: Check if there are any ongoing OJT for the student
+            
             await _context.SaveChangesAsync();
             return true;
         }
 
-        /*
-        public IQueryable<Student> GetStudentList()
-        {
-            return _context.Student.Where(c => c.Account.Roles.RoleId == (int)2);
-        }
-        */
-        
         public async Task<List<Student>> GetStudentList()
         {
             return await _context.Student.ToListAsync();

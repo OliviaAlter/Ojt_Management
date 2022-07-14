@@ -9,16 +9,15 @@ namespace OJTManagementAPI.Entities
     {
         public Semester()
         {
-            RecruitInfos = new HashSet<RecruitInfo>();
+            Students = new HashSet<Student>();
         }
         
         [Required]
         public int SemesterId { get; set; }
         
         [Required]
-        public int SemesterNumber { get; set; }
+        public string SemesterName { get; set; }
 
-        public virtual ICollection<RecruitInfo> RecruitInfos { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

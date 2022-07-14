@@ -7,11 +7,6 @@ namespace OJTManagementAPI.Entities
 {
     public class Company
     {
-        public Company()
-        {
-            RecruitInfos = new HashSet<RecruitInfo>();
-        }
-        
         [Required]
         public int CompanyId { get; set; }
         
@@ -32,6 +27,5 @@ namespace OJTManagementAPI.Entities
 
         
         public virtual Account Account { get; set; }
-        public virtual ICollection<RecruitInfo> RecruitInfos { get; set; }
     }
 }

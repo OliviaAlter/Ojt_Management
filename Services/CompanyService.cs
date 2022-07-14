@@ -24,33 +24,27 @@ namespace OJTManagementAPI.Services
 
         public async Task<Company> AddCompany(Company company)
         {
-            var companyAdded = await _companyRepository.AddCompany(company);
-            return companyAdded;
+            return await _companyRepository.AddCompany(company);
         }
 
         public async Task<bool> DeleteCompany(int companyId)
         {
-            var isDeleted = await _companyRepository.DeleteCompany(companyId);
-            return isDeleted;
+            return await _companyRepository.DeleteCompany(companyId);
         }
 
         public async Task<List<Company>> GetCompanyList()
         {
-            var companyList = await _companyRepository.GetCompanyList();
-            return companyList;
+            return await _companyRepository.GetCompanyList();
         }
 
         public async Task<Company> UpdateCompany(Company company)
         {
-            var updated = await _companyRepository.UpdateCompany(company);
-            return updated;
+            return await _companyRepository.UpdateCompany(company);
         }
 
         public async Task<List<Company>> GetCompanyByName(string name)
         {
-            var companyList = await _companyRepository.GetCompanyByName(name);
-            Console.WriteLine(companyList.Count);
-            return companyList;
+            return await _companyRepository.GetCompanyByName(name);
         }
 
         public async Task<PagedList<Company>> GetPagedListCompany(int? page, int? pageSize)

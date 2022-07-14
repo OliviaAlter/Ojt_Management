@@ -3,12 +3,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using OJTManagementAPI.CustomEntities;
 using OJTManagementAPI.DTOS;
-using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace OJTManagementAPI.Controllers
 {

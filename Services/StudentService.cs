@@ -24,47 +24,17 @@ namespace OJTManagementAPI.Services
 
         public async Task<Student> AddStudent(Student student)
         {
-            var newStudent = await _studentRepository.AddStudent(student);
-            return newStudent;
+            return await _studentRepository.AddStudent(student);
         }
 
         public async Task<bool> DeleteStudent(int studentId)
         {
-            var isDeleted = await _studentRepository.DeleteStudent(studentId);
-            return isDeleted;
+            return await _studentRepository.DeleteStudent(studentId);
         }
-
-        /*
-        public async Task<PagedList<Student>> GetStudentList(int? page, int? pageSize)
-        {
-            var studentList = await _studentRepository.GetStudentList();
-            return studentList ?? null;
-            
-            //var pageNum = page ?? _paginationOptions.DefaultPageNumber;
-            //var size = pageSize ?? _paginationOptions.DefaultPageSize;
-
-            //var pagedList = await PagedList<Student>.Create(studentList, pageNum, size);
-        }
-        */
         
-        /*
-        public async Task<PagedList<Student>> GetStudentList(int? page, int? pageSize)
-        {
-            var studentList = _studentRepository.GetStudentList();
-            if (studentList == null || !studentList.Any()) return null;
-            var pageNum = page ?? _paginationOptions.DefaultPageNumber;
-            var size = pageSize ?? _paginationOptions.DefaultPageSize;
-
-            var pagedList = await PagedList<Student>.Create(studentList, pageNum, size);
-
-            return pagedList;
-        }
-        */
-
         public async Task<List<Student>> GetStudentList()
         {
-            var studentList = await _studentRepository.GetStudentList();
-            return studentList;
+            return await _studentRepository.GetStudentList();
         }
 
         public async Task<PagedList<Student>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize)
@@ -105,8 +75,7 @@ namespace OJTManagementAPI.Services
 
         public async Task<Student> UpdateStudent(Student student)
         {
-            var updatedStudent = await _studentRepository.UpdateStudent(student);
-            return updatedStudent;
+            return await _studentRepository.UpdateStudent(student);
         }
     }
 }
