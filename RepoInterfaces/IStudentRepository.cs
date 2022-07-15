@@ -7,7 +7,7 @@ namespace OJTManagementAPI.RepoInterfaces
 {
     public interface IStudentRepository
     {
-        public Task<List<Student>> GetStudentList();
+        public Task<IEnumerable<Student>> GetStudentList();
         public IQueryable<Student> GetStudentListBySemesterId(int semesterId);
         public IQueryable<Student> GetStudentListByMajorId(int majorId);
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId);

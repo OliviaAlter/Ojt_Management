@@ -15,7 +15,7 @@ namespace OJTManagementAPI.Services
             _semesterRepository = semesterRepository;
         }
 
-        public async Task<List<Semester>> GetSemesterList()
+        public async Task<IEnumerable<Semester>> GetSemesterList()
         {
             return await _semesterRepository.GetSemesters();
         }

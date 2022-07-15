@@ -17,7 +17,7 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<Account>> GetAccountList()
+        public async Task<IEnumerable<Account>> GetAccountList()
         {
             return await _context.Account.ToListAsync();
         }
@@ -27,7 +27,7 @@ namespace OJTManagementAPI.Repositories
             return _context.Account.Where(a => a.Username == name);
         }
 
-        public async Task<List<Account>> GetAccountContainName(string name)
+        public async Task<IEnumerable<Account>> GetAccountContainName(string name)
         {
             return await _context.Account.Where(a => a.Username == name)
                 .ToListAsync();

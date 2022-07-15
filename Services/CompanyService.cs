@@ -32,7 +32,7 @@ namespace OJTManagementAPI.Services
             return await _companyRepository.DeleteCompany(companyId);
         }
 
-        public async Task<List<Company>> GetCompanyList()
+        public async Task<IEnumerable<Company>> GetCompanyList()
         {
             return await _companyRepository.GetCompanyList();
         }
@@ -42,7 +42,7 @@ namespace OJTManagementAPI.Services
             return await _companyRepository.UpdateCompany(company);
         }
 
-        public async Task<List<Company>> GetCompanyByName(string name)
+        public async Task<IEnumerable<Company>> GetCompanyByName(string name)
         {
             return await _companyRepository.GetCompanyByName(name);
         }

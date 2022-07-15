@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,34 +18,51 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
         
-        public async Task<List<Semester>> GetSemesters()
+        public async Task<IEnumerable<Semester>> GetSemesters()
         {
             return await _context.Semester.ToListAsync();
         }
 
-        public async Task<List<Semester>> GetSemesterName(string semesterName)
+        public async Task<IEnumerable<Semester>> GetSemesterName(string semesterName)
         {
-            throw new System.NotImplementedException();
+            return await _context.Semester
+                .Where(s => string.Equals(s.SemesterName, semesterName, StringComparison.CurrentCultureIgnoreCase))
+                .ToListAsync();
         }
 
-        public async Task<List<Semester>> GetSemesterId(int semesterId)
+        public async Task<IEnumerable<Semester>> GetSemesterId(int semesterId)
         {
-            throw new System.NotImplementedException();
+            return await _context.Semester
+                .Where(s => s.SemesterId == semesterId).ToListAsync();
         }
 
         public async Task<Semester> AddSemester(Semester semester)
         {
-            throw new System.NotImplementedException();
+            await _context.Semester.AddAsync(semester);
+            await _context.SaveChangesAsync();
+            return semester;
         }
 
         public async Task<Semester> UpdateSemester(Semester semester)
         {
-            throw new System.NotImplementedException();
+            _context.Semester.Update(semester);
+            await _context.SaveChangesAsync();
+            return semester;
         }
 
         public async Task<bool> DeleteSemester(int semesterId)
         {
-            throw new System.NotImplementedException();
+            var foundInSemester = await _context.Semester.FirstOrDefaultAsync(s => s.SemesterId == semesterId);
+
+            if (foundInSemester == null)
+                return false;
+
+            _context.Semester.Remove(foundInSemester);
+            
+            //TODO: Check if there are any semester constrain
+            
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

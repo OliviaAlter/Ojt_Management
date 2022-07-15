@@ -17,12 +17,12 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<Company>> GetCompanyList()
+        public async Task<IEnumerable<Company>> GetCompanyList()
         {
             return await _context.Company.ToListAsync();
         }
 
-        public async Task<List<Company>> GetCompanyByName(string companyName)
+        public async Task<IEnumerable<Company>> GetCompanyByName(string companyName)
         {
             return await _context.Company.Where(c => c.CompanyName.Contains(companyName)).ToListAsync();
         }

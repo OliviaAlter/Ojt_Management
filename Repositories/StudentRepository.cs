@@ -43,7 +43,7 @@ namespace OJTManagementAPI.Repositories
             return true;
         }
 
-        public async Task<List<Student>> GetStudentList()
+        public async Task<IEnumerable<Student>> GetStudentList()
         {
             return await _context.Student.ToListAsync();
         }

@@ -7,9 +7,9 @@ namespace OJTManagementAPI.RepoInterfaces
 {
     public interface ISemesterRepository
     {
-        public Task<List<Semester>> GetSemesters();
-        public Task<List<Semester>> GetSemesterName(string semesterName);
-        public Task<List<Semester>> GetSemesterId(int semesterId);
+        public Task<IEnumerable<Semester>> GetSemesters();
+        public Task<IEnumerable<Semester>> GetSemesterName(string semesterName);
+        public Task<IEnumerable<Semester>> GetSemesterId(int semesterId);
         public Task<Semester> AddSemester(Semester semesterCompany);
         public Task<Semester> UpdateSemester(Semester semesterCompany);
         public Task<bool> DeleteSemester(int semesterCompanyId);

@@ -7,7 +7,7 @@ namespace OJTManagementAPI.Services
 {
     public class JobApplicationService : IJobApplicationService
     {
-        public Task<List<JobApplication>> GetJobApplication()
+        public Task<IEnumerable<JobApplication>> GetJobApplication()
         {
             throw new System.NotImplementedException();
         }

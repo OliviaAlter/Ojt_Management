@@ -32,7 +32,7 @@ namespace OJTManagementAPI.Services
             return await _studentRepository.DeleteStudent(studentId);
         }
         
-        public async Task<List<Student>> GetStudentList()
+        public async Task<IEnumerable<Student>> GetStudentList()
         {
             return await _studentRepository.GetStudentList();
         }

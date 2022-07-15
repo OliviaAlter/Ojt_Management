@@ -16,7 +16,7 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<JobApplication>> GetApplicationLists()
+        public async Task<IEnumerable<JobApplication>> GetApplicationLists()
         {
             return await _context.JobApplication.ToListAsync();
         }

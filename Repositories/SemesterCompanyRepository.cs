@@ -16,24 +16,24 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<SemesterCompany>> GetSemesterCompany()
+        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompany()
         {
             return await _context.SemesterCompany.ToListAsync();
         }
 
-        public async Task<List<SemesterCompany>> GetSemesterCompanyBySemesterName(string semesterName)
+        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyBySemesterName(string semesterName)
         {
             return await _context.SemesterCompany
                 .Where(x => x.Semester.SemesterName == semesterName).ToListAsync();
         }
 
-        public async Task<List<SemesterCompany>> GetSemesterCompanyBySemesterId(int semesterId)
+        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyBySemesterId(int semesterId)
         {
             return await _context.SemesterCompany
                 .Where(x => x.Semester.SemesterId == semesterId).ToListAsync();
         }
 
-        public async Task<List<SemesterCompany>> GetSemesterCompanyByCompanyName(string companyName)
+        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyByCompanyName(string companyName)
         {
             return await _context.SemesterCompany
                 .Where(x => x.Company.CompanyName.Contains(companyName)).ToListAsync();

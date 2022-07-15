@@ -15,7 +15,7 @@ namespace OJTManagementAPI.Services
             _majorRepository = majorRepository;
         }
 
-        public async Task<List<Major>> GetMajorList()
+        public async Task<IEnumerable<Major>> GetMajorList()
         {
             var majorList = await _majorRepository.GetMajorList();
             return majorList;

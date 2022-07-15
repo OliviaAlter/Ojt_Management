@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using OJTManagementAPI.RepoInterfaces;
 
 namespace OJTManagementAPI.Entities
 {
-    public class Account
+    public class Account : IdentityUser
     {
         [Required]
         public int AccountId { get; set; }

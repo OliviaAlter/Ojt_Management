@@ -1,12 +1,13 @@
 ﻿#nullable disable
 
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.DataContext
 {
-    public class OjtManagementContext : DbContext
+    public class OjtManagementContext : IdentityDbContext
     {
         public OjtManagementContext(DbContextOptions<OjtManagementContext> options)
             : base(options)

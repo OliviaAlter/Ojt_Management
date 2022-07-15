@@ -17,12 +17,12 @@ namespace OJTManagementAPI.Services
             _accountRepository = accountRepository;
         }
 
-        public async Task<List<Account>> GetAccountList()
+        public async Task<IEnumerable<Account>> GetAccountList()
         {
             return await _accountRepository.GetAccountList();
         }
 
-        public async Task<List<Account>> GetAccountListByName(string name)
+        public async Task<IEnumerable<Account>> GetAccountListByName(string name)
         {
             return await _accountRepository.GetAccountContainName(name);
         }

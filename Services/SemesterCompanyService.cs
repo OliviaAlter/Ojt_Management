@@ -7,7 +7,7 @@ namespace OJTManagementAPI.Services
 {
     public class SemesterCompanyService : ISemesterCompanyService
     {
-        public Task<List<SemesterCompany>> GetSemesterCompany()
+        public Task<IEnumerable<SemesterCompany>> GetSemesterCompany()
         {
             throw new System.NotImplementedException();
         }

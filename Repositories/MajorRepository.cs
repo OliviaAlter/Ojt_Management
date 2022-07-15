@@ -18,12 +18,12 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<List<Major>> GetMajorList()
+        public async Task<IEnumerable<Major>> GetMajorList()
         {
             return await _context.Major.ToListAsync();
         }
 
-        public async Task<List<Major>> GetMajorListByName(string majorName)
+        public async Task<IEnumerable<Major>> GetMajorListByName(string majorName)
         {
             return await _context.Major
                 .Where(m => string.Equals(m.MajorName, majorName,
