@@ -37,6 +37,11 @@ namespace OJTManagementAPI.Services
             return await _studentRepository.GetStudentList();
         }
 
+        public async Task<IEnumerable<Student>> GetStudentListByName(string name)
+        {
+            return await _studentRepository.GetStudentListByName(name);
+        }
+
         public async Task<PagedList<Student>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize)
         {
             var studentList = _studentRepository.GetStudentListAppliedByCompanyId(companyId);

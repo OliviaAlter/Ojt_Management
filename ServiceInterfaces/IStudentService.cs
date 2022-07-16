@@ -10,6 +10,7 @@ namespace OJTManagementAPI.ServiceInterfaces
     {
         //public Task<PagedList<Student>> GetStudentList(int? page, int? pageSize);
         public Task<IEnumerable<Student>> GetStudentList();
+        public Task<IEnumerable<Student>> GetStudentListByName(string name);
         public Task<PagedList<Student>> GetStudentListBySemesterId(int semesterId, int? page, int? pageSize);
         public Task<PagedList<Student>> GetStudentListByMajorId(int majorId, int? page, int? pageSize);
         public Task<PagedList<Student>> GetStudentListAppliedByCompanyId(int companyId, int? page, int? pageSize);

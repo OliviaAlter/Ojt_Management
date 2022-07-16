@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -26,7 +27,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetCompany()
         {
             var result = await _companyService.GetCompanyList();
-            if (result == null || result.Count == 0) 
+            if (result == null || !result.Any()) 
                 return NotFound("No company found in database");
 
             var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
@@ -39,7 +40,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetCompanyByName(string name)
         {
             var result = await _companyService.GetCompanyByName(name);
-            if (result == null || result.Count == 0) return NotFound($"No company found in database with the search value : {name}");
+            if (result == null || !result.Any()) return NotFound($"No company found in database with the search value : {name}");
 
             var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
 

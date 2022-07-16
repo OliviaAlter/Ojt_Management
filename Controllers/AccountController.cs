@@ -31,7 +31,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetAccountList()
         {
             var result = await _accountService.GetAccountList();
-            if (result == null || result.Count == 0) 
+            if (result == null || !result.Any()) 
                 return NotFound("No account found in database");
 
             var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
@@ -44,7 +44,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
             var result = await _accountService.GetAccountListByName(name);
-            if (result == null || result.Count == 0) return NotFound($"No company found in database with the search value : {name}");
+            if (result == null || !result.Any()) return NotFound($"No company found in database with the search value : {name}");
 
             var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
 
@@ -57,25 +57,7 @@ namespace OJTManagementAPI.Controllers
         {
             return Ok();
         }
-
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteAccount(int id)
-        {
-            try
-            {
-                var result = await _accountService.DeleteAccount(id);
-                if (!result)
-                    return NotFound("Account not found");
-                return Ok("Account deleted");
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error deleting data");
-            }
-        }
-
+        
         [HttpPut("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateAccount(int id, Account account)
@@ -96,6 +78,26 @@ namespace OJTManagementAPI.Controllers
                     "Error updating data");
             }
         }
-        
+      
+        [HttpDelete("{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAccount(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                    return BadRequest("Id must be positive");
+
+                // TODO: Check if there are any constrains associated with the account
+                var result = await _accountService.DeleteAccount(id);
+                if (!result)
+                    return NotFound($"Account with id : {id} isn't in our database");
+                return Ok("Account deleted");
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+            }
+        }
     }
 }

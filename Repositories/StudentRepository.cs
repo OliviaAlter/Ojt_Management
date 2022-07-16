@@ -48,6 +48,13 @@ namespace OJTManagementAPI.Repositories
             return await _context.Student.ToListAsync();
         }
 
+        public async Task<IEnumerable<Student>> GetStudentListByName(string name)
+        {
+            return await _context.Student
+                .Where(s => s.Account.Username.ToLower().Contains(name.ToLower()))
+                .ToListAsync();
+        }
+
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId)
         {
             return null;
