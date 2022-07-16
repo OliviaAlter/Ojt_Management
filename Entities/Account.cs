@@ -6,7 +6,7 @@ using OJTManagementAPI.RepoInterfaces;
 
 namespace OJTManagementAPI.Entities
 {
-    public class Account : IdentityUser
+    public class Account 
     {
         [Required]
         public int AccountId { get; set; }
@@ -21,7 +21,7 @@ namespace OJTManagementAPI.Entities
         public int RoleId { get; set; }
         
         public virtual Role Roles { get; set; }
-        public virtual Company Companies { get; set; }
-        public virtual Student Students { get; set; }
+        public virtual Student Student { get; set; }
+        
     }
 }

@@ -9,6 +9,7 @@ namespace OJTManagementAPI.Entities
         {
             JobApplications = new HashSet<JobApplication>();
         }
+        
         [Required]
         public int StudentId { get; set; }  
         

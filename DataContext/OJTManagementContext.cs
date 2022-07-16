@@ -7,7 +7,7 @@ using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.DataContext
 {
-    public class OjtManagementContext : IdentityDbContext
+    public class OjtManagementContext : DbContext
     {
         public OjtManagementContext(DbContextOptions<OjtManagementContext> options)
             : base(options)

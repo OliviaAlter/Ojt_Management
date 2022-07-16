@@ -14,9 +14,6 @@ namespace OJTManagementAPI.Entities
         public string CompanyName { get; set; }
         
         [Required]
-        public int AccountId { get; set; }
-        
-        [Required]
         public string Description { get; set; }
         
         [Required]
@@ -24,8 +21,6 @@ namespace OJTManagementAPI.Entities
         
         [Required]
         public string Email { get; set; }
-
-        
-        public virtual Account Account { get; set; }
+        public virtual ICollection<JobApplication> JobApplications { get; set; }
     }
 }
