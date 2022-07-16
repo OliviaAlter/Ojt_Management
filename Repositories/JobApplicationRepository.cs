@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
@@ -50,6 +51,30 @@ namespace OJTManagementAPI.Repositories
             
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationById(int applicationId)
+        {
+            return _context.JobApplication
+                .Where(x => x.JobApplicationId == applicationId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Student.StudentId == studentId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationByCompanyId(int companyId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Company.CompanyId == companyId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationByMajorId(int majorId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Student.MajorId == majorId);
         }
     }
 }

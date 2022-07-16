@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.RepoInterfaces
@@ -13,5 +12,6 @@ namespace OJTManagementAPI.RepoInterfaces
         public Task<Semester> AddSemester(Semester semesterCompany);
         public Task<Semester> UpdateSemester(Semester semesterCompany);
         public Task<bool> DeleteSemester(int semesterCompanyId);
+        public Task<IEnumerable<Semester>> GetRelatedDataFromSemester(int semesterCode);
     }
 }

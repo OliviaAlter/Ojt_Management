@@ -34,5 +34,15 @@ namespace OJTManagementAPI.Services
         {
             return await _semesterRepository.DeleteSemester(semesterId);
         }
+
+        public async Task<IEnumerable<Semester>> GetSemesterByName(string semesterName)
+        {
+            return await _semesterRepository.GetSemesterName(semesterName);
+        }
+
+        public async Task<IEnumerable<Semester>> GetRelatedDataFromSemester(int semesterCode)
+        {
+            return await _semesterRepository.GetRelatedDataFromSemester(semesterCode);
+        }
     }
 }

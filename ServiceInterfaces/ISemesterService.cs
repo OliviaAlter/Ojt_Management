@@ -10,5 +10,7 @@ namespace OJTManagementAPI.ServiceInterfaces
         public Task<Semester> AddSemester(Semester account);
         public Task<Semester> UpdateSemester(Semester account);
         public Task<bool> DeleteSemester(int accountId);
+        public Task<IEnumerable<Semester>> GetSemesterByName(string semesterName);
+        public Task<IEnumerable<Semester>> GetRelatedDataFromSemester(int semesterCode);
     }
 }

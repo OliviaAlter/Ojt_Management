@@ -26,7 +26,7 @@ namespace OJTManagementAPI.Repositories
         public async Task<IEnumerable<Semester>> GetSemesterName(string semesterName)
         {
             return await _context.Semester
-                .Where(s => string.Equals(s.SemesterName, semesterName, StringComparison.CurrentCultureIgnoreCase))
+                .Where(s => s.SemesterName.ToLower().Contains(semesterName.ToLower()))
                 .ToListAsync();
         }
 
@@ -52,7 +52,8 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<bool> DeleteSemester(int semesterId)
         {
-            var foundInSemester = await _context.Semester.FirstOrDefaultAsync(s => s.SemesterId == semesterId);
+            var foundInSemester = await _context.Semester
+                .FirstOrDefaultAsync(s => s.SemesterId == semesterId);
 
             if (foundInSemester == null)
                 return false;
@@ -63,6 +64,14 @@ namespace OJTManagementAPI.Repositories
             
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<IEnumerable<Semester>> GetRelatedDataFromSemester(int semesterCode)
+        {
+            return await _context.Semester
+                .Where(x => x.SemesterId == semesterCode)
+                .ToListAsync();
+            
         }
     }
 }

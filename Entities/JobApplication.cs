@@ -8,9 +8,6 @@ namespace OJTManagementAPI.Entities
         [Required]
         public int JobApplicationId { get; set; }   
         
-        [Required]
-        public int RecruitInfoId { get; set; }
-        
         public int? StudentId { get; set; }
         
         [Required]
@@ -19,6 +16,6 @@ namespace OJTManagementAPI.Entities
         public int? ApplicationStatus { get; set; }
 
         public virtual Student Student { get; set; }
-        
+        public virtual Company Company { get; set; }
     }
 }
