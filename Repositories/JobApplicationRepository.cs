@@ -17,11 +17,35 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<JobApplication>> GetApplicationLists()
+        public IQueryable<JobApplication> GetApplicationList()
         {
-            return await _context.JobApplication.ToListAsync();
+            return _context.JobApplication;
         }
 
+        public IQueryable<JobApplication> GetJobApplicationById(int applicationId)
+        {
+            return _context.JobApplication
+                .Where(x => x.JobApplicationId == applicationId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationListByStudentId(int studentId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Student.StudentId == studentId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationListByCompanyId(int companyId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Company.CompanyId == companyId);
+        }
+
+        public IQueryable<JobApplication> GetJobApplicationListByMajorId(int majorId)
+        {
+            return _context.JobApplication
+                .Where(x => x.Student.MajorId == majorId);
+        }
+        
         public async Task<JobApplication> AddApplication(JobApplication application)
         {
             await _context.JobApplication.AddAsync(application);
@@ -46,35 +70,12 @@ namespace OJTManagementAPI.Repositories
                 return false;
 
             _context.JobApplication.Remove(foundInApplication);
-            
+
             //TODO: Check if the user is already in any OJT or haven't got status updated for the application
-            
+
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public IQueryable<JobApplication> GetJobApplicationById(int applicationId)
-        {
-            return _context.JobApplication
-                .Where(x => x.JobApplicationId == applicationId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId)
-        {
-            return _context.JobApplication
-                .Where(x => x.Student.StudentId == studentId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByCompanyId(int companyId)
-        {
-            return _context.JobApplication
-                .Where(x => x.Company.CompanyId == companyId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByMajorId(int majorId)
-        {
-            return _context.JobApplication
-                .Where(x => x.Student.MajorId == majorId);
-        }
     }
 }

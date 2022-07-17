@@ -10,8 +10,8 @@ namespace OJTManagementAPI.DTOS
         {
             StudentDtOs = new HashSet<StudentDTO>();
         }
-        
-        
+
+
         public int SemesterId { get; set; }
         public string SemesterNumber { get; set; }
 

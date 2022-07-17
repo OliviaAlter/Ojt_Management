@@ -7,8 +7,10 @@ namespace OJTManagementAPI.ServiceInterfaces
     public interface IMajorService
     {
         public Task<IEnumerable<Major>> GetMajorList();
-        public Task<Major> AddMajor(Student student);
-        public Task<Major> UpdateMajor(Student student);
-        public Task<bool> DeleteMajor(int studentId);
+        public Task<IEnumerable<Major>> GetMajorListByName(string name);
+        public Task<Major> GetMajor(int majorId);
+        public Task<Major> AddMajor(Major major);
+        public Task<Major> UpdateMajor(Major major);
+        public Task<bool> DeleteMajor(int majorId);
     }
 }

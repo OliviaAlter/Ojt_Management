@@ -13,8 +13,8 @@ namespace OJTManagementAPI.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly ICompanyService _companyService;
+        private readonly IMapper _mapper;
 
         public CompanyController(ICompanyService companyService, IMapper mapper)
         {
@@ -27,8 +27,21 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetCompany()
         {
             var result = await _companyService.GetCompanyList();
-            if (result == null || !result.Any()) 
+            if (result == null || !result.Any())
                 return NotFound("No company found in database");
+
+            var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{name}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetCompanyListByName(string name)
+        {
+            var result = await _companyService.GetCompanyListByName(name);
+            if (result == null || !result.Any())
+                return NotFound($"No companies found in database with the search value : {name}");
 
             var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
 
@@ -40,11 +53,21 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetCompanyByName(string name)
         {
             var result = await _companyService.GetCompanyByName(name);
-            if (result == null || !result.Any()) return NotFound($"No company found in database with the search value : {name}");
+            if (result == null)
+                return NotFound($"No company found in database with the search value : {name}");
 
-            var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
+            return Ok(result);
+        }
 
-            return Ok(response);
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetCompanyById(int id)
+        {
+            var result = await _companyService.GetCompanyById(id);
+            if (result == null)
+                return NotFound("No company found in database");
+
+            return Ok(result);
         }
     }
 }

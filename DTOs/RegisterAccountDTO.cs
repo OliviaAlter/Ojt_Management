@@ -5,17 +5,16 @@ namespace OJTManagementAPI.DTOS
 {
     public class RegisterAccountDTO
     {
-        [Required] 
+        [Required]
         [MinLength(6)]
         [MaxLength(32)]
-        public string Username { get; set; } 
+        public string Username { get; set; }
+
         [Required]
         [MinLength(6)]
         [MaxLength(32)]
         public string Password { get; set; }
-        [DefaultValue(1)]
-        public int RoleId { get; set; }
-        
-        
+
+        [DefaultValue(1)] public int RoleId { get; set; }
     }
 }

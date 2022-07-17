@@ -1,13 +1,14 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
+using OJTManagementAPI.RepoInterfaces;
 
 namespace OJTManagementAPI.Repositories
 {
-    public class SemesterCompanyRepository
+    public class SemesterCompanyRepository : ISemesterCompanyRepository
     {
         private readonly OjtManagementContext _context;
 
@@ -16,27 +17,46 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompany()
+        public IQueryable<SemesterCompany> GetSemesterCompanyList()
         {
-            return await _context.SemesterCompany.ToListAsync();
+            return _context.SemesterCompany;
         }
 
-        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyBySemesterName(string semesterName)
+        public IQueryable<SemesterCompany> GetSemesterCompanyListBySemesterName(string semesterName)
         {
-            return await _context.SemesterCompany
-                .Where(x => x.Semester.SemesterName == semesterName).ToListAsync();
+            return _context.SemesterCompany
+                .Where(x => x.Semester.SemesterName == semesterName);
         }
 
-        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyBySemesterId(int semesterId)
+        public IQueryable<SemesterCompany> GetSemesterCompanyBySemesterId(int semesterId)
         {
-            return await _context.SemesterCompany
-                .Where(x => x.Semester.SemesterId == semesterId).ToListAsync();
+            return _context.SemesterCompany
+                .Where(x => x.Semester.SemesterId == semesterId);
         }
 
-        public async Task<IEnumerable<SemesterCompany>> GetSemesterCompanyByCompanyName(string companyName)
+        public IQueryable<SemesterCompany> GetSemesterCompanyListByCompanyName(string companyName)
         {
-            return await _context.SemesterCompany
-                .Where(x => x.Company.CompanyName.Contains(companyName)).ToListAsync();
+            return _context.SemesterCompany
+                .Where(x => x.Company.CompanyName.ToLower().Contains(companyName.ToLower()));
+        }
+
+        public IQueryable<SemesterCompany> GetSemesterCompanyByCompanyId(int companyId)
+        {
+            return _context.SemesterCompany
+                .Where(x => x.Company.CompanyId == companyId);
+        }
+
+        public IQueryable<SemesterCompany> GetSemesterCompanyById(int semesterCompanyId)
+        {
+            return _context.SemesterCompany
+                .Where(x => x.Semester.SemesterId == semesterCompanyId);
+        }
+
+        public IQueryable<SemesterCompany> GetSemesterCompanyByName(string semesterCompanyName)
+        {
+            return _context.SemesterCompany
+                .Where(x => string.Equals(x.Semester.SemesterName, semesterCompanyName,
+                    StringComparison.CurrentCultureIgnoreCase));
         }
 
         public async Task<SemesterCompany> AddSemesterCompany(SemesterCompany semesterCompany)

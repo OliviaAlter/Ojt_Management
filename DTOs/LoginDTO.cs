@@ -4,10 +4,11 @@ namespace OJTManagementAPI.DTOS
 {
     public class LoginDTO
     {
-        [Required] 
+        [Required]
         [MinLength(6)]
         [MaxLength(32)]
-        public string Username { get; set; } 
+        public string Username { get; set; }
+
         [Required]
         [MinLength(6)]
         [MaxLength(32)]

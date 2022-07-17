@@ -11,10 +11,9 @@ namespace OJTManagementAPI.ServiceInterfaces
         public Task<JobApplication> AddJobApplication(JobApplication account);
         public Task<JobApplication> UpdateApplication(JobApplication account);
         public Task<bool> DeleteApplication(int jobApplicationId);
-        public IQueryable<JobApplication> GetJobApplicationById(int jobApplicationId);
-        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId);
-        public IQueryable<JobApplication> GetJobApplicationByCompanyId(int companyId);
-        public IQueryable<JobApplication> GetJobApplicationByMajorId(int majorId);
-
+        public Task<JobApplication> GetJobApplicationById(int jobApplicationId);
+        public Task<IEnumerable<JobApplication>> GetJobApplicationByStudentId(int studentId);
+        public Task<IEnumerable<JobApplication>> GetJobApplicationByCompanyId(int companyId);
+        public Task<IEnumerable<JobApplication>> GetJobApplicationByMajorId(int majorId);
     }
 }

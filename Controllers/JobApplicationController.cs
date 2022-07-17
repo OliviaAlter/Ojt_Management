@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OJTManagementAPI.DataContext;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
@@ -18,8 +16,8 @@ namespace OJTManagementAPI.Controllers
     [ApiController]
     public class JobApplicationController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly IJobApplicationService _applicationService;
+        private readonly IMapper _mapper;
 
         public JobApplicationController(IJobApplicationService applicationService, IMapper mapper)
         {
@@ -32,19 +30,8 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetApplicationList()
         {
             var result = await _applicationService.GetJobApplicationList();
-            if (result == null || !result.Any()) 
-                return NotFound("Empty application list");
-
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
-        }
-
-        [HttpGet("{majorId}")]
-        public async Task<IActionResult> GetApplicationByMajorId(int majorId)
-        {
-            var result = await _applicationService.GetJobApplicationByMajorId(majorId).ToListAsync();
             if (result == null || !result.Any())
-                return NotFound($"No application list found");
+                return NotFound("Empty application list");
 
             var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
             return Ok(response);
@@ -53,35 +40,46 @@ namespace OJTManagementAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetApplicationById(int id)
         {
-            var result = await _applicationService.GetJobApplicationById(id).ToListAsync();
-            if (result == null || !result.Any())
-                return NotFound($"No application list found");
+            var result = await _applicationService.GetJobApplicationById(id);
+            if (result == null)
+                return NotFound("No application found");
 
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
+            return Ok(result);
         }
-        
+
         [HttpGet("{companyId}")]
         public async Task<IActionResult> GetJobApplicationByCompanyId(int companyId)
         {
-            var result = await _applicationService.GetJobApplicationByCompanyId(companyId).ToListAsync();
+            var result = await _applicationService.GetJobApplicationByCompanyId(companyId);
             if (result == null || !result.Any())
-                return NotFound($"No application list found");
+                return NotFound("No application list found");
+
+            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
+            return Ok(response);
+        }
+
+        [HttpGet("{studentId}")]
+        public async Task<IActionResult> GetJobApplicationByStudentId(int studentId)
+        {
+            var result = await _applicationService.GetJobApplicationByStudentId(studentId);
+            if (result == null || !result.Any())
+                return NotFound("No application list found");
 
             var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
             return Ok(response);
         }
         
-        [HttpGet("{studentId}")]
-        public async Task<IActionResult> GetJobApplicationByStudentId(int studentId)
+        [HttpGet("{majorId}")]
+        public async Task<IActionResult> GetApplicationByMajorId(int majorId)
         {
-            var result = await _applicationService.GetJobApplicationByStudentId(studentId).ToListAsync();
+            var result = await _applicationService.GetJobApplicationByMajorId(majorId);
             if (result == null || !result.Any())
-                return NotFound($"No application list found");
+                return NotFound("No application list found");
 
             var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
             return Ok(response);
         }
+
 
         [HttpPut("{id}")]
         [ValidateAntiForgeryToken]

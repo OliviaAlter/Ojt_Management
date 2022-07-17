@@ -1,6 +1,5 @@
 ﻿#nullable disable
 
-using System.Collections.Generic;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.DTOS

@@ -9,36 +9,27 @@ namespace OJTManagementAPI.Entities
         {
             JobApplications = new HashSet<JobApplication>();
         }
-        
-        [Required]
-        public int StudentId { get; set; }  
-        
-        [Required]
-        public int AccountId { get; set; }
-        
-        [Required]
-        public int StudentCode { get; set; }
-        
-        [Required]
-        public string Name { get; set; }
-        
-        [Required]
-        public int MajorId { get; set; }
-        
-        [Required]
-        public int SemesterId { get; set; }
-        
-        [Required]
-        public string Email { get; set; }
-        
-        [Required]
-        public int? PhoneNumber { get; set; }
-        
-        [Required]
-        public int? Score { get; set; }    
-        
+
+        [Required] public int StudentId { get; set; }
+
+        [Required] public int AccountId { get; set; }
+
+        [Required] public int StudentCode { get; set; }
+
+        [Required] public string Name { get; set; }
+
+        [Required] public int MajorId { get; set; }
+
+        [Required] public int SemesterId { get; set; }
+
+        [Required] public string Email { get; set; }
+
+        [Required] public int? PhoneNumber { get; set; }
+
+        [Required] public int? Score { get; set; }
+
         public virtual Major Major { get; set; }
-        public virtual Semester Semester { get; set; }  
+        public virtual Semester Semester { get; set; }
         public virtual Account Account { get; set; }
         public virtual ICollection<JobApplication> JobApplications { get; set; }
     }

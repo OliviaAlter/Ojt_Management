@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -19,12 +18,14 @@ namespace OJTManagementAPI.Services
 
         public async Task<IEnumerable<Account>> GetAccountList()
         {
-            return await _accountRepository.GetAccountList();
+            return await _accountRepository.GetAccountList()
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Account>> GetAccountListByName(string name)
         {
-            return await _accountRepository.GetAccountContainName(name);
+            return await _accountRepository.GetAccountListContainName(name)
+                .ToListAsync();
         }
 
         public async Task<Account> AddAccount(Account account)

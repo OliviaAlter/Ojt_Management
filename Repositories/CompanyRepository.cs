@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +17,26 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Company>> GetCompanyList()
+        public IQueryable<Company> GetCompanyList()
         {
-            return await _context.Company.ToListAsync();
+            return _context.Company;
         }
 
-        public async Task<IEnumerable<Company>> GetCompanyByName(string companyName)
+        public IQueryable<Company> GetCompanyListByName(string companyName)
         {
-            return await _context.Company.Where(c => c.CompanyName.Contains(companyName)).ToListAsync();
+            return _context.Company.Where(c => c.CompanyName.Contains(companyName));
+        }
+
+        public IQueryable<Company> GetCompanyById(int id)
+        {
+            return _context.Company.Where(c => c.CompanyId == id);
+        }
+
+        public IQueryable<Company> GetCompanyByName(string name)
+        {
+            return _context.Company.Where(c =>
+                string.Equals(c.CompanyName, name,
+                    StringComparison.CurrentCultureIgnoreCase));
         }
 
         public async Task<Company> AddCompany(Company company)
@@ -38,7 +50,7 @@ namespace OJTManagementAPI.Repositories
         {
             _context.Company.Update(company);
             await _context.SaveChangesAsync();
-            return company;        
+            return company;
         }
 
         public async Task<bool> DeleteCompany(int companyId)
@@ -51,16 +63,6 @@ namespace OJTManagementAPI.Repositories
             _context.Company.Remove(found);
             await _context.SaveChangesAsync();
             return true;
-        }
-
-        public IQueryable<Company> GetPagedListCompanyByName(string name)
-        {
-            return _context.Company.Where(c => c.CompanyName.Contains(name));
-        }
-
-        public IQueryable<Company> GetPagedListCompany()
-        {
-            return null;
         }
         
     }

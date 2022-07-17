@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using OJTManagementAPI.RepoInterfaces;
 
 namespace OJTManagementAPI.Repositories
 {
-    public class AccountRepository :IAccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private readonly OjtManagementContext _context;
 
@@ -17,22 +17,27 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Account>> GetAccountList()
+        public IQueryable<Account> GetAccountList()
         {
-            return await _context.Account.ToListAsync();
+            return _context.Account;
         }
 
         public IQueryable<Account> GetAccountByName(string name)
         {
-            return _context.Account.Where(a => a.Username == name);
+            return _context.Account.Where(a => string.Equals(a.Username, name,
+                StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public async Task<IEnumerable<Account>> GetAccountContainName(string name)
+        public IQueryable<Account> GetAccountById(int id)
         {
-            return await _context.Account.Where(a => a.Username == name)
-                .ToListAsync();
+            return _context.Account.Where(a => a.AccountId == id);
         }
-        
+
+        public IQueryable<Account> GetAccountListContainName(string name)
+        {
+            return _context.Account.Where(a => a.Username.ToLower().Contains(name.ToLower()));
+        }
+
         public async Task<Account> AddAccount(Account account)
         {
             await _context.Account.AddAsync(account);
@@ -50,7 +55,7 @@ namespace OJTManagementAPI.Repositories
             //TODO : Check if there are no on-going ojt bound with this account that is about to be deleted
             _context.Account.Remove(foundInAccount);
             await _context.SaveChangesAsync();
-            
+
             return true;
         }
 

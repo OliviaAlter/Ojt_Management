@@ -18,16 +18,22 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Major>> GetMajorList()
+        public IQueryable<Major> GetMajorList()
         {
-            return await _context.Major.ToListAsync();
+            return _context.Major;
         }
 
-        public async Task<IEnumerable<Major>> GetMajorListByName(string majorName)
+        public IQueryable<Major> GetMajorListByName(string majorName)
         {
-            return await _context.Major
+            return _context.Major
                 .Where(m => string.Equals(m.MajorName, majorName,
-                    StringComparison.CurrentCultureIgnoreCase)).ToListAsync();
+                    StringComparison.CurrentCultureIgnoreCase));
+        }
+        
+        public IQueryable<Major> GetMajor(int majorId)
+        {
+            return _context.Major
+                .Where(m => m.MajorId == majorId);
         }
 
         public async Task<Major> AddMajor(Major major)
@@ -54,7 +60,7 @@ namespace OJTManagementAPI.Repositories
             //TODO : Check if there are no student bound with major that is about to be deleted
             _context.Major.Remove(foundInMajor);
             await _context.SaveChangesAsync();
-            
+
             return true;
         }
     }

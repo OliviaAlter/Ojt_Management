@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,23 +16,22 @@ namespace OJTManagementAPI.Repositories
         {
             _context = context;
         }
-        
-        public async Task<IEnumerable<Semester>> GetSemesters()
+
+        public IQueryable<Semester> GetSemesterList()
         {
-            return await _context.Semester.ToListAsync();
+            return _context.Semester;
         }
 
-        public async Task<IEnumerable<Semester>> GetSemesterName(string semesterName)
+        public IQueryable<Semester> GetSemesterName(string semesterName)
         {
-            return await _context.Semester
-                .Where(s => s.SemesterName.ToLower().Contains(semesterName.ToLower()))
-                .ToListAsync();
+            return _context.Semester
+                .Where(s => s.SemesterName.ToLower().Contains(semesterName.ToLower()));
         }
 
-        public async Task<IEnumerable<Semester>> GetSemesterId(int semesterId)
+        public IQueryable<Semester> GetSemesterById(int semesterId)
         {
-            return await _context.Semester
-                .Where(s => s.SemesterId == semesterId).ToListAsync();
+            return _context.Semester
+                .Where(s => s.SemesterId == semesterId);
         }
 
         public async Task<Semester> AddSemester(Semester semester)
@@ -59,19 +57,12 @@ namespace OJTManagementAPI.Repositories
                 return false;
 
             _context.Semester.Remove(foundInSemester);
-            
+
             //TODO: Check if there are any semester constrain
-            
+
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<IEnumerable<Semester>> GetRelatedDataFromSemester(int semesterCode)
-        {
-            return await _context.Semester
-                .Where(x => x.SemesterId == semesterCode)
-                .ToListAsync();
-            
-        }
     }
 }

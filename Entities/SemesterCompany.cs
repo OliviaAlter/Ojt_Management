@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace OJTManagementAPI.Entities
 {
     public class SemesterCompany

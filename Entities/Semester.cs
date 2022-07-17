@@ -11,12 +11,10 @@ namespace OJTManagementAPI.Entities
         {
             Students = new HashSet<Student>();
         }
-        
-        [Required]
-        public int SemesterId { get; set; }
-        
-        [Required]
-        public string SemesterName { get; set; }
+
+        [Required] public int SemesterId { get; set; }
+
+        [Required] public string SemesterName { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
     }

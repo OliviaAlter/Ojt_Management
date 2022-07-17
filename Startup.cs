@@ -41,7 +41,7 @@ namespace OJTManagementAPI
             }));
             services.Configure<PaginationOptions>(Configuration.GetSection("Pagination"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            
+
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
 
@@ -67,7 +67,7 @@ namespace OJTManagementAPI
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             /*
             app.UseEndpoints(endpoints =>

@@ -1,7 +1,5 @@
 ﻿#nullable disable
 
-using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
 
@@ -13,7 +11,7 @@ namespace OJTManagementAPI.DataContext
             : base(options)
         {
         }
-        
+
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<JobApplication> JobApplication { get; set; }
@@ -22,7 +20,7 @@ namespace OJTManagementAPI.DataContext
         public virtual DbSet<Semester> Semester { get; set; }
         public virtual DbSet<SemesterCompany> SemesterCompany { get; set; }
         public virtual DbSet<Student> Student { get; set; }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -39,6 +37,5 @@ namespace OJTManagementAPI.DataContext
         {
             //throw new NotImplementedException();
         }
-        
     }
 }

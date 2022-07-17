@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.Repositories;
 using OJTManagementAPI.ServiceInterfaces;
@@ -17,23 +19,35 @@ namespace OJTManagementAPI.Services
 
         public async Task<IEnumerable<Major>> GetMajorList()
         {
-            var majorList = await _majorRepository.GetMajorList();
-            return majorList;
+            return await _majorRepository.GetMajorList()
+                .ToListAsync();
         }
 
-        public Task<Major> AddMajor(Student student)
+        public async Task<IEnumerable<Major>> GetMajorListByName(string name)
         {
-            throw new System.NotImplementedException();
+            return await _majorRepository.GetMajorListByName(name)
+                .ToListAsync();
         }
 
-        public Task<Major> UpdateMajor(Student student)
+        public async Task<Major> GetMajor(int majorId)
         {
-            throw new System.NotImplementedException();
+            return await _majorRepository.GetMajor(majorId)
+                .FirstOrDefaultAsync();
         }
 
-        public Task<bool> DeleteMajor(int studentId)
+        public async Task<Major> AddMajor(Major major)
         {
-            throw new System.NotImplementedException();
+            return await _majorRepository.AddMajor(major);
+        }
+
+        public async Task<Major> UpdateMajor(Major major)
+        {
+            return await _majorRepository.UpdateMajor(major);
+        }
+
+        public async Task<bool> DeleteMajor(int majorId)
+        {
+            return await _majorRepository.DeleteMajor(majorId);
         }
     }
 }

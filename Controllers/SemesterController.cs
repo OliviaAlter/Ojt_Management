@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -31,7 +29,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetSemesterList()
         {
             var result = await _semesterService.GetSemesterList();
-            if (result == null || !result.Any()) 
+            if (result == null || !result.Any())
                 return NotFound("Empty Student List");
 
             var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
@@ -90,33 +88,6 @@ namespace OJTManagementAPI.Controllers
             }
         }
         
-        [HttpGet("{name}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> GetSemesterRelatedData(int id, string name)
-        {
-            try
-            {
-                if (id <= 0)
-                    return BadRequest("Id must be positive");
-
-                var result = await _semesterService.GetRelatedDataFromSemester(id);
-                var studentData = result.ToArray()
-                    .Select(x => x.Students).ToList();
-                
-                if (!studentData.Any())
-                    return NotFound($"Semester with id : {id} isn't in our database");
-
-                var list = studentData.ToList();
-
-                // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
-                return Ok(list);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
-            }
-        }
-        
         [HttpGet("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetSemesterById(int id)
@@ -126,9 +97,9 @@ namespace OJTManagementAPI.Controllers
                 if (id <= 0)
                     return BadRequest("Id must be positive");
 
-                var result = await _semesterService.GetRelatedDataFromSemester(id);
-                
-                if (!result.Any())
+                var result = await _semesterService.GetSemesterById(id);
+
+                if (result == null)
                     return NotFound($"Semester with id : {id} isn't in our database");
 
                 // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
@@ -139,6 +110,5 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
             }
         }
-        
     }
 }

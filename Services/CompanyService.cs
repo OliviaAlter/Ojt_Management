@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using OJTManagementAPI.CustomEntities;
+using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
-using OJTManagementAPI.Options;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
 
@@ -14,12 +10,10 @@ namespace OJTManagementAPI.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
-        private readonly PaginationOptions _paginationOptions;
 
-        public CompanyService(ICompanyRepository companyRepository, IOptions<PaginationOptions> options)
+        public CompanyService(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
-            _paginationOptions = options.Value;
         }
 
         public async Task<Company> AddCompany(Company company)
@@ -32,36 +26,33 @@ namespace OJTManagementAPI.Services
             return await _companyRepository.DeleteCompany(companyId);
         }
 
-        public async Task<IEnumerable<Company>> GetCompanyList()
-        {
-            return await _companyRepository.GetCompanyList();
-        }
-
         public async Task<Company> UpdateCompany(Company company)
         {
             return await _companyRepository.UpdateCompany(company);
         }
 
-        public async Task<IEnumerable<Company>> GetCompanyByName(string name)
+        public async Task<IEnumerable<Company>> GetCompanyList()
         {
-            return await _companyRepository.GetCompanyByName(name);
+            return await _companyRepository.GetCompanyList()
+                .ToListAsync();
         }
 
-        public async Task<PagedList<Company>> GetPagedListCompany(int? page, int? pageSize)
+        public async Task<IEnumerable<Company>> GetCompanyListByName(string name)
         {
-            var companyList = _companyRepository.GetPagedListCompany();
-            if (companyList == null || !companyList.Any()) return null;
-            var pageNum = page ?? _paginationOptions.DefaultPageNumber;
-            var size = pageSize ?? _paginationOptions.DefaultPageSize;
-
-            var pagedList = await PagedList<Company>.Create(companyList, pageNum, size);
-
-            return pagedList;
+            return await _companyRepository.GetCompanyListByName(name)
+                .ToListAsync();
         }
 
-        public Task<PagedList<Company>> GetPagedListCompanyByName(string name, int? page, int? pageSize)
+        public async Task<Company> GetCompanyByName(string name)
         {
-            throw new System.NotImplementedException();
+            return await _companyRepository.GetCompanyByName(name)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Company> GetCompanyById(int id)
+        {
+            return await _companyRepository.GetCompanyById(id)
+                .FirstOrDefaultAsync();
         }
     }
 }

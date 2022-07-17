@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -27,47 +26,41 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<bool> DeleteStudent(int accountId)
         {
-            var foundInStudent = await _context.Student.FirstOrDefaultAsync(s => s.AccountId == accountId);
+            var foundInStudent = await _context.Student
+                .FirstOrDefaultAsync(s => s.AccountId == accountId);
 
-            var foundInAccount = await _context.Account.FirstOrDefaultAsync(a => a.AccountId == accountId);
+            var foundInAccount = await _context.Account
+                .FirstOrDefaultAsync(a => a.AccountId == accountId);
 
             if (foundInStudent == null || foundInAccount == null)
                 return false;
 
             _context.Student.Remove(foundInStudent);
             _context.Account.Remove(foundInAccount);
-            
+
             //TODO: Check if there are any ongoing OJT for the student
-            
+
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<IEnumerable<Student>> GetStudentList()
-        {
-            return await _context.Student.ToListAsync();
-        }
-
-        public async Task<IEnumerable<Student>> GetStudentListByName(string name)
-        {
-            return await _context.Student
-                .Where(s => s.Account.Username.ToLower().Contains(name.ToLower()))
-                .ToListAsync();
-        }
-
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId)
         {
-            return null;
+            return _context.Student
+                .Where(s => s.JobApplications
+                    .Any(j => j.Company.CompanyId == companyId));
         }
 
         public IQueryable<Student> GetStudentListByMajorId(int majorId)
         {
-            return null;
+            return _context.Student
+                .Where(s => s.MajorId == majorId);
         }
 
         public IQueryable<Student> GetStudentListBySemesterId(int semesterId)
         {
-            return null;
+            return _context.Student
+                .Where(s => s.Semester.SemesterId == semesterId);
         }
 
         public async Task<Student> UpdateStudent(Student student)
@@ -75,6 +68,17 @@ namespace OJTManagementAPI.Repositories
             _context.Student.Update(student);
             await _context.SaveChangesAsync();
             return student;
+        }
+
+        public IQueryable<Student> GetStudentList()
+        {
+            return _context.Student;
+        }
+
+        public IQueryable<Student> GetStudentListByName(string name)
+        {
+            return _context.Student
+                .Where(s => s.Account.Username.ToLower().Contains(name.ToLower()));
         }
     }
 }

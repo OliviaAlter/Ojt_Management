@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -18,9 +19,34 @@ namespace OJTManagementAPI.Services
 
         public async Task<IEnumerable<JobApplication>> GetJobApplicationList()
         {
-            return await _applicationRepository.GetApplicationLists();
+            return await _applicationRepository.GetApplicationList()
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<JobApplication>> GetJobApplicationByStudentId(int studentId)
+        {
+            return await _applicationRepository.GetJobApplicationListByStudentId(studentId)
+                .ToListAsync();
         }
 
+        public async Task<IEnumerable<JobApplication>> GetJobApplicationByCompanyId(int companyId)
+        {
+            return await _applicationRepository.GetJobApplicationListByCompanyId(companyId)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<JobApplication>> GetJobApplicationByMajorId(int majorId)
+        {
+            return await _applicationRepository.GetJobApplicationListByMajorId(majorId)
+                .ToListAsync();
+        }
+        
+        public async Task<JobApplication> GetJobApplicationById(int jobApplicationId)
+        {
+            return await _applicationRepository.GetJobApplicationById(jobApplicationId)
+                .FirstOrDefaultAsync();
+        }
+        
         public async Task<JobApplication> AddJobApplication(JobApplication application)
         {
             return await _applicationRepository.AddApplication(application);
@@ -36,24 +62,5 @@ namespace OJTManagementAPI.Services
             return await _applicationRepository.DeleteApplication(jobApplicationId);
         }
 
-        public IQueryable<JobApplication> GetJobApplicationById(int jobApplicationId)
-        {
-            return _applicationRepository.GetJobApplicationById(jobApplicationId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId)
-        {
-            return _applicationRepository.GetJobApplicationByStudentId(studentId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByCompanyId(int companyId)
-        {
-            return _applicationRepository.GetJobApplicationByCompanyId(companyId);
-        }
-
-        public IQueryable<JobApplication> GetJobApplicationByMajorId(int majorId)
-        {
-            return _applicationRepository.GetJobApplicationByMajorId(majorId);
-        }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +5,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
@@ -17,8 +15,8 @@ namespace OJTManagementAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly IAccountService _accountService;
+        private readonly IMapper _mapper;
 
         public AccountController(IAccountService accountService, IMapper mapper)
         {
@@ -31,7 +29,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetAccountList()
         {
             var result = await _accountService.GetAccountList();
-            if (result == null || !result.Any()) 
+            if (result == null || !result.Any())
                 return NotFound("No account found in database");
 
             var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
@@ -44,7 +42,8 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
             var result = await _accountService.GetAccountListByName(name);
-            if (result == null || !result.Any()) return NotFound($"No company found in database with the search value : {name}");
+            if (result == null || !result.Any())
+                return NotFound($"No company found in database with the search value : {name}");
 
             var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
 
@@ -57,16 +56,16 @@ namespace OJTManagementAPI.Controllers
         {
             return Ok();
         }
-        
+
         [HttpPut("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateAccount(int id, Account account)
         {
             try
             {
-                if (id != account.AccountId)  
-                    return BadRequest();  
-                
+                if (id != account.AccountId)
+                    return BadRequest();
+
                 var result = await _accountService.UpdateAccount(account);
                 if (result == null)
                     return NotFound("Updated failed");
@@ -78,7 +77,7 @@ namespace OJTManagementAPI.Controllers
                     "Error updating data");
             }
         }
-      
+
         [HttpDelete("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAccount(int id)

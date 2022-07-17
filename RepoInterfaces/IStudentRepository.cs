@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using OJTManagementAPI.Entities;
 
@@ -7,8 +6,8 @@ namespace OJTManagementAPI.RepoInterfaces
 {
     public interface IStudentRepository
     {
-        public Task<IEnumerable<Student>> GetStudentList();
-        public Task<IEnumerable<Student>> GetStudentListByName(string name);
+        public IQueryable<Student> GetStudentList();
+        public IQueryable<Student> GetStudentListByName(string name);
         public IQueryable<Student> GetStudentListBySemesterId(int semesterId);
         public IQueryable<Student> GetStudentListByMajorId(int majorId);
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId);
