@@ -47,7 +47,8 @@ namespace OJTManagementAPI.Controllers
 
             return Ok(response);
         }
-
+        
+/*
         [HttpGet("{name}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetCompanyByName(string name)
@@ -58,6 +59,7 @@ namespace OJTManagementAPI.Controllers
 
             return Ok(result);
         }
+*/
 
         [HttpGet("{id}")]
         [AllowAnonymous]

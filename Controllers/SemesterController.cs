@@ -78,7 +78,7 @@ namespace OJTManagementAPI.Controllers
 
                 var result = await _semesterService.DeleteSemester(id);
                 if (!result)
-                    return NotFound($"Semester with id : {id} isn't in our database");
+                    return NotFound($"Semester with isn't in our database");
                 // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
                 return Ok("Semester deleted");
             }

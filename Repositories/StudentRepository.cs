@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +17,11 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
+        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Student> AddStudent(Student student)
         {
             await _context.Student.AddAsync(student);
@@ -24,19 +29,49 @@ namespace OJTManagementAPI.Repositories
             return student;
         }
 
-        public async Task<bool> DeleteStudent(int accountId)
+        public async Task<bool> DeleteStudent(int studentId)
         {
             var foundInStudent = await _context.Student
-                .FirstOrDefaultAsync(s => s.AccountId == accountId);
+                .FirstOrDefaultAsync(s => s.StudentId == studentId);
+
+            if (foundInStudent == null)
+                return false;
+                
+            var accountId = foundInStudent.Account.AccountId;
 
             var foundInAccount = await _context.Account
                 .FirstOrDefaultAsync(a => a.AccountId == accountId);
 
-            if (foundInStudent == null || foundInAccount == null)
+            if (foundInAccount == null)
                 return false;
+            
+            var foundInApplication = foundInStudent.JobApplications.
+                Any(x => x.StudentId == studentId);
 
-            _context.Student.Remove(foundInStudent);
-            _context.Account.Remove(foundInAccount);
+            if (foundInApplication)
+            {
+                var applicationByStudentId = _context.JobApplication
+                    .Where(x => x.StudentId == studentId);
+
+                var list = await applicationByStudentId.ToListAsync();
+                
+                foreach (var applicationId in list)
+                {
+                    _context.JobApplication.Remove(applicationId);
+                }
+            }
+            
+            try
+            {
+                _context.Student.Remove(foundInStudent);
+                _context.Account.Remove(foundInAccount);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+            
 
             //TODO: Check if there are any ongoing OJT for the student
 
@@ -49,6 +84,16 @@ namespace OJTManagementAPI.Repositories
             return _context.Student
                 .Where(s => s.JobApplications
                     .Any(j => j.Company.CompanyId == companyId));
+        }
+
+        public IQueryable<Student> GetStudentInAccountByStudentId(int studentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Account> GetAccountByStudentId(int studentId)
+        {
+            throw new NotImplementedException();
         }
 
         public IQueryable<Student> GetStudentListByMajorId(int majorId)

@@ -11,6 +11,9 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Student> GetStudentListBySemesterId(int semesterId);
         public IQueryable<Student> GetStudentListByMajorId(int majorId);
         public IQueryable<Student> GetStudentListAppliedByCompanyId(int companyId);
+        public IQueryable<Student> GetStudentInAccountByStudentId(int studentId);
+        public IQueryable<Account> GetAccountByStudentId(int studentId);
+        public IQueryable<JobApplication> GetJobApplicationByStudentId(int studentId);
         public Task<Student> AddStudent(Student student);
         public Task<Student> UpdateStudent(Student student);
         public Task<bool> DeleteStudent(int studentId);

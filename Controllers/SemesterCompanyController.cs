@@ -1,5 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OJTManagementAPI.DTOS;
+using OJTManagementAPI.Entities;
+using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
 {
@@ -7,29 +14,26 @@ namespace OJTManagementAPI.Controllers
     [ApiController]
     public class SemesterCompanyController : ControllerBase
     {
-        // GET: api/SemesterCompany
+        private readonly IMapper _mapper;
+        private readonly ISemesterCompanyService _semesterCompanyService;
+
+        public SemesterCompanyController(IMapper mapper, ISemesterCompanyService semesterCompanyService)
+        {
+            _mapper = mapper;
+            _semesterCompanyService = semesterCompanyService;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [AllowAnonymous]
+        public async Task<IActionResult> GetSemesterCompanyList()
         {
-            return new[] { "value1", "value2" };
-        }
+            var result = await _semesterCompanyService.GetSemesterCompanyList();
+            if (result == null || !result.Any())
+                return NotFound("Empty semester company list");
 
-        // POST: api/SemesterCompany
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
+            var response = _mapper.Map<IEnumerable<SemesterCompany>>(result);
+            return Ok(response);
         }
-
-        // PUT: api/SemesterCompany/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/SemesterCompany/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
