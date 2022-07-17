@@ -37,10 +37,6 @@ namespace OJTManagementAPI.Services
         {
             return await _accountRepository.UpdateAccount(account);
         }
-
-        public async Task<bool> DeleteAccount(int accountId)
-        {
-            return await _accountRepository.DeleteAccount(accountId);
-        }
+      
     }
 }

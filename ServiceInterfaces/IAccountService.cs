@@ -10,6 +10,5 @@ namespace OJTManagementAPI.ServiceInterfaces
         public Task<IEnumerable<Account>> GetAccountListByName(string name);
         public Task<Account> AddAccount(Account account);
         public Task<Account> UpdateAccount(Account account);
-        public Task<bool> DeleteAccount(int accountId);
     }
 }

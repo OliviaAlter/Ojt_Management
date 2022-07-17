@@ -55,6 +55,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _accountService.GetAccountListByName(name);
                 if (result == null || !result.Any())
                     return NotFound($"No company found in database with the search value : {name}");
+                
                 var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
                 return Ok(response);
             }
@@ -110,25 +111,5 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteAccount(int id)
-        {
-            try
-            {
-                if (id <= 0)
-                    return BadRequest("Id must be positive");
-
-                // TODO: Check if there are any constrains associated with the account
-                var result = await _accountService.DeleteAccount(id);
-                if (!result)
-                    return NotFound($"Account with id : {id} isn't in our database");
-                return Ok("Account deleted");
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
-            }
-        }
     }
 }

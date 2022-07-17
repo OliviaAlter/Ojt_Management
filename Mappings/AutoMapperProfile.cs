@@ -12,11 +12,14 @@ namespace OJTManagementAPI.Mappings
             CreateMap<Major, MajorDTO>().ReverseMap();
             CreateMap<Role, RoleDTO>().ReverseMap();
             CreateMap<Account, AccountDTO>().ReverseMap();
+            
             CreateMap<Semester, SemesterDTO>().ReverseMap();
             CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
             CreateMap<JobApplication, JobApplicationDTO>().ReverseMap();
             CreateMap<Student, StudentDTO>().ReverseMap();
+            
             CreateMap<Account, RegisterAccountDTO>().ReverseMap();
+            CreateMap<Major, MajorUpdateDTO>().ReverseMap();
         }
     }
 }

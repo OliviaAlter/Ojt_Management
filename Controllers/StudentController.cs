@@ -70,9 +70,6 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
-                if (semesterId <= 0)
-                    return BadRequest("Id must be positive");
-
                 var result = await _studentService.GetStudentListBySemesterId(semesterId);
 
                 if (!result.Any())
@@ -93,9 +90,6 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
-                if (companyId <= 0)
-                    return BadRequest("Id must be positive");
-
                 var result = await _studentService.GetStudentListAppliedByCompanyId(companyId);
 
                 if (!result.Any())
@@ -115,10 +109,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetStudentListMajorId(int majorId)
         {
             try
-            {
-                if (majorId <= 0)
-                    return BadRequest("Id must be positive");
-
+            { 
                 var result = await _studentService.GetStudentListByMajorId(majorId);
 
                 if (!result.Any())
@@ -153,16 +144,19 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
         }
-
+        
+        //TODO : Check /api/Student/GetStudentListMajorId/{majorId}
+        //TODO : Check /api/Student/GetStudentListByCompanyId/{companyId}
+        //TODO : Check /api/Student/GetStudentListBySemesterId/{semesterId}
+        //TODO : Check /api/Semester/GetSemesterById/{id}
+        //TODO : Check /api/Major/GetMajorById/{id}
+        
         [HttpDelete("{studentId}")]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteStudent(int studentId)
         {
             try
             {
-                if (studentId <= 0)
-                    return BadRequest("Id must be positive");
-
                 var result = await _studentService.DeleteStudent(studentId);
                 if (!result)
                     return NotFound("Student isn't in our database");

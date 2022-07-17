@@ -24,12 +24,14 @@ namespace OJTManagementAPI.Repositories
 
         public IQueryable<Company> GetCompanyListByName(string companyName)
         {
-            return _context.Company.Where(c => c.CompanyName.Contains(companyName));
+            return _context.Company
+                .Where(c => c.CompanyName.Contains(companyName));
         }
 
         public IQueryable<Company> GetCompanyById(int id)
         {
-            return _context.Company.Where(c => c.CompanyId == id);
+            return _context.Company
+                .Where(c => c.CompanyId == id);
         }
 
         public IQueryable<Company> GetCompanyByName(string name)

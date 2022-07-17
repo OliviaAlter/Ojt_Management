@@ -38,7 +38,7 @@ namespace OJTManagementAPI.Controllers
                 var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
                 return Ok(response);
             }
-            catch (Exception e)
+            catch 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
@@ -50,8 +50,6 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
-                if (name.Length == 0)
-                    return BadRequest("Name must be valid");
                 var result = await _semesterService.GetSemesterByName(name);
                 if (result == null || !result.Any())
                     return NotFound($"No student list containing the search input : {name}");
@@ -59,7 +57,7 @@ namespace OJTManagementAPI.Controllers
                 var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
                 return Ok(response);
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }

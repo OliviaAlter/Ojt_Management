@@ -11,7 +11,6 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Account> GetAccountById(int id);
         public IQueryable<Account> GetAccountListContainName(string name);
         public Task<Account> AddAccount(Account account);
-        public Task<bool> DeleteAccount(int accountId);
         public Task<Account> UpdateAccount(Account account);
     }
 }

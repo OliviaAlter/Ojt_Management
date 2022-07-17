@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 
@@ -22,11 +23,10 @@ namespace OJTManagementAPI.Repositories
             return _context.Major;
         }
 
-        public IQueryable<Major> GetMajorByName(string majorName)
+        public IQueryable<Major> GetMajorListByName(string majorName)
         {
             return _context.Major
-                .Where(m => string.Equals(m.MajorName, majorName,
-                    StringComparison.CurrentCultureIgnoreCase));
+                .Where(m => m.MajorName.Contains(majorName));
         }
 
         public IQueryable<Major> GetMajorById(int majorId)
@@ -44,9 +44,77 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<Major> UpdateMajor(Major major)
         {
-            _context.Major.Update(major);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var majorData = await _context.Major
+                    .FirstOrDefaultAsync(x => x.MajorId == major.MajorId);
+                //var majorData = _context.Major.Update(major);
+                if (majorData != null)
+                {
+                    majorData.MajorName = major.MajorName;
+                    await _context.SaveChangesAsync();
+                    
+                    var studentListWithSameMajorId = await _context.Student
+                        .Where(x => x.Major.MajorId == major.MajorId).ToListAsync();
+
+                    foreach (var student in studentListWithSameMajorId)
+                    {
+                        student.Major.MajorName = major.MajorName;
+                    }
+                    await _context.SaveChangesAsync(); 
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
             return major;
+        }
+
+        public async Task<Major> UpdateMajorById(int majorId, MajorUpdateDTO major)
+        {
+            var majorData = await _context.Major
+                .FirstOrDefaultAsync(x => x.MajorId == majorId);
+            try
+            {
+                if (majorData != null)
+                {
+                    majorData.MajorName = major.MajorName;
+                    
+                    await _context.SaveChangesAsync();
+                    
+                    Console.Write("AAAAAAAAAAAA");
+                    
+                    var studentListWithSameMajorId = await _context.Student
+                        .Where(x => x.Major.MajorId == major.MajorId).ToListAsync();
+
+                    Console.Write("BBBBBBBBBBBB");
+
+                    foreach (var student in studentListWithSameMajorId)
+                    {
+                        student.Major.MajorName = major.MajorName;
+                    }
+                    
+                    await _context.SaveChangesAsync(); 
+                }
+                else
+                {
+                    return null;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
+            return majorData;
         }
 
         public async Task<bool> DeleteMajor(int majorId)
@@ -56,6 +124,16 @@ namespace OJTManagementAPI.Repositories
 
             if (foundInMajor == null)
                 return false;
+            
+            var foundInStudent = await _context.Student
+                .Where(s => s.MajorId == majorId)
+                .ToListAsync();
+
+            if (foundInStudent.Count > 0 || !foundInStudent.Any())
+            {
+                return false;
+            }
+            
             //TODO : Check if there are no student bound with major that is about to be deleted
             _context.Major.Remove(foundInMajor);
             await _context.SaveChangesAsync();
@@ -63,15 +141,5 @@ namespace OJTManagementAPI.Repositories
             return true;
         }
 
-        public IQueryable<Major> GetMajorListByName(string majorName)
-        {
-            return _context.Major
-                .Where(m => m.MajorName.ToLower().Contains(majorName.ToLower()));
-        }
-
-        public IQueryable<Major> GetMajor(int majorId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

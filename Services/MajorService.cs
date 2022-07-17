@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -22,15 +23,9 @@ namespace OJTManagementAPI.Services
                 .ToListAsync();
         }
 
-        public async Task<Major> GetMajorByName(string name)
-        {
-            return await _majorRepository.GetMajorByName(name)
-                .FirstOrDefaultAsync();
-        }
-
         public async Task<IEnumerable<Major>> GetMajorListByName(string name)
         {
-            return await _majorRepository.GetMajorByName(name)
+            return await _majorRepository.GetMajorListByName(name)
                 .ToListAsync();
         }
 
@@ -48,6 +43,11 @@ namespace OJTManagementAPI.Services
         public async Task<Major> UpdateMajor(Major major)
         {
             return await _majorRepository.UpdateMajor(major);
+        }
+
+        public async Task<Major> UpdateMajorById(int id, MajorUpdateDTO major)
+        {
+            return await _majorRepository.UpdateMajorById(id, major);
         }
 
         public async Task<bool> DeleteMajor(int majorId)

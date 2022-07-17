@@ -48,6 +48,9 @@ namespace OJTManagementAPI
 
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            
+            services.AddScoped<IMajorService, MajorService>();
+            services.AddScoped<IMajorRepository, MajorRepository>();
 
             services.AddScoped<IJobApplicationService, JobApplicationService>();
             services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
@@ -60,9 +63,6 @@ namespace OJTManagementAPI
 
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
-
-            services.AddScoped<IMajorService, MajorService>();
-            services.AddScoped<IMajorRepository, MajorRepository>();
 
             services.AddDbContext<OjtManagementContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

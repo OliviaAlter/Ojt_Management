@@ -51,8 +51,6 @@ namespace OJTManagementAPI.Repositories
 
                 var list = await applicationByStudentId.ToListAsync();
 
-                var count = list.Count;
-
                 foreach (var applicationId in list) _context.JobApplication.Remove(applicationId);
             }
 
@@ -61,9 +59,8 @@ namespace OJTManagementAPI.Repositories
                 _context.Student.Remove(foundInStudent);
                 _context.Account.Remove(foundInAccount);
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.StackTrace);
                 return false;
             }
 

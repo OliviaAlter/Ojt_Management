@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
@@ -43,20 +42,6 @@ namespace OJTManagementAPI.Repositories
             await _context.Account.AddAsync(account);
             await _context.SaveChangesAsync();
             return account;
-        }
-
-        public async Task<bool> DeleteAccount(int accountId)
-        {
-            var foundInAccount = await _context.Account
-                .FirstOrDefaultAsync(s => s.AccountId == accountId);
-
-            if (foundInAccount == null)
-                return false;
-            //TODO : Check if there are no on-going ojt bound with this account that is about to be deleted
-            _context.Account.Remove(foundInAccount);
-            await _context.SaveChangesAsync();
-
-            return true;
         }
 
         public async Task<Account> UpdateAccount(Account account)
