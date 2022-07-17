@@ -137,18 +137,18 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteStudent(int id)
+        [HttpDelete("{studentId}")]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteStudent(int studentId)
         {
             try
             {
-                if (id <= 0)
+                if (studentId <= 0)
                     return BadRequest("Id must be positive");
 
-                var result = await _studentService.DeleteStudent(id);
+                var result = await _studentService.DeleteStudent(studentId);
                 if (!result)
-                    return NotFound($"Student with id : {id} isn't in our database");
+                    return NotFound($"Student isn't in our database");
                 return Ok("Student deleted");
             }
             catch
