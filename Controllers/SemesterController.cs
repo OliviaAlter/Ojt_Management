@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SemesterController : ControllerBase
     {
@@ -28,23 +29,60 @@ namespace OJTManagementAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetSemesterList()
         {
-            var result = await _semesterService.GetSemesterList();
-            if (result == null || !result.Any())
-                return NotFound("Empty Student List");
+            try
+            {
+                var result = await _semesterService.GetSemesterList();
+                if (result == null || !result.Any())
+                    return NotFound("Empty Student List");
 
-            var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
         }
 
         [HttpGet("{name}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetSemesterByName(string name)
         {
-            var result = await _semesterService.GetSemesterByName(name);
-            if (result == null || !result.Any())
-                return NotFound($"No student list containing the search input : {name}");
+            try
+            {
+                if (name.Length == 0)
+                    return BadRequest("Name must be valid");
+                var result = await _semesterService.GetSemesterByName(name);
+                if (result == null || !result.Any())
+                    return NotFound($"No student list containing the search input : {name}");
 
-            var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
+        }
+
+        [HttpPost("add")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddNewSemester(SemesterDTO semester)
+        {
+            try
+            {
+                var newSemester = new Semester
+                {
+                    SemesterName = semester.SemesterName
+                };
+                var result = await _semesterService.AddSemester(newSemester);
+                var response = _mapper.Map<SemesterDTO>(result);
+                return StatusCode(201, response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
         }
 
         [HttpPut("{id}")]
@@ -78,7 +116,7 @@ namespace OJTManagementAPI.Controllers
 
                 var result = await _semesterService.DeleteSemester(id);
                 if (!result)
-                    return NotFound($"Semester with isn't in our database");
+                    return NotFound("Semester with isn't in our database");
                 // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
                 return Ok("Semester deleted");
             }
@@ -87,7 +125,7 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
-        
+
         [HttpGet("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetSemesterById(int id)
@@ -100,7 +138,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _semesterService.GetSemesterById(id);
 
                 if (result == null)
-                    return NotFound($"Semester with id : {id} isn't in our database");
+                    return NotFound("Semester isn't in our database");
 
                 // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
                 return Ok(result);

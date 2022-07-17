@@ -11,7 +11,7 @@ using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -28,25 +28,42 @@ namespace OJTManagementAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetStudentList()
         {
-            var result = await _studentService.GetStudentList();
-            if (result == null || !result.Any())
-                return NotFound("Empty Student List");
+            try
+            {
+                var result = await _studentService.GetStudentList();
+                if (result == null || !result.Any())
+                    return NotFound("Empty Student List");
 
-            var response = _mapper.Map<IEnumerable<StudentDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<StudentDTO>>(result);
+                return Ok(response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting student data");
+            }
         }
 
         [HttpGet("{name}")]
         public async Task<IActionResult> GetStudentListByName(string name)
         {
-            var result = await _studentService.GetStudentListByName(name);
-            if (result == null || !result.Any())
-                return NotFound($"No student list containing the search input : {name}");
+            try
+            {
+                var result = await _studentService.GetStudentListByName(name);
+                if (result == null || !result.Any())
+                    return NotFound($"No student list containing the search input : {name}");
 
-            var response = _mapper.Map<IEnumerable<StudentDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<StudentDTO>>(result);
+                return Ok(response);
+            }
+
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting student data");
+            }
         }
-        
+
         [HttpGet("{semesterId}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetStudentListBySemesterId(int semesterId)
@@ -59,7 +76,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _studentService.GetStudentListBySemesterId(semesterId);
 
                 if (!result.Any())
-                    return NotFound($"Semester isn't in our database");
+                    return NotFound("Semester isn't in our database");
 
                 // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
                 return Ok(result);
@@ -69,7 +86,7 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
             }
         }
-        
+
         [HttpGet("{companyId}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetStudentListByCompanyId(int companyId)
@@ -82,7 +99,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _studentService.GetStudentListAppliedByCompanyId(companyId);
 
                 if (!result.Any())
-                    return NotFound($"No student applied in this company");
+                    return NotFound("No student applied in this company");
 
                 // TODO: Check if there are any constraint, if there is make sure to remove all of them
                 return Ok(result);
@@ -92,7 +109,7 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
             }
         }
-        
+
         [HttpGet("{majorId}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetStudentListMajorId(int majorId)
@@ -105,7 +122,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _studentService.GetStudentListByMajorId(majorId);
 
                 if (!result.Any())
-                    return NotFound($"No student in this major");
+                    return NotFound("No student in this major");
 
                 // TODO: Check if there are any constraint, if there is make sure to remove all of them
                 return Ok(result);
@@ -148,7 +165,7 @@ namespace OJTManagementAPI.Controllers
 
                 var result = await _studentService.DeleteStudent(studentId);
                 if (!result)
-                    return NotFound($"Student isn't in our database");
+                    return NotFound("Student isn't in our database");
                 return Ok("Student deleted");
             }
             catch

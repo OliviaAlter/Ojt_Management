@@ -33,7 +33,7 @@ namespace OJTManagementAPI.Services
             return await _semesterRepository.GetSemesterById(semesterId)
                 .FirstOrDefaultAsync();
         }
-        
+
         public async Task<Semester> AddSemester(Semester semester)
         {
             return await _semesterRepository.AddSemester(semester);
@@ -48,6 +48,5 @@ namespace OJTManagementAPI.Services
         {
             return await _semesterRepository.DeleteSemester(semesterId);
         }
-
     }
 }

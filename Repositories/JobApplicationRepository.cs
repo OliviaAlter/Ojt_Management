@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +44,7 @@ namespace OJTManagementAPI.Repositories
             return _context.JobApplication
                 .Where(x => x.Student.MajorId == majorId);
         }
-        
+
         public async Task<JobApplication> AddApplication(JobApplication application)
         {
             await _context.JobApplication.AddAsync(application);
@@ -76,6 +75,5 @@ namespace OJTManagementAPI.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
-
     }
 }

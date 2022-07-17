@@ -5,14 +5,13 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class JobApplicationController : ControllerBase
     {
@@ -29,55 +28,94 @@ namespace OJTManagementAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetApplicationList()
         {
-            var result = await _applicationService.GetJobApplicationList();
-            if (result == null || !result.Any())
-                return NotFound("Empty application list");
+            try
+            {
+                var result = await _applicationService.GetJobApplicationList();
+                if (result == null || !result.Any())
+                    return NotFound("Empty application list");
 
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
+                return Ok(response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+            }
         }
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetApplicationById(int id)
         {
-            var result = await _applicationService.GetJobApplicationById(id);
-            if (result == null)
-                return NotFound("No application found");
+            try
+            {
+                var result = await _applicationService.GetJobApplicationById(id);
+                if (result == null)
+                    return NotFound("No application found");
 
-            return Ok(result);
+                return Ok(result);
+            }
+
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+            }
         }
 
         [HttpGet("{companyId}")]
         public async Task<IActionResult> GetJobApplicationByCompanyId(int companyId)
         {
-            var result = await _applicationService.GetJobApplicationByCompanyId(companyId);
-            if (result == null || !result.Any())
-                return NotFound("No application list found");
+            try
+            {
+                var result = await _applicationService.GetJobApplicationByCompanyId(companyId);
+                if (result == null || !result.Any())
+                    return NotFound("No application list found");
 
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
+                return Ok(response);
+            }
+
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+            }
         }
 
         [HttpGet("{studentId}")]
         public async Task<IActionResult> GetJobApplicationByStudentId(int studentId)
         {
-            var result = await _applicationService.GetJobApplicationByStudentId(studentId);
-            if (result == null || !result.Any())
-                return NotFound("No application list found");
+            try
+            {
+                var result = await _applicationService.GetJobApplicationByStudentId(studentId);
+                if (result == null || !result.Any())
+                    return NotFound("No application list found");
 
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
+                return Ok(response);
+            }
+
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+            }
         }
-        
+
         [HttpGet("{majorId}")]
         public async Task<IActionResult> GetApplicationByMajorId(int majorId)
         {
-            var result = await _applicationService.GetJobApplicationByMajorId(majorId);
-            if (result == null || !result.Any())
-                return NotFound("No application list found");
+            try
+            {
+                var result = await _applicationService.GetJobApplicationByMajorId(majorId);
+                if (result == null || !result.Any())
+                    return NotFound("No application list found");
 
-            var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
-            return Ok(response);
+                var response = _mapper.Map<IEnumerable<JobApplicationDTO>>(result);
+                return Ok(response);
+            }
+
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+            }
         }
 
 

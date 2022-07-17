@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OJTManagementAPI.Entities;
@@ -12,6 +11,6 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Semester> GetSemesterById(int semesterId);
         public Task<Semester> AddSemester(Semester semesterCompany);
         public Task<Semester> UpdateSemester(Semester semesterCompany);
-        public Task<bool> DeleteSemester(int semesterCompanyId);   
+        public Task<bool> DeleteSemester(int semesterCompanyId);
     }
 }

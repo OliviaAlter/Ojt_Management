@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -23,14 +22,14 @@ namespace OJTManagementAPI.Repositories
             return _context.Major;
         }
 
-        public IQueryable<Major> GetMajorListByName(string majorName)
+        public IQueryable<Major> GetMajorByName(string majorName)
         {
             return _context.Major
                 .Where(m => string.Equals(m.MajorName, majorName,
                     StringComparison.CurrentCultureIgnoreCase));
         }
-        
-        public IQueryable<Major> GetMajor(int majorId)
+
+        public IQueryable<Major> GetMajorById(int majorId)
         {
             return _context.Major
                 .Where(m => m.MajorId == majorId);
@@ -62,6 +61,17 @@ namespace OJTManagementAPI.Repositories
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public IQueryable<Major> GetMajorListByName(string majorName)
+        {
+            return _context.Major
+                .Where(m => m.MajorName.ToLower().Contains(majorName.ToLower()));
+        }
+
+        public IQueryable<Major> GetMajor(int majorId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

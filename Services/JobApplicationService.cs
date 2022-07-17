@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
@@ -22,7 +21,7 @@ namespace OJTManagementAPI.Services
             return await _applicationRepository.GetApplicationList()
                 .ToListAsync();
         }
-        
+
         public async Task<IEnumerable<JobApplication>> GetJobApplicationByStudentId(int studentId)
         {
             return await _applicationRepository.GetJobApplicationListByStudentId(studentId)
@@ -40,13 +39,13 @@ namespace OJTManagementAPI.Services
             return await _applicationRepository.GetJobApplicationListByMajorId(majorId)
                 .ToListAsync();
         }
-        
+
         public async Task<JobApplication> GetJobApplicationById(int jobApplicationId)
         {
             return await _applicationRepository.GetJobApplicationById(jobApplicationId)
                 .FirstOrDefaultAsync();
         }
-        
+
         public async Task<JobApplication> AddJobApplication(JobApplication application)
         {
             return await _applicationRepository.AddApplication(application);
@@ -61,6 +60,5 @@ namespace OJTManagementAPI.Services
         {
             return await _applicationRepository.DeleteApplication(jobApplicationId);
         }
-
     }
 }

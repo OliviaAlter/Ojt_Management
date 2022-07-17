@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace OJTManagementAPI.DTOS
@@ -15,6 +14,6 @@ namespace OJTManagementAPI.DTOS
         [MaxLength(32)]
         public string Password { get; set; }
 
-        [DefaultValue(1)] public int RoleId { get; set; }
+        [Required] public int RoleId { get; set; }
     }
 }

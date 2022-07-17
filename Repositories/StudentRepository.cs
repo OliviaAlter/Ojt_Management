@@ -39,10 +39,9 @@ namespace OJTManagementAPI.Repositories
 
             if (foundInAccount == null)
                 return false;
-           
+
             // found if there are any ongoing application
-            var foundInApplication = foundInStudent.JobApplications.
-                Where(x => x.StudentId == studentId);
+            var foundInApplication = foundInStudent.JobApplications.Where(x => x.StudentId == studentId);
 
             // if there is, delete them from the list
             if (!foundInApplication.Any())
@@ -54,12 +53,9 @@ namespace OJTManagementAPI.Repositories
 
                 var count = list.Count;
 
-                foreach (var applicationId in list)
-                {
-                    _context.JobApplication.Remove(applicationId);
-                }
+                foreach (var applicationId in list) _context.JobApplication.Remove(applicationId);
             }
-            
+
             try
             {
                 _context.Student.Remove(foundInStudent);
@@ -70,7 +66,7 @@ namespace OJTManagementAPI.Repositories
                 Console.WriteLine(e.StackTrace);
                 return false;
             }
-            
+
             await _context.SaveChangesAsync();
             return true;
         }
@@ -87,7 +83,7 @@ namespace OJTManagementAPI.Repositories
             return _context.Account
                 .Where(a => a.AccountId == studentId);
         }
-        
+
         public IQueryable<Student> GetStudentListByMajorId(int majorId)
         {
             return _context.Student

@@ -11,9 +11,8 @@ namespace OJTManagementAPI.DTOS
             StudentDtOs = new HashSet<StudentDTO>();
         }
 
-
         public int SemesterId { get; set; }
-        public string SemesterNumber { get; set; }
+        public string SemesterName { get; set; }
 
         public virtual ICollection<StudentDTO> StudentDtOs { get; set; }
     }

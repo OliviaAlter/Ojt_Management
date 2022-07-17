@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
+using OJTManagementAPI.Enums;
 using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -28,33 +29,64 @@ namespace OJTManagementAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAccountList()
         {
-            var result = await _accountService.GetAccountList();
-            if (result == null || !result.Any())
-                return NotFound("No account found in database");
+            try
+            {
+                var result = await _accountService.GetAccountList();
+                if (result == null || !result.Any())
+                    return NotFound("No account found in database");
 
-            var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
+                var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting account data");
+            }
         }
 
         [HttpGet("{name}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
-            var result = await _accountService.GetAccountListByName(name);
-            if (result == null || !result.Any())
-                return NotFound($"No company found in database with the search value : {name}");
-
-            var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
-
-            return Ok(response);
+            try
+            {
+                var result = await _accountService.GetAccountListByName(name);
+                if (result == null || !result.Any())
+                    return NotFound($"No company found in database with the search value : {name}");
+                var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
+                return Ok(response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting account data");
+            }
         }
+
 
         [HttpPost("register")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAccount(RegisterAccountDTO registerAccountDto)
         {
-            return Ok();
+            try
+            {
+                var newAccount = new Account
+                {
+                    Username = registerAccountDto.Username,
+                    Password = registerAccountDto.Password,
+                    RoleId = (int)RoleEnum.Student
+                };
+                var result = await _accountService.AddAccount(newAccount);
+                var response = _mapper.Map<AccountDTO>(result);
+                return StatusCode(201, response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting account data");
+            }
         }
 
         [HttpPut("{id}")]

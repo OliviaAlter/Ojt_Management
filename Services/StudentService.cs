@@ -2,10 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using OJTManagementAPI.CustomEntities;
 using OJTManagementAPI.Entities;
-using OJTManagementAPI.Options;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
 
@@ -48,7 +45,7 @@ namespace OJTManagementAPI.Services
                 .ToListAsync();
             if (studentList == null || !studentList.Any())
                 return null;
-            
+
             return studentList;
         }
 
@@ -56,7 +53,7 @@ namespace OJTManagementAPI.Services
         {
             var studentList = await _studentRepository.GetStudentListByMajorId(majorId)
                 .ToListAsync();
-            if (studentList == null || !studentList.Any()) 
+            if (studentList == null || !studentList.Any())
                 return null;
 
             return studentList;
@@ -66,7 +63,7 @@ namespace OJTManagementAPI.Services
         {
             var studentList = await _studentRepository.GetStudentListBySemesterId(semesterId)
                 .ToListAsync();
-            if (studentList == null || !studentList.Any()) 
+            if (studentList == null || !studentList.Any())
                 return null;
 
             return studentList;

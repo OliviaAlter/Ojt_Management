@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OJTManagementAPI.Entities;
@@ -7,7 +6,6 @@ namespace OJTManagementAPI.RepoInterfaces
 {
     public interface IJobApplicationRepository
     {
-      
         public IQueryable<JobApplication> GetApplicationList();
         public IQueryable<JobApplication> GetJobApplicationById(int applicationId);
         public IQueryable<JobApplication> GetJobApplicationListByStudentId(int studentId);

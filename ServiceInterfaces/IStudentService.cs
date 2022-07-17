@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using OJTManagementAPI.CustomEntities;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.ServiceInterfaces
