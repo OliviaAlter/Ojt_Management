@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.ServiceInterfaces
@@ -8,7 +9,7 @@ namespace OJTManagementAPI.ServiceInterfaces
     {
         public Task<IEnumerable<SemesterCompany>> GetSemesterCompanyList();
         public Task<SemesterCompany> AddSemesterCompany(SemesterCompany semesterCompany);
-        public Task<SemesterCompany> UpdateSemesterCompany(SemesterCompany semesterCompany);
+        public Task<SemesterCompany> UpdateSemesterCompany(int id, SemesterCompanyDTO semesterCompany);
         public Task<bool> DeleteSemesterCompany(int semesterCompanyId);
         public Task<SemesterCompany> GetSemesterCompanyById(int id);
         public Task<SemesterCompany> GetSemesterCompanyByCompanyName(string semesterCompanyName);

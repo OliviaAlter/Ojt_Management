@@ -51,7 +51,7 @@ namespace OJTManagementAPI.Repositories
                 //var majorData = _context.Major.Update(major);
                 if (majorData != null)
                 {
-                    majorData.MajorName = major.MajorName;
+                    majorData.MajorName ??= major.MajorName;
                     await _context.SaveChangesAsync();
                     
                     var studentListWithSameMajorId = await _context.Student
@@ -89,12 +89,8 @@ namespace OJTManagementAPI.Repositories
                     
                     await _context.SaveChangesAsync();
                     
-                    Console.Write("AAAAAAAAAAAA");
-                    
                     var studentListWithSameMajorId = await _context.Student
                         .Where(x => x.Major.MajorId == major.MajorId).ToListAsync();
-
-                    Console.Write("BBBBBBBBBBBB");
 
                     foreach (var student in studentListWithSameMajorId)
                     {
@@ -119,26 +115,35 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<bool> DeleteMajor(int majorId)
         {
-            var foundInMajor = await _context.Major
-                .FirstOrDefaultAsync(s => s.MajorId == majorId);
-
-            if (foundInMajor == null)
-                return false;
-            
-            var foundInStudent = await _context.Student
-                .Where(s => s.MajorId == majorId)
-                .ToListAsync();
-
-            if (foundInStudent.Count > 0 || !foundInStudent.Any())
+            try
             {
+                var foundInMajor = await _context.Major
+                    .FirstOrDefaultAsync(s => s.MajorId == majorId);
+
+                if (foundInMajor == null)
+                    return false;
+            
+                var foundInStudent = await _context.Student
+                    .Where(s => s.MajorId == majorId)
+                    .ToListAsync();
+
+                if (foundInStudent.Count > 0 || !foundInStudent.Any())
+                {
+                    return false;
+                }
+            
+                //TODO : Check if there are no student bound with major that is about to be deleted
+                _context.Major.Remove(foundInMajor);
+                await _context.SaveChangesAsync();
+
+                return true;
+            } 
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
                 return false;
             }
-            
-            //TODO : Check if there are no student bound with major that is about to be deleted
-            _context.Major.Remove(foundInMajor);
-            await _context.SaveChangesAsync();
-
-            return true;
+           
         }
 
     }

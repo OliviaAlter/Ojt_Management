@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.RepoInterfaces
@@ -11,7 +12,7 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Company> GetCompanyById(int id);
         public IQueryable<Company> GetCompanyByName(string name);
         public Task<Company> AddCompany(Company company);
-        public Task<Company> UpdateCompany(Company company);
+        public Task<Company> UpdateCompany(int id, CompanyDTO company);
         public Task<bool> DeleteCompany(int companyId);
     }
 }

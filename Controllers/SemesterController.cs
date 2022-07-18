@@ -51,6 +51,7 @@ namespace OJTManagementAPI.Controllers
             try
             {
                 var result = await _semesterService.GetSemesterByName(name);
+                
                 if (result == null || !result.Any())
                     return NotFound($"No student list containing the search input : {name}");
 
@@ -62,9 +63,28 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
         }
+        
+        [HttpGet("{id:int}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetSemesterById(int id)
+        {
+            try
+            {
+                var result = await _semesterService.GetSemesterById(id);
+
+                if (result == null)
+                    return NotFound("Semester isn't in our database");
+
+                // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
+                return Ok(result);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
+            }
+        }
 
         [HttpPost("add")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewSemester(SemesterDTO semester)
         {
             try
@@ -83,8 +103,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateSemester(int id, Semester semester)
         {
             try
@@ -103,8 +122,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteSemester(int id)
         {
             try
@@ -123,28 +141,6 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
-
-        [HttpGet("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> GetSemesterById(int id)
-        {
-            try
-            {
-                if (id <= 0)
-                    return BadRequest("Id must be positive");
-
-                var result = await _semesterService.GetSemesterById(id);
-
-                if (result == null)
-                    return NotFound("Semester isn't in our database");
-
-                // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
-                return Ok(result);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
-            }
-        }
+        
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -89,26 +90,28 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{name}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetCompanyByName(string name)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyDTO company)
         {
             try
             {
-                var result = await _companyService.GetCompanyByName(name);
-                if (result == null)
-                    return NotFound($"No company found in database with the search value : {name}");
+                var result = await _companyService.UpdateCompany(id, company);
 
+                if (result == null)
+                    return NotFound("Company not found");
+                
                 return Ok(result);
             }
-            catch
+            catch (Exception e)
             {
+                Console.Write(e.StackTrace);
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting company data");
+                    "Error updating data");
             }
+
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetCompanyById(int id)
         {

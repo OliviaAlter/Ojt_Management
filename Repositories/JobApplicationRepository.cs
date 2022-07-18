@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -54,26 +55,61 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<JobApplication> UpdateApplication(JobApplication application)
         {
-            _context.JobApplication.Update(application);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var applicationData = await _context.JobApplication
+                    .FirstOrDefaultAsync(x => x.JobApplicationId == application.JobApplicationId);
+
+                if (applicationData != null)
+                {
+                    applicationData.Company ??= application.Company;
+                    applicationData.ImageUrl ??= application.ImageUrl;
+                    applicationData.Student.Email ??= application.Student.Email;
+                    applicationData.Student.Major ??= application.Student.Major;
+                    applicationData.Student.Name ??= application.Student.Name;
+                    applicationData.Student.Score ??= application.Student.Score;
+                    applicationData.Student.Semester.SemesterName ??= application.Student.Semester.SemesterName;
+
+                    await _context.SaveChangesAsync();
+
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
             return application;
         }
 
         public async Task<bool> DeleteApplication(int applicationId)
         {
-            var foundInApplication = await _context.JobApplication
-                .FirstOrDefaultAsync(s => s.JobApplicationId == applicationId);
+            try
+            {
+                var foundInApplication = await _context.JobApplication
+                    .FirstOrDefaultAsync(s => s.JobApplicationId == applicationId);
 
+                if (foundInApplication == null)
+                    return false;
 
-            if (foundInApplication == null)
+                _context.JobApplication.Remove(foundInApplication);
+
+                //TODO: Check if the user is already in any OJT or haven't got status updated for the application
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
                 return false;
+            }
 
-            _context.JobApplication.Remove(foundInApplication);
-
-            //TODO: Check if the user is already in any OJT or haven't got status updated for the application
-
-            await _context.SaveChangesAsync();
-            return true;
         }
     }
 }

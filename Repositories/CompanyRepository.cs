@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 
@@ -48,23 +49,55 @@ namespace OJTManagementAPI.Repositories
             return company;
         }
 
-        public async Task<Company> UpdateCompany(Company company)
+        public async Task<Company> UpdateCompany(int id, CompanyDTO company)
         {
-            _context.Company.Update(company);
-            await _context.SaveChangesAsync();
-            return company;
+            var companyData = await _context.Company
+                .FirstOrDefaultAsync(x => x.CompanyId == id);
+            try
+            {
+                if (companyData != null)
+                {
+                    companyData.Address ??= company.Address;
+                    companyData.Email ??= company.Email;
+                    companyData.CompanyName ??= company.CompanyName;
+                    companyData.Description ??= company.Description;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
+
+            return companyData;
         }
 
         public async Task<bool> DeleteCompany(int companyId)
         {
-            var found = await _context.Company.FirstOrDefaultAsync(c => c.CompanyId == companyId);
+            try
+            {
+                var found = await _context.Company
+                    .FirstOrDefaultAsync(c => c.CompanyId == companyId);
 
-            if (found == null)
+                if (found == null)
+                    return false;
+
+                _context.Company.Remove(found);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
                 return false;
-
-            _context.Company.Remove(found);
-            await _context.SaveChangesAsync();
-            return true;
+            }
+           
         }
     }
 }

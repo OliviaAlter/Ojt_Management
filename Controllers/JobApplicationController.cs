@@ -43,7 +43,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetApplicationById(int id)
         {
             try
@@ -61,7 +61,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{companyId}")]
+        [HttpGet("{companyId:int}")]
         public async Task<IActionResult> GetJobApplicationByCompanyId(int companyId)
         {
             try
@@ -80,7 +80,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{studentId}")]
+        [HttpGet("{studentId:int}")]
         public async Task<IActionResult> GetJobApplicationByStudentId(int studentId)
         {
             try
@@ -99,7 +99,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{majorId}")]
+        [HttpGet("{majorId:int}")]
         public async Task<IActionResult> GetApplicationByMajorId(int majorId)
         {
             try
@@ -119,8 +119,7 @@ namespace OJTManagementAPI.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateJobApplication(int id, JobApplication jobApplication)
         {
             try
@@ -139,8 +138,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplication(int id)
         {
             try

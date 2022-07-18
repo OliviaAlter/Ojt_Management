@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -26,9 +27,9 @@ namespace OJTManagementAPI.Services
             return await _companyRepository.DeleteCompany(companyId);
         }
 
-        public async Task<Company> UpdateCompany(Company company)
+        public async Task<Company> UpdateCompany(int id, CompanyDTO company)
         {
-            return await _companyRepository.UpdateCompany(company);
+            return await _companyRepository.UpdateCompany(id, company);
         }
 
         public async Task<IEnumerable<Company>> GetCompanyList()

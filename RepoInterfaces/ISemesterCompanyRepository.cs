@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.RepoInterfaces
@@ -11,10 +12,10 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<SemesterCompany> GetSemesterCompanyBySemesterId(int semesterId);
         public IQueryable<SemesterCompany> GetSemesterCompanyListByCompanyName(string companyName);
         public IQueryable<SemesterCompany> GetSemesterCompanyByCompanyId(int companyId);
-        public IQueryable<SemesterCompany> GetSemesterCompanyById(int semesterCompanyId);
+        public IQueryable<SemesterCompany> GetSemesterCompanyBySemesterCompanyId(int semesterCompanyId);
         public IQueryable<SemesterCompany> GetSemesterCompanyByName(string semesterCompanyName);
         public Task<SemesterCompany> AddSemesterCompany(SemesterCompany semesterCompany);
-        public Task<SemesterCompany> UpdateSemesterCompany(SemesterCompany semesterCompany);
+        public Task<SemesterCompany> UpdateSemesterCompany(int id, SemesterCompanyDTO semesterCompany);
         public Task<bool> DeleteSemesterCompany(int semesterCompanyId);
     }
 }

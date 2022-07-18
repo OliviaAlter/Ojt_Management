@@ -68,7 +68,6 @@ namespace OJTManagementAPI.Controllers
 
 
         [HttpPost("register")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAccount(RegisterAccountDTO registerAccountDto)
         {
             try
@@ -91,7 +90,6 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateAccount(int id, Account account)
         {
             try

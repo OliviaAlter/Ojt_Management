@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -27,9 +28,9 @@ namespace OJTManagementAPI.Services
             return await _semesterCompanyRepository.AddSemesterCompany(semesterCompany);
         }
 
-        public async Task<SemesterCompany> UpdateSemesterCompany(SemesterCompany semesterCompany)
+        public async Task<SemesterCompany> UpdateSemesterCompany(int id, SemesterCompanyDTO semesterCompany)
         {
-            return await _semesterCompanyRepository.UpdateSemesterCompany(semesterCompany);
+            return await _semesterCompanyRepository.UpdateSemesterCompany(id, semesterCompany);
         }
 
         public async Task<bool> DeleteSemesterCompany(int semesterCompanyId)
@@ -39,7 +40,7 @@ namespace OJTManagementAPI.Services
 
         public async Task<SemesterCompany> GetSemesterCompanyById(int semesterCompanyId)
         {
-            return await _semesterCompanyRepository.GetSemesterCompanyById(semesterCompanyId)
+            return await _semesterCompanyRepository.GetSemesterCompanyBySemesterCompanyId(semesterCompanyId)
                 .FirstOrDefaultAsync();
         }
 

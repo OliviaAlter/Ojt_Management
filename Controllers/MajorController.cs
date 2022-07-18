@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.DTOS;
+using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
@@ -43,7 +44,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> GetMajorById(int id)
         {
             try
@@ -82,9 +83,28 @@ namespace OJTManagementAPI.Controllers
                     "Error getting major list");
             }
         }
+        
+        [HttpPost("add")]
+        public async Task<IActionResult> AddMajor(MajorDTO major)
+        {
+            try
+            {
+                var newMajor = new Major()
+                {
+                    MajorName = major.MajorName,
+                };
+                var result = await _majorService.AddMajor(newMajor);
+                var response = _mapper.Map<MajorDTO>(result);
+                return StatusCode(201, response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error getting account data");
+            }
+        }
 
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteMajor(int id)
         {
             try
@@ -102,7 +122,6 @@ namespace OJTManagementAPI.Controllers
         }
         
         [HttpPut("{id:int}")]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateMajor(int id, [FromBody] MajorUpdateDTO major)
         {
             try
@@ -111,10 +130,9 @@ namespace OJTManagementAPI.Controllers
                 var result = await _majorService.UpdateMajorById(id, major);
                 
                 if (result == null)
-                    return NotFound("Updated failed");
+                    return NotFound("Major not found");
 
                 return Ok(result);
-
                 //var response = _mapper.Map<MajorDTO>(result);
                 //return StatusCode(201, response);
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -49,18 +50,27 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<bool> DeleteSemester(int semesterId)
         {
-            var foundInSemester = await _context.Semester
-                .FirstOrDefaultAsync(s => s.SemesterId == semesterId);
+            try
+            {
+                var foundInSemester = await _context.Semester
+                    .FirstOrDefaultAsync(s => s.SemesterId == semesterId);
 
-            if (foundInSemester == null)
+                if (foundInSemester == null)
+                    return false;
+
+                _context.Semester.Remove(foundInSemester);
+
+                //TODO: Check if there are any semester constrain
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
                 return false;
-
-            _context.Semester.Remove(foundInSemester);
-
-            //TODO: Check if there are any semester constrain
-
-            await _context.SaveChangesAsync();
-            return true;
+            }
+           
         }
     }
 }

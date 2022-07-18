@@ -64,8 +64,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{semesterId}")]
-        [ValidateAntiForgeryToken]
+        [HttpGet("{semesterId:int}")]
         public async Task<IActionResult> GetStudentListBySemesterId(int semesterId)
         {
             try
@@ -84,8 +83,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{companyId}")]
-        [ValidateAntiForgeryToken]
+        [HttpGet("{companyId:int}")]
         public async Task<IActionResult> GetStudentListByCompanyId(int companyId)
         {
             try
@@ -104,8 +102,7 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
-        [HttpGet("{majorId}")]
-        [ValidateAntiForgeryToken]
+        [HttpGet("{majorId:int}")]
         public async Task<IActionResult> GetStudentListMajorId(int majorId)
         {
             try
@@ -125,8 +122,7 @@ namespace OJTManagementAPI.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateStudent(int id, Student student)
         {
             try
@@ -151,8 +147,7 @@ namespace OJTManagementAPI.Controllers
         //TODO : Check /api/Semester/GetSemesterById/{id}
         //TODO : Check /api/Major/GetMajorById/{id}
         
-        [HttpDelete("{studentId}")]
-        //[ValidateAntiForgeryToken]
+        [HttpDelete("{studentId:int}")]
         public async Task<IActionResult> DeleteStudent(int studentId)
         {
             try

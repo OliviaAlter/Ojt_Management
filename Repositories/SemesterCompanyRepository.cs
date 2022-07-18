@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 
@@ -46,10 +47,10 @@ namespace OJTManagementAPI.Repositories
                 .Where(x => x.Company.CompanyId == companyId);
         }
 
-        public IQueryable<SemesterCompany> GetSemesterCompanyById(int semesterCompanyId)
+        public IQueryable<SemesterCompany> GetSemesterCompanyBySemesterCompanyId(int semesterCompanyId)
         {
             return _context.SemesterCompany
-                .Where(x => x.Semester.SemesterId == semesterCompanyId);
+                .Where(x => x.SemesterCompanyId == semesterCompanyId);
         }
 
         public IQueryable<SemesterCompany> GetSemesterCompanyByName(string semesterCompanyName)
@@ -66,23 +67,52 @@ namespace OJTManagementAPI.Repositories
             return semesterCompany;
         }
 
-        public async Task<SemesterCompany> UpdateSemesterCompany(SemesterCompany semesterCompany)
+        public async Task<SemesterCompany> UpdateSemesterCompany(int id, SemesterCompanyDTO semesterCompany)
         {
-            _context.SemesterCompany.Update(semesterCompany);
-            await _context.SaveChangesAsync();
-            return semesterCompany;
+            var semesterCompanyData = await _context.SemesterCompany
+                .FirstOrDefaultAsync(x => x.SemesterCompanyId == id);
+            try
+            {
+                if (semesterCompanyData != null)
+                {
+                    semesterCompanyData.Semester.SemesterId = semesterCompany.Semester.SemesterId;
+                    semesterCompanyData.Semester.SemesterName ??= semesterCompany.Semester.SemesterName;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
+
+            return semesterCompanyData;
         }
 
         public async Task<bool> DeleteSemesterCompany(int semesterCompanyId)
         {
-            var foundInSemesterCompany = await _context.SemesterCompany
-                .FirstOrDefaultAsync(sc => sc.SemesterCompanyId == semesterCompanyId);
-            if (foundInSemesterCompany == null)
+            try
+            {
+                var foundInSemesterCompany = await _context.SemesterCompany
+                    .FirstOrDefaultAsync(sc => sc.SemesterCompanyId == semesterCompanyId);
+                if (foundInSemesterCompany == null)
+                    return false;
+                // TODO: Check if there are no relation to the key
+                _context.SemesterCompany.Remove(foundInSemesterCompany);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
                 return false;
-            // TODO: Check if there are no relation to the key
-            _context.SemesterCompany.Remove(foundInSemesterCompany);
+            }
 
-            return true;
         }
     }
 }
