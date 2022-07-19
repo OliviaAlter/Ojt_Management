@@ -102,7 +102,7 @@ namespace OJTManagementAPI.Controllers
         }
         
         [HttpPost("add")]
-        public async Task<IActionResult> RegisterSemesterCompany(SemesterCompanyDTO semesterCompany)
+        public async Task<IActionResult> RegisterSemesterCompany(AddSemesterCompanyDTO semesterCompany)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace OJTManagementAPI.Controllers
                     SemesterId = semesterCompany.SemesterId,
                 };
                 var result = await _semesterCompanyService.AddSemesterCompany(newSemesterCompany);
-                var response = _mapper.Map<AccountDTO>(result);
+                var response = _mapper.Map<SemesterCompanyDTO>(result);
                 return StatusCode(201, response);
             }
             catch
@@ -143,7 +143,6 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
-               
                 var result = await _semesterCompanyService.UpdateSemesterCompany(id, semesterCompany);
                 
                 if (result == null)

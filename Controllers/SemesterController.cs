@@ -75,7 +75,6 @@ namespace OJTManagementAPI.Controllers
                 if (result == null)
                     return NotFound("Semester isn't in our database");
 
-                // TODO: Check if there are any constraint with semester, if there is make sure to remove all of them
                 return Ok(result);
             }
             catch

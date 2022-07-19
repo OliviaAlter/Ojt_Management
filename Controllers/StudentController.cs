@@ -141,12 +141,6 @@ namespace OJTManagementAPI.Controllers
             }
         }
         
-        //TODO : Check /api/Student/GetStudentListMajorId/{majorId}
-        //TODO : Check /api/Student/GetStudentListByCompanyId/{companyId}
-        //TODO : Check /api/Student/GetStudentListBySemesterId/{semesterId}
-        //TODO : Check /api/Semester/GetSemesterById/{id}
-        //TODO : Check /api/Major/GetMajorById/{id}
-        
         [HttpDelete("{studentId:int}")]
         public async Task<IActionResult> DeleteStudent(int studentId)
         {
@@ -162,5 +156,22 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> CreateStudent(RegisterStudentDTO registerStudentDto)
+        {
+            try
+            {
+                var newRegistration = new Student()
+                {
+                    
+                };
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, "Error creating student");
+            }
+        }
+
     }
 }

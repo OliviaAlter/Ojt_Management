@@ -118,6 +118,35 @@ namespace OJTManagementAPI.Controllers
             }
         }
 
+        [HttpPost("add")]
+        public async Task<IActionResult> AddJobApplication(AddJobApplicationDTO jobApplicationDto)
+        {
+            try
+            {
+
+                var companyInfo = new Company()
+                {
+                    CompanyId = jobApplicationDto.Company.CompanyId,
+                    CompanyName = jobApplicationDto.Company.CompanyName,
+                };
+
+                var newApplication = new JobApplication()
+                {
+                    Company = companyInfo,
+                    ApplicationStatus = 0,
+                    ImageUrl = null,
+                };
+                var result = await _applicationService.AddJobApplication(newApplication);
+                var response = _mapper.Map<AddJobApplicationDTO>(result);
+                return StatusCode(201, response);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    "Adding new application is unavailable");
+            }
+        }
+
 
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateJobApplication(int id, JobApplication jobApplication)

@@ -70,7 +70,7 @@ namespace OJTManagementAPI.Repositories
                 }
             }
             catch (Exception e)
-            {
+            {  
                 Console.Write(e.StackTrace);
                 return null;
             }

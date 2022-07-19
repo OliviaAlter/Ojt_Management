@@ -85,7 +85,7 @@ namespace OJTManagementAPI.Controllers
         }
         
         [HttpPost("add")]
-        public async Task<IActionResult> AddMajor(MajorDTO major)
+        public async Task<IActionResult> AddMajor(AddMajorDTO major)
         {
             try
             {
@@ -94,13 +94,13 @@ namespace OJTManagementAPI.Controllers
                     MajorName = major.MajorName,
                 };
                 var result = await _majorService.AddMajor(newMajor);
-                var response = _mapper.Map<MajorDTO>(result);
+                var response = _mapper.Map<AddMajorDTO>(result);
                 return StatusCode(201, response);
             }
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting account data");
+                    "Error adding major");
             }
         }
 
@@ -133,8 +133,7 @@ namespace OJTManagementAPI.Controllers
                     return NotFound("Major not found");
 
                 return Ok(result);
-                //var response = _mapper.Map<MajorDTO>(result);
-                //return StatusCode(201, response);
+               
             }
             catch
             {
