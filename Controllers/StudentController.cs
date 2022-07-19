@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
+using OJTManagementAPI.Enums;
 using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers
@@ -162,10 +163,25 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
+                var registerAccountDto = new RegisterAccountDTO();
+                
+                var newStudent = new Account
+                {
+                    Username = registerAccountDto.Username,
+                    Password = registerAccountDto.Password,
+                    RoleId = (int)RoleEnum.Student
+                };
+                
                 var newRegistration = new Student()
                 {
-                    
+                    StudentCode = registerStudentDto.StudentCode,
+                    SemesterId = registerStudentDto.SemesterId,
+                    Name = registerStudentDto.Name,
+                    Account = newStudent,
                 };
+                var result = await _studentService.AddStudent(newRegistration);
+                var response = _mapper.Map<StudentDTO>(result);
+                return StatusCode(201, response);
             }
             catch
             {
