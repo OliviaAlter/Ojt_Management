@@ -56,8 +56,8 @@ namespace OJTManagementAPI.Controllers
                 var newCompany = new Company
                 {
                     CompanyName = company.CompanyName,
-                    Address = company.Address,
                     Description = company.Description,
+                    Address = company.Address,
                     Email = company.Email
                 };
                 var result = await _companyService.AddCompany(newCompany);
@@ -80,7 +80,7 @@ namespace OJTManagementAPI.Controllers
                 if (result == null || !result.Any())
                     return NotFound($"No companies found in database with the search value : {name}");
 
-                var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
+                var response = _mapper.Map<IEnumerable<CompanyListDTO>>(result);
 
                 return Ok(response);
             }
@@ -93,7 +93,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyDTO company)
+        public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyUpdateDTO company)
         {
             try
             {
@@ -101,8 +101,8 @@ namespace OJTManagementAPI.Controllers
 
                 if (result == null)
                     return NotFound("Company not found");
-
-                return Ok(result);
+                
+                return Ok("Company updated");
             }
             catch (Exception e)
             {

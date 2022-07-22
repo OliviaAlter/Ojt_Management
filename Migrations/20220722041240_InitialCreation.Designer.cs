@@ -10,8 +10,8 @@ using OJTManagementAPI.DataContext;
 namespace OJTManagementAPI.Migrations
 {
     [DbContext(typeof(OjtManagementContext))]
-    [Migration("20220717221945_test2")]
-    partial class test2
+    [Migration("20220722041240_InitialCreation")]
+    partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,10 @@ namespace OJTManagementAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -53,6 +57,9 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,6 +77,8 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompanyId");
+
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Company");
                 });
@@ -91,7 +100,7 @@ namespace OJTManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("JobApplicationId");
@@ -158,10 +167,10 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SemesterId")
+                    b.Property<int>("SemesterId")
                         .HasColumnType("int");
 
                     b.HasKey("SemesterCompanyId");
@@ -182,10 +191,6 @@ namespace OJTManagementAPI.Migrations
 
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MajorId")
                         .HasColumnType("int");
@@ -231,6 +236,17 @@ namespace OJTManagementAPI.Migrations
                     b.Navigation("Roles");
                 });
 
+            modelBuilder.Entity("OJTManagementAPI.Entities.Company", b =>
+                {
+                    b.HasOne("OJTManagementAPI.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("OJTManagementAPI.Entities.JobApplication", b =>
                 {
                     b.HasOne("OJTManagementAPI.Entities.Company", "Company")
@@ -239,7 +255,9 @@ namespace OJTManagementAPI.Migrations
 
                     b.HasOne("OJTManagementAPI.Entities.Student", "Student")
                         .WithMany("JobApplications")
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Company");
 
@@ -250,11 +268,15 @@ namespace OJTManagementAPI.Migrations
                 {
                     b.HasOne("OJTManagementAPI.Entities.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OJTManagementAPI.Entities.Semester", "Semester")
                         .WithMany()
-                        .HasForeignKey("SemesterId");
+                        .HasForeignKey("SemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Company");
 

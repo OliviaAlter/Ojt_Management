@@ -2,26 +2,10 @@
 
 namespace OJTManagementAPI.Migrations
 {
-    public partial class Test1 : Migration
+    public partial class InitialCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Company",
-                columns: table => new
-                {
-                    CompanyId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Company", x => x.CompanyId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Major",
                 columns: table => new
@@ -69,7 +53,8 @@ namespace OJTManagementAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,29 +68,26 @@ namespace OJTManagementAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SemesterCompany",
+                name: "Company",
                 columns: table => new
                 {
-                    SemesterCompanyId = table.Column<int>(type: "int", nullable: false)
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SemesterId = table.Column<int>(type: "int", nullable: true),
-                    CompanyId = table.Column<int>(type: "int", nullable: true)
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SemesterCompany", x => x.SemesterCompanyId);
+                    table.PrimaryKey("PK_Company", x => x.CompanyId);
                     table.ForeignKey(
-                        name: "FK_SemesterCompany_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "CompanyId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SemesterCompany_Semester_SemesterId",
-                        column: x => x.SemesterId,
-                        principalTable: "Semester",
-                        principalColumn: "SemesterId",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Company_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Account",
+                        principalColumn: "AccountId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,7 +101,6 @@ namespace OJTManagementAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MajorId = table.Column<int>(type: "int", nullable: false),
                     SemesterId = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     Score = table.Column<int>(type: "int", nullable: false)
                 },
@@ -147,12 +128,38 @@ namespace OJTManagementAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SemesterCompany",
+                columns: table => new
+                {
+                    SemesterCompanyId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SemesterId = table.Column<int>(type: "int", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SemesterCompany", x => x.SemesterCompanyId);
+                    table.ForeignKey(
+                        name: "FK_SemesterCompany_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "CompanyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SemesterCompany_Semester_SemesterId",
+                        column: x => x.SemesterId,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "JobApplication",
                 columns: table => new
                 {
                     JobApplicationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentId = table.Column<int>(type: "int", nullable: true),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationStatus = table.Column<int>(type: "int", nullable: true),
                     CompanyId = table.Column<int>(type: "int", nullable: true)
@@ -171,13 +178,18 @@ namespace OJTManagementAPI.Migrations
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "StudentId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_RoleId",
                 table: "Account",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company_AccountId",
+                table: "Company",
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_JobApplication_CompanyId",
@@ -231,13 +243,13 @@ namespace OJTManagementAPI.Migrations
                 name: "Company");
 
             migrationBuilder.DropTable(
-                name: "Account");
-
-            migrationBuilder.DropTable(
                 name: "Major");
 
             migrationBuilder.DropTable(
                 name: "Semester");
+
+            migrationBuilder.DropTable(
+                name: "Account");
 
             migrationBuilder.DropTable(
                 name: "Role");

@@ -18,6 +18,11 @@ namespace OJTManagementAPI.Mappings
             CreateMap<JobApplication, JobApplicationDTO>().ReverseMap();
             CreateMap<Student, StudentDTO>().ReverseMap();
 
+            // Company DTO
+            CreateMap<Company, CompanyDTO>().ReverseMap();
+            CreateMap<Company, CompanyListDTO>().ReverseMap();
+            CreateMap<Company, CompanyUpdateDTO>().ReverseMap();
+
             // Account DTO
             CreateMap<Account, RegisterAccountDTO>().ReverseMap();
             CreateMap<Account, LoginAccountDTO>().ReverseMap();

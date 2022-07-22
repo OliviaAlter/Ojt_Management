@@ -55,6 +55,9 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -72,6 +75,8 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompanyId");
+
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Company");
                 });
@@ -227,6 +232,17 @@ namespace OJTManagementAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("OJTManagementAPI.Entities.Company", b =>
+                {
+                    b.HasOne("OJTManagementAPI.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("OJTManagementAPI.Entities.JobApplication", b =>

@@ -27,7 +27,7 @@ namespace OJTManagementAPI.Services
             return await _companyRepository.DeleteCompany(companyId);
         }
 
-        public async Task<Company> UpdateCompany(int id, CompanyDTO company)
+        public async Task<Company> UpdateCompany(int id, CompanyUpdateDTO company)
         {
             return await _companyRepository.UpdateCompany(id, company);
         }
