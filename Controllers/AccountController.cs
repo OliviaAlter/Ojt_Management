@@ -52,6 +52,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{name}")]
+        [Authorize("Admin")]
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
             try

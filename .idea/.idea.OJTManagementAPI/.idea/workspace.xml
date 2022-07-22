@@ -6,30 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DTOs/CompanyListDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTOs/CompanyUpdateDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Company.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Company.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220716210604_Test1.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220716210604_Test1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220717221945_test2.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220717221945_test2.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220720081850_UpdateDatabase.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220720081850_UpdateDatabase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220722004057_UpdatedAccount.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220722004057_UpdatedAccount.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/OjtManagementContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/CompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AccountController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" afterDir="false" />
@@ -109,7 +89,7 @@
       <workItem from="1658381096033" duration="6215000" />
       <workItem from="1658429759501" duration="8428000" />
       <workItem from="1658448416463" duration="9635000" />
-      <workItem from="1658461026141" duration="2629000" />
+      <workItem from="1658461026141" duration="4850000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -125,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658457204460</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed 1 TODO : Updating company">
+      <created>1658463735733</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658463735733</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +135,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="AAAAAAAAAAA" />
     <MESSAGE value="Updated new database &#10;Added Login for account with JWT Token" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated new database &#10;Added Login for account with JWT Token" />
+    <MESSAGE value="Fixed 1 TODO : Updating company" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed 1 TODO : Updating company" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -165,19 +153,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services/TokenServices.cs</url>
-          <line>45</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Services\TokenServices.cs" initialLine="43" containingFunctionPresentation="method 'CreateToken'">
-            <startOffsets>
-              <option value="1556" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1575" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services/CompanyService.cs</url>
