@@ -1,28 +1,23 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Options;
-using OJTManagementAPI.RepoInterfaces;
-using OJTManagementAPI.Repositories;
-using OJTManagementAPI.ServiceInterfaces;
-using OJTManagementAPI.Services;
+using OJTManagementAPI.ServiceExtensions;
 
 namespace OJTManagementAPI
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -40,32 +35,16 @@ namespace OJTManagementAPI
                     .AllowAnyHeader();
             }));
 
-            services.Configure<PaginationOptions>(Configuration.GetSection("Pagination"));
+            services.Configure<PaginationOptions>(_configuration.GetSection("Pagination"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScopedService();
 
-            services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
-            
-            services.AddScoped<IMajorService, MajorService>();
-            services.AddScoped<IMajorRepository, MajorRepository>();
+            services.AddIdentityServices(_configuration);
 
-            services.AddScoped<IJobApplicationService, JobApplicationService>();
-            services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
+            services.AddApplicationService(_configuration);
 
-            services.AddScoped<ISemesterCompanyService, SemesterCompanyService>();
-            services.AddScoped<ISemesterCompanyRepository, SemesterCompanyRepository>();
-
-            services.AddScoped<ISemesterService, SemesterService>();
-            services.AddScoped<ISemesterRepository, SemesterRepository>();
-
-            services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IStudentRepository, StudentRepository>();
-
-            services.AddDbContext<OjtManagementContext>(option =>
-                option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +60,8 @@ namespace OJTManagementAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

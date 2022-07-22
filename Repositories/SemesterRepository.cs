@@ -70,7 +70,6 @@ namespace OJTManagementAPI.Repositories
                 Console.Write(e.StackTrace);
                 return false;
             }
-           
         }
     }
 }

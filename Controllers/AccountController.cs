@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,12 +18,16 @@ namespace OJTManagementAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
+        private readonly IRoleService _roleService;
         private readonly IMapper _mapper;
+        private readonly ITokenServices _tokenServices;
 
-        public AccountController(IAccountService accountService, IMapper mapper)
+        public AccountController(IAccountService accountService, IMapper mapper, ITokenServices tokenServices, IRoleService roleService)
         {
             _accountService = accountService;
             _mapper = mapper;
+            _tokenServices = tokenServices;
+            _roleService = roleService;
         }
 
         [HttpGet]
@@ -47,7 +52,6 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{name}")]
-        [AllowAnonymous]
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
             try
@@ -55,7 +59,7 @@ namespace OJTManagementAPI.Controllers
                 var result = await _accountService.GetAccountListByName(name);
                 if (result == null || !result.Any())
                     return NotFound($"No company found in database with the search value : {name}");
-                
+
                 var response = _mapper.Map<IEnumerable<AccountDTO>>(result);
                 return Ok(response);
             }
@@ -65,7 +69,6 @@ namespace OJTManagementAPI.Controllers
                     "Error getting account data");
             }
         }
-
 
         [HttpPost("register")]
         public async Task<IActionResult> CreateAccount(RegisterAccountDTO registerAccountDto)
@@ -88,6 +91,52 @@ namespace OJTManagementAPI.Controllers
                     "Error getting account data");
             }
         }
+        
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAccount([FromBody] LoginAccountDTO loginAccountDto)
+        {
+                var newLoginAttempt = new Account
+                {
+                    Email = loginAccountDto.Email,
+                    Password = loginAccountDto.Password,
+                };
+
+                var loginAccount = await _accountService.GetAccount(newLoginAttempt);
+
+                if (loginAccount == null)
+                    return Unauthorized(new ApiResponseMessage
+                    {
+                        IsSuccess = false,
+                        Message = "Invalid username or password"
+                    });
+
+                var roleLoginAttempt = new Role
+                {
+                    RoleId = loginAccount.RoleId,
+                };
+
+                var roleAccount = await _roleService.GetRole(roleLoginAttempt);
+
+                var roleLoginDetail = new Role
+                {
+                    RoleName = roleAccount.RoleName
+                };
+                
+                var finalizeLogin = new Account
+                {
+                    Email = loginAccountDto.Email,
+                    Password = loginAccountDto.Password,
+                    Roles = roleLoginDetail
+                };
+
+                return Ok(new ApiResponseMessage
+                {
+                    IsSuccess = true,
+                    Message = "Login successful",
+                    Data = _tokenServices.CreateToken(finalizeLogin)
+                });
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAccount(int id, Account account)
@@ -108,6 +157,5 @@ namespace OJTManagementAPI.Controllers
                     "Error updating data");
             }
         }
-
     }
 }

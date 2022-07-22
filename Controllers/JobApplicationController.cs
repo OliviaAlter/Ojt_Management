@@ -123,18 +123,17 @@ namespace OJTManagementAPI.Controllers
         {
             try
             {
-
-                var companyInfo = new Company()
+                var companyInfo = new Company
                 {
                     CompanyId = jobApplicationDto.Company.CompanyId,
-                    CompanyName = jobApplicationDto.Company.CompanyName,
+                    CompanyName = jobApplicationDto.Company.CompanyName
                 };
 
-                var newApplication = new JobApplication()
+                var newApplication = new JobApplication
                 {
                     Company = companyInfo,
                     ApplicationStatus = 0,
-                    ImageUrl = null,
+                    ImageUrl = null
                 };
                 var result = await _applicationService.AddJobApplication(newApplication);
                 var response = _mapper.Map<AddJobApplicationDTO>(result);

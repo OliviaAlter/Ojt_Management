@@ -1,7 +1,5 @@
 ﻿#nullable disable
 
-using OJTManagementAPI.Entities;
-
 namespace OJTManagementAPI.DTOS
 {
     public class CompanyDTO

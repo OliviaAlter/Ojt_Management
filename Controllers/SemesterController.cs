@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +37,7 @@ namespace OJTManagementAPI.Controllers
                 var response = _mapper.Map<IEnumerable<SemesterDTO>>(result);
                 return Ok(response);
             }
-            catch 
+            catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
@@ -51,7 +50,7 @@ namespace OJTManagementAPI.Controllers
             try
             {
                 var result = await _semesterService.GetSemesterByName(name);
-                
+
                 if (result == null || !result.Any())
                     return NotFound($"No student list containing the search input : {name}");
 
@@ -63,7 +62,7 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
         }
-        
+
         [HttpGet("{id:int}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetSemesterById(int id)
@@ -122,6 +121,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteSemester(int id)
         {
             try
@@ -140,6 +140,5 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
-        
     }
 }

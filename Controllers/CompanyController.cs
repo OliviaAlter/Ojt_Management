@@ -25,6 +25,8 @@ namespace OJTManagementAPI.Controllers
             _mapper = mapper;
         }
 
+        //TODO : Put option failed
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetCompany()
@@ -99,7 +101,7 @@ namespace OJTManagementAPI.Controllers
 
                 if (result == null)
                     return NotFound("Company not found");
-                
+
                 return Ok(result);
             }
             catch (Exception e)
@@ -108,7 +110,6 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error updating data");
             }
-
         }
 
         [HttpGet("{id:int}")]

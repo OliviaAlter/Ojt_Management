@@ -37,6 +37,11 @@ namespace OJTManagementAPI.Services
         {
             return await _accountRepository.UpdateAccount(account);
         }
-      
+
+        public async Task<Account> GetAccount(Account account)
+        {
+            return await _accountRepository.GetAccount(account)
+                .FirstOrDefaultAsync();
+        }
     }
 }

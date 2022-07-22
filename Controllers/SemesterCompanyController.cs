@@ -81,7 +81,7 @@ namespace OJTManagementAPI.Controllers
                     "Error getting semester company data");
             }
         }
-        
+
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetSemesterCompanyListBySemesterId(int id)
         {
@@ -100,15 +100,15 @@ namespace OJTManagementAPI.Controllers
                     "Error getting semester company data");
             }
         }
-        
+
         [HttpPost("add")]
         public async Task<IActionResult> RegisterSemesterCompany(AddSemesterCompanyDTO semesterCompany)
         {
             try
             {
-                var newSemesterCompany = new SemesterCompany()
+                var newSemesterCompany = new SemesterCompany
                 {
-                    SemesterId = semesterCompany.SemesterId,
+                    SemesterId = semesterCompany.SemesterId
                 };
                 var result = await _semesterCompanyService.AddSemesterCompany(newSemesterCompany);
                 var response = _mapper.Map<SemesterCompanyDTO>(result);
@@ -120,7 +120,7 @@ namespace OJTManagementAPI.Controllers
                     "Error getting account data");
             }
         }
-        
+
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteSemesterCompany(int id)
         {
@@ -137,14 +137,14 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
-        
+
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateSemesterCompany(int id, [FromBody] SemesterCompanyDTO semesterCompany)
         {
             try
             {
                 var result = await _semesterCompanyService.UpdateSemesterCompany(id, semesterCompany);
-                
+
                 if (result == null)
                     return NotFound("Updated failed");
 
@@ -156,6 +156,5 @@ namespace OJTManagementAPI.Controllers
                     "Error updating data");
             }
         }
-
     }
 }

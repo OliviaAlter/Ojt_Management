@@ -1,5 +1,3 @@
-using OJTManagementAPI.Entities;
-
 namespace OJTManagementAPI.DTOS
 {
     public class RegisterStudentDTO
@@ -10,7 +8,6 @@ namespace OJTManagementAPI.DTOS
         public string Name { get; set; }
         public int MajorId { get; set; }
         public int SemesterId { get; set; }
-        public string Email { get; set; }
         public int? PhoneNumber { get; set; }
     }
 }

@@ -107,7 +107,7 @@ namespace OJTManagementAPI.Controllers
         public async Task<IActionResult> GetStudentListMajorId(int majorId)
         {
             try
-            { 
+            {
                 var result = await _studentService.GetStudentListByMajorId(majorId);
 
                 if (!result.Any())
@@ -141,7 +141,7 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
             }
         }
-        
+
         [HttpDelete("{studentId:int}")]
         public async Task<IActionResult> DeleteStudent(int studentId)
         {
@@ -164,20 +164,20 @@ namespace OJTManagementAPI.Controllers
             try
             {
                 var registerAccountDto = new RegisterAccountDTO();
-                
+
                 var newStudent = new Account
                 {
                     Username = registerAccountDto.Username,
                     Password = registerAccountDto.Password,
                     RoleId = (int)RoleEnum.Student
                 };
-                
-                var newRegistration = new Student()
+
+                var newRegistration = new Student
                 {
                     StudentCode = registerStudentDto.StudentCode,
                     SemesterId = registerStudentDto.SemesterId,
                     Name = registerStudentDto.Name,
-                    Account = newStudent,
+                    Account = newStudent
                 };
                 var result = await _studentService.AddStudent(newRegistration);
                 var response = _mapper.Map<StudentDTO>(result);
@@ -188,6 +188,5 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status503ServiceUnavailable, "Error creating student");
             }
         }
-
     }
 }

@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.DataContext
@@ -26,6 +24,7 @@ namespace OJTManagementAPI.DataContext
             if (!optionsBuilder.IsConfigured)
             {
             }
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

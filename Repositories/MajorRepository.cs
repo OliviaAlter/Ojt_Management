@@ -53,27 +53,24 @@ namespace OJTManagementAPI.Repositories
                 {
                     majorData.MajorName ??= major.MajorName;
                     await _context.SaveChangesAsync();
-                    
+
                     var studentListWithSameMajorId = await _context.Student
                         .Where(x => x.Major.MajorId == major.MajorId).ToListAsync();
 
-                    foreach (var student in studentListWithSameMajorId)
-                    {
-                        student.Major.MajorName = major.MajorName;
-                    }
-                    await _context.SaveChangesAsync(); 
+                    foreach (var student in studentListWithSameMajorId) student.Major.MajorName = major.MajorName;
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
                     return null;
                 }
-                
             }
             catch (Exception e)
             {
                 Console.Write(e.StackTrace);
                 return null;
             }
+
             return major;
         }
 
@@ -86,30 +83,27 @@ namespace OJTManagementAPI.Repositories
                 if (majorData != null)
                 {
                     majorData.MajorName = major.MajorName;
-                    
+
                     await _context.SaveChangesAsync();
-                    
+
                     var studentListWithSameMajorId = await _context.Student
                         .Where(x => x.Major.MajorId == major.MajorId).ToListAsync();
 
-                    foreach (var student in studentListWithSameMajorId)
-                    {
-                        student.Major.MajorName = major.MajorName;
-                    }
-                    
-                    await _context.SaveChangesAsync(); 
+                    foreach (var student in studentListWithSameMajorId) student.Major.MajorName = major.MajorName;
+
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
                     return null;
                 }
-                
             }
             catch (Exception e)
             {
                 Console.Write(e.StackTrace);
                 return null;
             }
+
             return majorData;
         }
 
@@ -122,29 +116,24 @@ namespace OJTManagementAPI.Repositories
 
                 if (foundInMajor == null)
                     return false;
-            
+
                 var foundInStudent = await _context.Student
                     .Where(s => s.MajorId == majorId)
                     .ToListAsync();
 
-                if (foundInStudent.Count > 0 || !foundInStudent.Any())
-                {
-                    return false;
-                }
-            
+                if (foundInStudent.Count > 0 || !foundInStudent.Any()) return false;
+
                 //TODO : Check if there are no student bound with major that is about to be deleted
                 _context.Major.Remove(foundInMajor);
                 await _context.SaveChangesAsync();
 
                 return true;
-            } 
+            }
             catch (Exception e)
             {
                 Console.Write(e.StackTrace);
                 return false;
             }
-           
         }
-
     }
 }

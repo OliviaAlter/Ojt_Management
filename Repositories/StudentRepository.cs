@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
@@ -59,7 +58,7 @@ namespace OJTManagementAPI.Repositories
                 _context.Student.Remove(foundInStudent);
                 _context.Account.Remove(foundInAccount);
             }
-            catch 
+            catch
             {
                 return false;
             }

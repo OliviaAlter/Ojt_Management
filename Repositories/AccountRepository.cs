@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
@@ -27,14 +28,17 @@ namespace OJTManagementAPI.Repositories
                 StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public IQueryable<Account> GetAccountById(int id)
+        public IQueryable<Account> GetAccount(Account account)
         {
-            return _context.Account.Where(a => a.AccountId == id);
+            return _context.Account
+                .Where(a => a.Email == account.Email
+                            && a.Password == account.Password);
         }
-
+        
         public IQueryable<Account> GetAccountListContainName(string name)
         {
-            return _context.Account.Where(a => a.Username.ToLower().Contains(name.ToLower()));
+            return _context.Account
+                .Where(a => a.Username.ToLower().Contains(name.ToLower()));
         }
 
         public async Task<Account> AddAccount(Account account)

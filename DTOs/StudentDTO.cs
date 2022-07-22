@@ -16,7 +16,6 @@ namespace OJTManagementAPI.DTOS
         public string Name { get; set; }
         public int MajorId { get; set; }
         public int SemesterId { get; set; }
-        public string Email { get; set; }
         public int? PhoneNumber { get; set; }
         public int? Score { get; set; }
 

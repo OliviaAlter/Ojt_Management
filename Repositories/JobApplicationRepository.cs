@@ -64,26 +64,25 @@ namespace OJTManagementAPI.Repositories
                 {
                     applicationData.Company ??= application.Company;
                     applicationData.ImageUrl ??= application.ImageUrl;
-                    applicationData.Student.Email ??= application.Student.Email;
+                    applicationData.Student.Account.Email = application.Student.Account.Email;
                     applicationData.Student.Major ??= application.Student.Major;
                     applicationData.Student.Name ??= application.Student.Name;
                     applicationData.Student.Score ??= application.Student.Score;
                     applicationData.Student.Semester.SemesterName ??= application.Student.Semester.SemesterName;
 
                     await _context.SaveChangesAsync();
-
                 }
                 else
                 {
                     return null;
                 }
-
             }
             catch (Exception e)
             {
                 Console.Write(e.StackTrace);
                 return null;
             }
+
             return application;
         }
 
@@ -109,7 +108,6 @@ namespace OJTManagementAPI.Repositories
                 Console.Write(e.StackTrace);
                 return false;
             }
-
         }
     }
 }

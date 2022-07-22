@@ -1,14 +1,14 @@
 # Ojt_Management
 
-Create migration 
+Create migration
 
-Open terminal / Console in project 
-Type : 
+Open terminal / Console in project
+Type :
 
 dotnet ef migrations add [Name of migration]
 
-After build succeeded 
+After build succeeded
 
-dotnet ef database update 
+dotnet ef database update
 
 => Created migration and updated database

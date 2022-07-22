@@ -22,8 +22,6 @@ namespace OJTManagementAPI.Entities
 
         [Required] public int SemesterId { get; set; }
 
-        [Required] public string Email { get; set; }
-
         [Required] public int? PhoneNumber { get; set; }
 
         [Required] public int? Score { get; set; }

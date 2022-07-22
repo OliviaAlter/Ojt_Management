@@ -74,24 +74,24 @@ namespace OJTManagementAPI.Controllers
                     return NotFound($"No major found with the search value : {name}");
 
                 var response = _mapper.Map<IEnumerable<MajorDTO>>(result);
-                
+
                 return Ok(response);
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error getting major list");
             }
         }
-        
+
         [HttpPost("add")]
         public async Task<IActionResult> AddMajor(AddMajorDTO major)
         {
             try
             {
-                var newMajor = new Major()
+                var newMajor = new Major
                 {
-                    MajorName = major.MajorName,
+                    MajorName = major.MajorName
                 };
                 var result = await _majorService.AddMajor(newMajor);
                 var response = _mapper.Map<AddMajorDTO>(result);
@@ -120,20 +120,18 @@ namespace OJTManagementAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
             }
         }
-        
+
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateMajor(int id, [FromBody] MajorUpdateDTO major)
         {
             try
             {
-               
                 var result = await _majorService.UpdateMajorById(id, major);
-                
+
                 if (result == null)
                     return NotFound("Major not found");
 
                 return Ok(result);
-               
             }
             catch
             {
@@ -141,6 +139,5 @@ namespace OJTManagementAPI.Controllers
                     "Error updating data");
             }
         }
-        
     }
 }
