@@ -63,7 +63,6 @@ namespace OJTManagementAPI.Repositories
                 if (applicationData != null)
                 {
                     applicationData.Company ??= application.Company;
-                    applicationData.ImageUrl ??= application.ImageUrl;
                     applicationData.Student.Account.Email = application.Student.Account.Email;
                     applicationData.Student.Major ??= application.Student.Major;
                     applicationData.Student.Name ??= application.Student.Name;

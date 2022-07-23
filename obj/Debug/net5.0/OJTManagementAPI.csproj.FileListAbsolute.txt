@@ -214,3 +214,7 @@ C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Micros
 C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Web.config
 C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Scrutor.dll
+C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OJTManagementAPI.Options;
 using OJTManagementAPI.ServiceExtensions;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace OJTManagementAPI
 {
@@ -27,6 +29,14 @@ namespace OJTManagementAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OJTManagementAPI", Version = "v1" });
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -43,6 +53,12 @@ namespace OJTManagementAPI
             services.AddIdentityServices(_configuration);
 
             services.AddApplicationService(_configuration);
+            
+            services.AddAuthorization(o =>
+            {
+                o.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+                o.AddPolicy("Company", policy => policy.RequireClaim("Company"));
+            });
 
             services.AddMvc();
         }
@@ -56,6 +72,8 @@ namespace OJTManagementAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OJTManagementAPI v1"));
             }
+            
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
 

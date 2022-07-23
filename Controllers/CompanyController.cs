@@ -29,7 +29,7 @@ namespace OJTManagementAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetCompany()
+        public async Task<IActionResult> GetCompanyList()
         {
             try
             {
@@ -49,6 +49,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCompany(CompanyDTO company)
         {
             try
@@ -58,7 +59,7 @@ namespace OJTManagementAPI.Controllers
                     CompanyName = company.CompanyName,
                     Description = company.Description,
                     Address = company.Address,
-                    Email = company.Email
+                    CompanyEmail = company.CompanyEmail
                 };
                 var result = await _companyService.AddCompany(newCompany);
                 return StatusCode(201, result);
@@ -71,7 +72,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{name}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetCompanyListByName(string name)
         {
             try
@@ -93,6 +94,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyUpdateDTO company)
         {
             try
@@ -113,7 +115,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetCompanyById(int id)
         {
             try
@@ -122,7 +124,9 @@ namespace OJTManagementAPI.Controllers
                 if (result == null)
                     return NotFound("No company found in database");
 
-                return Ok(result);
+                var response = _mapper.Map<CompanyDTO>(result);
+
+                return Ok(response);
             }
             catch
             {

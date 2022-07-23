@@ -16,16 +16,18 @@ namespace OJTManagementAPI.Controllers
     public class JobApplicationController : ControllerBase
     {
         private readonly IJobApplicationService _applicationService;
+        private readonly ISemesterCompanyService _semesterCompanyService;
         private readonly IMapper _mapper;
 
-        public JobApplicationController(IJobApplicationService applicationService, IMapper mapper)
+        public JobApplicationController(IJobApplicationService applicationService, IMapper mapper, ISemesterCompanyService semesterCompanyService)
         {
             _applicationService = applicationService;
             _mapper = mapper;
+            _semesterCompanyService = semesterCompanyService;
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> GetApplicationList()
         {
             try
@@ -44,6 +46,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> GetApplicationById(int id)
         {
             try
@@ -62,6 +65,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{companyId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetJobApplicationByCompanyId(int companyId)
         {
             try
@@ -81,6 +85,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{studentId:int}")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> GetJobApplicationByStudentId(int studentId)
         {
             try
@@ -100,6 +105,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{majorId:int}")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> GetApplicationByMajorId(int majorId)
         {
             try
@@ -119,22 +125,40 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> AddJobApplication(AddJobApplicationDTO jobApplicationDto)
         {
             try
             {
+                var semesterCompanyCheck = await _semesterCompanyService
+                    .GetSemesterCompanyByCompanyId(jobApplicationDto.Company.CompanyId);
+                
+                if (semesterCompanyCheck == null)
+                    return NotFound(new ApiResponseMessage
+                    {
+                        IsSuccess = false,
+                        Message = "Semester company is not registered in this semester"
+                    });                  
+                
                 var companyInfo = new Company
                 {
                     CompanyId = jobApplicationDto.Company.CompanyId,
                     CompanyName = jobApplicationDto.Company.CompanyName
                 };
 
+                
+                var semester = new Student
+                {
+                    SemesterId = jobApplicationDto.Student.SemesterId,
+                };
+
                 var newApplication = new JobApplication
                 {
                     Company = companyInfo,
                     ApplicationStatus = 0,
-                    ImageUrl = null
+                    Student = semester
                 };
+                
                 var result = await _applicationService.AddJobApplication(newApplication);
                 var response = _mapper.Map<AddJobApplicationDTO>(result);
                 return StatusCode(201, response);
@@ -148,7 +172,28 @@ namespace OJTManagementAPI.Controllers
 
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> UpdateJobApplication(int id, JobApplication jobApplication)
+        {
+            try
+            {
+                if (id != jobApplication.JobApplicationId)
+                    return BadRequest();
+
+                var result = await _applicationService.UpdateApplication(jobApplication);
+                if (result != null)
+                    return NotFound("Update failed successfully");
+                return Ok("Application updated");
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
+        }
+        
+        [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin, Company")]
+        public async Task<IActionResult> StatusChangeJobApplication(int id, JobApplication jobApplication)
         {
             try
             {

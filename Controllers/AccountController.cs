@@ -32,6 +32,7 @@ namespace OJTManagementAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAccountList()
         {
             try
@@ -52,7 +53,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{name}")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAccountListContainingName(string name)
         {
             try
@@ -72,6 +73,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateAccount(RegisterAccountDTO registerAccountDto)
         {
             try
@@ -97,7 +99,7 @@ namespace OJTManagementAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAccount([FromBody] LoginAccountDTO loginAccountDto)
         {
-                var newLoginAttempt = new Account
+            var newLoginAttempt = new Account
                 {
                     Email = loginAccountDto.Email,
                     Password = loginAccountDto.Password,
@@ -108,31 +110,26 @@ namespace OJTManagementAPI.Controllers
                 if (loginAccount == null)
                     return Unauthorized(new ApiResponseMessage
                     {
+                        StatusCode = 401,
                         IsSuccess = false,
                         Message = "Invalid username or password"
                     });
-
-                var roleLoginAttempt = new Role
+                
+                var roleName = new Role
                 {
-                    RoleId = loginAccount.RoleId,
-                };
-
-                var roleAccount = await _roleService.GetRole(roleLoginAttempt);
-
-                var roleLoginDetail = new Role
-                {
-                    RoleName = roleAccount.RoleName
+                    RoleName = loginAccount.Roles.RoleName
                 };
                 
                 var finalizeLogin = new Account
                 {
                     Email = loginAccountDto.Email,
                     Password = loginAccountDto.Password,
-                    Roles = roleLoginDetail
+                    Roles = roleName
                 };
 
                 return Ok(new ApiResponseMessage
                 {
+                    StatusCode = 200,
                     IsSuccess = true,
                     Message = "Login successful",
                     Data = _tokenServices.CreateToken(finalizeLogin)
@@ -140,6 +137,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAccount(int id, Account account)
         {
             try

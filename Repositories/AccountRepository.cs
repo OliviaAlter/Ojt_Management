@@ -32,7 +32,9 @@ namespace OJTManagementAPI.Repositories
         {
             return _context.Account
                 .Where(a => a.Email == account.Email
-                            && a.Password == account.Password);
+                            && a.Password == account.Password)
+                .Include(b => b.Roles)
+                .Include(c => c.Student);
         }
         
         public IQueryable<Account> GetAccountListContainName(string name)

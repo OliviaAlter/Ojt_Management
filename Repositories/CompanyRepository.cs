@@ -58,7 +58,7 @@ namespace OJTManagementAPI.Repositories
                 if (companyData != null)
                 {
                     companyData.Address = company.Address;
-                    companyData.Email = company.Email;
+                    companyData.CompanyEmail = company.CompanyEmail;
                     companyData.CompanyName = company.CompanyName;
                     companyData.Description = company.Description;
 
