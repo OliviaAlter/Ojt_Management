@@ -6,8 +6,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DTOs/JobApplicationAddDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataContext/JobApplicationStatusUpdateDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/AddJobApplicationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobApplicationUpdateDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/AddSemesterCompanyDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterCompanyAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/AddSemesterDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/JobApplicationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobApplicationDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/LoginAccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountLoginDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/RegisterAccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountRegisterDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/RegisterStudentDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/StudentRegisterDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/JobApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/JobApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IJobApplicationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IJobApplicationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/JobApplicationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/JobApplicationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/JobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/JobApplicationService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +102,8 @@
       <workItem from="1658504891772" duration="10620000" />
       <workItem from="1658574119093" duration="3336000" />
       <workItem from="1658588502615" duration="1230000" />
+      <workItem from="1658599196815" duration="99000" />
+      <workItem from="1658602373402" duration="1267000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -138,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658577425198</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep">
+      <created>1658599253572</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658599253572</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +189,8 @@
     <MESSAGE value="AAAAAAAAAA" />
     <MESSAGE value="Send help" />
     <MESSAGE value="404 Not Found" />
-    <option name="LAST_COMMIT_MESSAGE" value="404 Not Found" />
+    <MESSAGE value="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep" />
+    <option name="LAST_COMMIT_MESSAGE" value="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -183,188 +207,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services/CompanyService.cs</url>
-          <line>30</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Services\CompanyService.cs" initialLine="30" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="937" />
-            </startOffsets>
-            <endOffsets>
-              <option value="938" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services/CompanyService.cs</url>
-          <line>31</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Services\CompanyService.cs" initialLine="31" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="951" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1010" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>54</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="54" containingFunctionPresentation="lambda expression inside method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1637" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1654" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>53</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="53" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1554" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1656" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>57</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="57" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1703" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1727" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>59</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="59" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1766" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1804" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>61</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="61" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1894" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1940" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>60</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="60" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1825" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1873" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>62</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="62" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="1961" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2007" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>64</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="64" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="2029" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2063" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>70</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="70" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="2184" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2185" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>67</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="67" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="2119" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2120" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>69</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="69" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="2170" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2171" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repositories/CompanyRepository.cs</url>
-          <line>77</line>
-          <properties documentPath="C:\Users\innoc\Desktop\OJTManagementAPI\OJTManagementAPI\Repositories\CompanyRepository.cs" initialLine="77" containingFunctionPresentation="method 'UpdateCompany'">
-            <startOffsets>
-              <option value="2333" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2352" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NullReferenceException" isInternal="false" displayValue="NullReferenceException" namespaceName="System">

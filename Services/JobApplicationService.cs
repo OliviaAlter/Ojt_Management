@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -51,9 +53,14 @@ namespace OJTManagementAPI.Services
             return await _applicationRepository.AddApplication(application);
         }
 
-        public async Task<JobApplication> UpdateApplication(JobApplication application)
+        public async Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application)
         {
-            return await _applicationRepository.UpdateApplication(application);
+            return await _applicationRepository.UpdateApplication(id, application);
+        }
+
+        public async Task<JobApplication> UpdateApplicationStatus(int id, JobApplicationStatusUpdateDTO application)
+        {
+            return await _applicationRepository.ChangeApplicationStatus(id, application);
         }
 
         public async Task<bool> DeleteApplication(int jobApplicationId)

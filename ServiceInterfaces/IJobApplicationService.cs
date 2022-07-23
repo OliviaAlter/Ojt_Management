@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.ServiceInterfaces
@@ -7,8 +9,10 @@ namespace OJTManagementAPI.ServiceInterfaces
     public interface IJobApplicationService
     {
         public Task<IEnumerable<JobApplication>> GetJobApplicationList();
-        public Task<JobApplication> AddJobApplication(JobApplication account);
-        public Task<JobApplication> UpdateApplication(JobApplication account);
+        public Task<JobApplication> AddJobApplication(JobApplication application);
+        public Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application);
+       
+        public Task<JobApplication> UpdateApplicationStatus(int id, JobApplicationStatusUpdateDTO application);
         public Task<bool> DeleteApplication(int jobApplicationId);
         public Task<JobApplication> GetJobApplicationById(int jobApplicationId);
         public Task<IEnumerable<JobApplication>> GetJobApplicationByStudentId(int studentId);

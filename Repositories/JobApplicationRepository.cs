@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
+using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 
@@ -53,13 +54,12 @@ namespace OJTManagementAPI.Repositories
             return application;
         }
 
-        public async Task<JobApplication> UpdateApplication(JobApplication application)
+        public async Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application)
         {
+            var applicationData = await _context.JobApplication
+                .FirstOrDefaultAsync(x => x.JobApplicationId == id);
             try
             {
-                var applicationData = await _context.JobApplication
-                    .FirstOrDefaultAsync(x => x.JobApplicationId == application.JobApplicationId);
-
                 if (applicationData != null)
                 {
                     applicationData.Company ??= application.Company;
@@ -82,7 +82,33 @@ namespace OJTManagementAPI.Repositories
                 return null;
             }
 
-            return application;
+            return applicationData;
+        }
+        
+        public async Task<JobApplication> ChangeApplicationStatus(int id, JobApplicationStatusUpdateDTO application)
+        {
+            var applicationData = await _context.JobApplication
+                .FirstOrDefaultAsync(x => x.JobApplicationId == id);
+            try
+            {
+                if (applicationData != null)
+                {
+                    applicationData.ApplicationStatus ??= application.ApplicationStatus;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
+
+            return applicationData;
         }
 
         public async Task<bool> DeleteApplication(int applicationId)

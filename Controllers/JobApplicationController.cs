@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OJTManagementAPI.DataContext;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
@@ -42,7 +43,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application list is unable to load"
+                });
             }
         }
 
@@ -61,7 +67,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application data is unable to load"
+                });
             }
         }
 
@@ -81,7 +92,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application data by company is unable to load"
+                });
             }
         }
 
@@ -101,7 +117,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application data by student is failed to load"
+                });
             }
         }
 
@@ -121,7 +142,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting application data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application data by major is unable to load"
+                });
             }
         }
 
@@ -183,7 +209,7 @@ namespace OJTManagementAPI.Controllers
                 var newApplication = new JobApplication
                 {
                     Company = companyInfo,
-                    ApplicationStatus = 0,
+                    ApplicationStatus = null,
                     Student = studentInfo
                 };
 
@@ -194,7 +220,7 @@ namespace OJTManagementAPI.Controllers
                 catch
                 {
                     return 
-                        StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage()
+                        StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
                         {
                             StatusCode = 503,
                             IsSuccess = false,
@@ -214,22 +240,26 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status503ServiceUnavailable,
-                    "Adding new application is unavailable");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Creating new application is unavailable"
+                });
             }
         }
 
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> UpdateJobApplication(int id, JobApplication jobApplication)
+        public async Task<IActionResult> UpdateJobApplication(int id, JobApplicationUpdateDTO jobApplication)
         {
             try
             {
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
 
-                var result = await _applicationService.UpdateApplication(jobApplication);
+                var result = await _applicationService.UpdateApplication(id, jobApplication);
                 if (result != null)
                     return NotFound("Update failed successfully");
                 return Ok("Application updated");
@@ -247,21 +277,26 @@ namespace OJTManagementAPI.Controllers
         
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
-        public async Task<IActionResult> StatusChangeJobApplication(int id, JobApplication jobApplication)
+        public async Task<IActionResult> StatusChangeJobApplication(int id, JobApplicationStatusUpdateDTO jobApplication)
         {
             try
             {
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
 
-                var result = await _applicationService.UpdateApplication(jobApplication);
+                var result = await _applicationService.UpdateApplicationStatus(id, jobApplication);
                 if (result != null)
-                    return NotFound("Update failed successfully");
-                return Ok("Application updated");
+                    return NotFound("Status failed successfully");
+                return Ok("Application status updated");
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application status failed to update"
+                });
             }
         }
 
@@ -281,7 +316,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Error deleting application"
+                });
             }
         }
     }
