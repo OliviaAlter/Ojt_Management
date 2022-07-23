@@ -5,23 +5,14 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DTOs/JobApplicationAddDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataContext/JobApplicationStatusUpdateDTO.cs" afterDir="false" />
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Updated JobApplicationController.cs">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AddJobApplicationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobApplicationUpdateDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AddSemesterCompanyDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterCompanyAddDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AddSemesterDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterAddDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/JobApplicationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobApplicationDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/LoginAccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountLoginDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/RegisterAccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountRegisterDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/RegisterStudentDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/StudentRegisterDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/JobApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/JobApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IJobApplicationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IJobApplicationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/JobApplicationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/JobApplicationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/JobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/JobApplicationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CompanyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MajorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SemesterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/StudentController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +94,7 @@
       <workItem from="1658574119093" duration="3336000" />
       <workItem from="1658588502615" duration="1230000" />
       <workItem from="1658599196815" duration="99000" />
-      <workItem from="1658602373402" duration="1267000" />
+      <workItem from="1658602373402" duration="1714000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -161,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658599253572</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated JobApplicationController.cs">
+      <created>1658603663508</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1658603663508</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +188,8 @@
     <MESSAGE value="Send help" />
     <MESSAGE value="404 Not Found" />
     <MESSAGE value="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep" />
-    <option name="LAST_COMMIT_MESSAGE" value="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep" />
+    <MESSAGE value="Updated JobApplicationController.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated JobApplicationController.cs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -100,8 +100,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error adding major");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Adding major is unavailable"
+                });
             }
         }
 
@@ -119,7 +123,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Deleting major is unavailable"
+                });
             }
         }
 
@@ -138,8 +147,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Updating major is unavailable"
+                });
             }
         }
     }

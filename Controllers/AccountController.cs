@@ -47,8 +47,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting account data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Account data is unable to load"
+                });
             }
         }
 
@@ -67,8 +71,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting account data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Account list is unable to load"
+                });
             }
         }
 
@@ -90,8 +98,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting account data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Register account is unavailable"
+                });
             }
         }
         
@@ -152,8 +164,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Updating account is unavailable"
+                });
             }
         }
     }

@@ -88,8 +88,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting company data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Company list is unable to load"
+                });
             }
         }
 
@@ -106,11 +110,14 @@ namespace OJTManagementAPI.Controllers
                 
                 return Ok("Company updated");
             }
-            catch (Exception e)
+            catch
             {
-                Console.Write(e.StackTrace);
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Updating company is unavailable"
+                });
             }
         }
 
@@ -130,8 +137,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting company data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Company is unavailable"
+                });
             }
         }
     }

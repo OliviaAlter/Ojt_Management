@@ -40,8 +40,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting student data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Getting student list is unavailable"
+                });
             }
         }
 
@@ -61,8 +65,12 @@ namespace OJTManagementAPI.Controllers
 
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error getting student data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Getting student list by name is unavailable"
+                });
             }
         }
 
@@ -82,7 +90,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Getting student list by semester is unavailable"
+                });            
             }
         }
 
@@ -102,7 +115,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Getting student list by company is unavailable"
+                });  
             }
         }
 
@@ -122,7 +140,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting student data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Getting student list by major is unavailable"
+                });  
             }
         }
 
@@ -143,7 +166,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Updating student is unavailable"
+                });
             }
         }
 
@@ -160,7 +188,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Deleting student is unavailable"
+                });
             }
         }
 
@@ -191,7 +224,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status503ServiceUnavailable, "Error creating student");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Register new student is unavailable"
+                });
             }
         }
     }
