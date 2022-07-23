@@ -153,9 +153,9 @@ namespace OJTManagementAPI.Controllers
                             Message = "Account ID not found"
                         }
                     );
-                
-                var accountInfo = new Account 
-                { 
+
+                var accountInfo = new Account
+                {
                     AccountId = Int32.Parse(userId)
                 };
 
@@ -165,14 +165,14 @@ namespace OJTManagementAPI.Controllers
                         StatusCode = 404,
                         IsSuccess = false,
                         Message = "Semester company is not registered in this semester"
-                    });                  
-                
+                    });
+
                 var companyInfo = new Company
                 {
                     CompanyId = jobApplicationDto.Company.CompanyId,
                     CompanyName = jobApplicationDto.Company.CompanyName
                 };
-                
+
                 var studentInfo = new Student
                 {
                     SemesterId = jobApplicationDto.Student.SemesterId,
@@ -186,10 +186,31 @@ namespace OJTManagementAPI.Controllers
                     ApplicationStatus = 0,
                     Student = studentInfo
                 };
+
+                try
+                {
+                    await _applicationService.AddJobApplication(newApplication);
+                }
+                catch
+                {
+                    return 
+                        StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage()
+                        {
+                            StatusCode = 503,
+                            IsSuccess = false,
+                            Message = "Application failed to create"
+                        });
+                }
+
+                //var result = await _applicationService.AddJobApplication(newApplication);
+                //var response = _mapper.Map<AddJobApplicationDTO>(result);
                 
-                var result = await _applicationService.AddJobApplication(newApplication);
-                var response = _mapper.Map<AddJobApplicationDTO>(result);
-                return StatusCode(201, response);
+                return Ok(new ApiResponseMessage
+                    {
+                        StatusCode = 201,
+                        IsSuccess = false,
+                        Message = "Application added successfully"
+                    });
             }
             catch
             {
@@ -215,7 +236,12 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage()
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Application failed to update"
+                });
             }
         }
         

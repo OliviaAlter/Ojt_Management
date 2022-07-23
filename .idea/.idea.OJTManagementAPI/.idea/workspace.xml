@@ -5,23 +5,9 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Send help">
-      <change afterPath="$PROJECT_DIR$/ServiceInterfaces/IExcelProcessingService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/ExcelProcessingService.cs" afterDir="false" />
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/JobApplicationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MajorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SemesterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/StudentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OJTManagementAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OJTManagementAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/OJTManagementAPI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/OJTManagementAPI.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +86,8 @@
       <workItem from="1658461026141" duration="4850000" />
       <workItem from="1658496244037" duration="1079000" />
       <workItem from="1658504891772" duration="10620000" />
-      <workItem from="1658574119093" duration="3248000" />
+      <workItem from="1658574119093" duration="3336000" />
+      <workItem from="1658588502615" duration="1230000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -144,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658574694435</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="404 Not Found">
+      <created>1658577425198</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1658577425198</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +165,8 @@
     <MESSAGE value="Updated new DB script.sql" />
     <MESSAGE value="AAAAAAAAAA" />
     <MESSAGE value="Send help" />
-    <option name="LAST_COMMIT_MESSAGE" value="Send help" />
+    <MESSAGE value="404 Not Found" />
+    <option name="LAST_COMMIT_MESSAGE" value="404 Not Found" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
