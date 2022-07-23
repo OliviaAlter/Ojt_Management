@@ -64,7 +64,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetSemesterById(int id)
         {
             try
@@ -83,6 +83,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddNewSemester(SemesterDTO semester)
         {
             try
@@ -102,6 +103,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateSemester(int id, Semester semester)
         {
             try
@@ -121,7 +123,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteSemester(int id)
         {
             try

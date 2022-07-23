@@ -26,7 +26,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentList()
         {
             try
@@ -46,6 +46,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{name}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentListByName(string name)
         {
             try
@@ -66,6 +67,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{semesterId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentListBySemesterId(int semesterId)
         {
             try
@@ -85,6 +87,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{companyId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentListByCompanyId(int companyId)
         {
             try
@@ -104,6 +107,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{majorId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentListMajorId(int majorId)
         {
             try
@@ -124,6 +128,7 @@ namespace OJTManagementAPI.Controllers
 
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin, Student")]
         public async Task<IActionResult> UpdateStudent(int id, Student student)
         {
             try
@@ -143,6 +148,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpDelete("{studentId:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteStudent(int studentId)
         {
             try

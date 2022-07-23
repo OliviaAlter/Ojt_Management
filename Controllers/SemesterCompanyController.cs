@@ -46,6 +46,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetSemesterCompanyById(int id)
         {
             try
@@ -83,6 +84,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetSemesterCompanyListBySemesterId(int id)
         {
             try
@@ -102,6 +104,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> RegisterSemesterCompany(AddSemesterCompanyDTO semesterCompany)
         {
             try
@@ -122,6 +125,8 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin, Company")]
+
         public async Task<IActionResult> DeleteSemesterCompany(int id)
         {
             try
@@ -139,6 +144,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin, Company")]
         public async Task<IActionResult> UpdateSemesterCompany(int id, [FromBody] SemesterCompanyDTO semesterCompany)
         {
             try

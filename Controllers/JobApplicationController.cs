@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -132,10 +133,36 @@ namespace OJTManagementAPI.Controllers
             {
                 var semesterCompanyCheck = await _semesterCompanyService
                     .GetSemesterCompanyByCompanyId(jobApplicationDto.Company.CompanyId);
+
+                if (User.Identity == null)
+                    return NotFound(new ApiResponseMessage
+                        {
+                            StatusCode = 404,
+                            IsSuccess = false,
+                            Message = "Account not found"
+                        }
+                    );
+
+                var userId = User.Identity.Name;
+
+                if (userId == null)
+                    return NotFound(new ApiResponseMessage
+                        {
+                            StatusCode = 404,
+                            IsSuccess = false,
+                            Message = "Account ID not found"
+                        }
+                    );
                 
+                var accountInfo = new Account 
+                { 
+                    AccountId = Int32.Parse(userId)
+                };
+
                 if (semesterCompanyCheck == null)
                     return NotFound(new ApiResponseMessage
                     {
+                        StatusCode = 404,
                         IsSuccess = false,
                         Message = "Semester company is not registered in this semester"
                     });                  
@@ -145,18 +172,19 @@ namespace OJTManagementAPI.Controllers
                     CompanyId = jobApplicationDto.Company.CompanyId,
                     CompanyName = jobApplicationDto.Company.CompanyName
                 };
-
                 
-                var semester = new Student
+                var studentInfo = new Student
                 {
                     SemesterId = jobApplicationDto.Student.SemesterId,
+                    StudentId = accountInfo.Student.StudentId,
+                    AccountId = accountInfo.AccountId,
                 };
 
                 var newApplication = new JobApplication
                 {
                     Company = companyInfo,
                     ApplicationStatus = 0,
-                    Student = semester
+                    Student = studentInfo
                 };
                 
                 var result = await _applicationService.AddJobApplication(newApplication);

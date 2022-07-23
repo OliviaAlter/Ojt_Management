@@ -44,7 +44,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetMajorById(int id)
         {
             try
@@ -85,6 +85,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMajor(AddMajorDTO major)
         {
             try
@@ -105,6 +106,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMajor(int id)
         {
             try
@@ -122,6 +124,7 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateMajor(int id, [FromBody] MajorUpdateDTO major)
         {
             try
