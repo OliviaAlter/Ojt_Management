@@ -5,14 +5,29 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Updated JobApplicationController.cs">
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/OJTManagementAPI/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/OJTManagementAPI/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/OJTManagementAPI/FileContentIndex/cbb6a9fa-2657-4c47-aa49-cb4b1fa8de33.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/OJTManagementAPI/v17/.futdcache.v1" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/OJTManagementAPI/v17/.futdcache.v1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/OJTManagementAPI/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/OJTManagementAPI/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/ojtmanagementapi.metadata.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/ojtmanagementapi.metadata.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/ojtmanagementapi.projects.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/ojtmanagementapi.projects.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AccountController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MajorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterCompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SemesterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SemesterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/StudentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/AccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/System.Configuration.ConfigurationManager.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/System.Configuration.ConfigurationManager.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/System.Security.Cryptography.ProtectedData.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +109,13 @@
       <workItem from="1658574119093" duration="3336000" />
       <workItem from="1658588502615" duration="1230000" />
       <workItem from="1658599196815" duration="99000" />
-      <workItem from="1658602373402" duration="1714000" />
+      <workItem from="1658602373402" duration="3411000" />
+      <workItem from="1658660918197" duration="26000" />
+      <workItem from="1658687867941" duration="75000" />
+      <workItem from="1658691734988" duration="30000" />
+      <workItem from="1658847184534" duration="637000" />
+      <workItem from="1658904688051" duration="532000" />
+      <workItem from="1658931964062" duration="604000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -159,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658603663508</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated Api response model and added middleware">
+      <created>1658604114103</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1658604114103</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +217,8 @@
     <MESSAGE value="404 Not Found" />
     <MESSAGE value="Smol update to JobApplicationController.cs&#10;Dev dang choi cong an danh dan, mai dev tiep" />
     <MESSAGE value="Updated JobApplicationController.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated JobApplicationController.cs" />
+    <MESSAGE value="Updated Api response model and added middleware" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Api response model and added middleware" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -18,16 +18,14 @@ namespace OJTManagementAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
-        private readonly IRoleService _roleService;
         private readonly IMapper _mapper;
         private readonly ITokenServices _tokenServices;
 
-        public AccountController(IAccountService accountService, IMapper mapper, ITokenServices tokenServices, IRoleService roleService)
+        public AccountController(IAccountService accountService, IMapper mapper, ITokenServices tokenServices)
         {
             _accountService = accountService;
             _mapper = mapper;
             _tokenServices = tokenServices;
-            _roleService = roleService;
         }
 
         [HttpGet]

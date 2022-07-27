@@ -8,8 +8,8 @@ namespace OJTManagementAPI.DTOS
         public string Email { get; set; }
         public int RoleId { get; set; }
 
-        public virtual RoleDTO RoleDto { get; set; }
-        public virtual CompanyDTO CompanyDto { get; set; }
-        public virtual StudentDTO StudentDto { get; set; }
+        //public virtual RoleDTO RoleDto { get; set; }
+        //public virtual CompanyDTO CompanyDto { get; set; }
+        //public virtual StudentDTO StudentDto { get; set; }
     }
 }
