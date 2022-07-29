@@ -9,7 +9,7 @@ using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

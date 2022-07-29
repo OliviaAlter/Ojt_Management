@@ -33,15 +33,19 @@ namespace OJTManagementAPI.Mappings
 
             // Semester Company DTOs
             CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
+            CreateMap<SemesterCompany, SemesterCompanyAddDTO>().ReverseMap();
 
             // Semester DTOs
-            CreateMap<Semester, AddSemesterDTO>().ReverseMap();
+            CreateMap<Semester, SemesterAddDTO>().ReverseMap();
 
             // Student DTOs
             CreateMap<Student, RegisterStudentDTO>().ReverseMap();
 
             // Job Application DTOs
             CreateMap<JobApplication, AddJobApplicationDTO>().ReverseMap();
+            CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
+            CreateMap<JobApplication, AddJobApplicationDTO>().ReverseMap();
+            CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace OJTManagementAPI.DTOS
 {
-    public class AddSemesterCompanyDTO
+    public class SemesterCompanyAddDTO
     {
         public int SemesterCompanyId { get; set; }
         public int SemesterId { get; set; }

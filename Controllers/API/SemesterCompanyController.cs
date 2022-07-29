@@ -121,7 +121,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("add")]
         [Authorize(Roles = "Admin, Company")]
-        public async Task<IActionResult> RegisterSemesterCompany(AddSemesterCompanyDTO semesterCompany)
+        public async Task<IActionResult> RegisterSemesterCompany(SemesterCompanyAddDTO semesterCompany)
         {
             try
             {
