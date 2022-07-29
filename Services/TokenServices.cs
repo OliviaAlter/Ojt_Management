@@ -22,14 +22,14 @@ namespace OJTManagementAPI.Services
         public string CreateToken(Account account)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-           
+
             var claims = new List<Claim>
             {
                 new(ClaimTypes.Role, account.Roles.RoleName),
                 new(ClaimTypes.Email, account.Email),
                 new(ClaimTypes.NameIdentifier, account.AccountId.ToString())
             };
-            
+
             var securityKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:NotTokenKeyForSureSourceTrustMeDude"]));
 

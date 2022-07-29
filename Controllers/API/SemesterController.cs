@@ -9,7 +9,7 @@ using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -44,7 +44,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester list is unavailable"
-                });     
+                });
             }
         }
 
@@ -69,7 +69,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester list by name is unavailable"
-                });                 
+                });
             }
         }
 
@@ -118,7 +118,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Creating new semester is unavailable"
-                });              
+                });
             }
         }
 

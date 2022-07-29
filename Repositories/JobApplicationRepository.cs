@@ -84,7 +84,7 @@ namespace OJTManagementAPI.Repositories
 
             return applicationData;
         }
-        
+
         public async Task<JobApplication> ChangeApplicationStatus(int id, JobApplicationStatusUpdateDTO application)
         {
             var applicationData = await _context.JobApplication

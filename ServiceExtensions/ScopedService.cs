@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.Repositories;
 using OJTManagementAPI.ServiceInterfaces;

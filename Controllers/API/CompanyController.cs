@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -111,7 +110,7 @@ namespace OJTManagementAPI.Controllers
 
                 if (result == null)
                     return NotFound("Company not found");
-                
+
                 return Ok("Company updated");
             }
             catch

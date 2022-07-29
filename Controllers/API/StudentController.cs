@@ -10,7 +10,7 @@ using OJTManagementAPI.Entities;
 using OJTManagementAPI.Enums;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -95,7 +95,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting student list by semester is unavailable"
-                });            
+                });
             }
         }
 
@@ -120,7 +120,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting student list by company is unavailable"
-                });  
+                });
             }
         }
 
@@ -145,7 +145,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting student list by major is unavailable"
-                });  
+                });
             }
         }
 

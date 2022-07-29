@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +24,7 @@ namespace OJTManagementAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddControllers();
+            services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OJTManagementAPI", Version = "v1" });
@@ -40,7 +39,7 @@ namespace OJTManagementAPI
             });
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                builder.AllowAnyOrigin()
+                builder.WithOrigins("https://localhost:3000", "https://localhost:3001")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
@@ -53,7 +52,7 @@ namespace OJTManagementAPI
             services.AddIdentityServices(_configuration);
 
             services.AddApplicationService(_configuration);
-            
+
             services.AddAuthorization(o =>
             {
                 o.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
@@ -72,7 +71,13 @@ namespace OJTManagementAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OJTManagementAPI v1"));
             }
-            
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
@@ -83,16 +88,23 @@ namespace OJTManagementAPI
 
             app.UseAuthorization();
 
+            app.UseCors(x =>
+                x.AllowAnyHeader().AllowAnyMethod()
+                    .WithOrigins("http://localhost:3000", "https://localhost:3001"));
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
             /*
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name : "areas",
-                    pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
+        
             */
+
             app.UseHttpsRedirection();
         }
     }

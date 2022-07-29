@@ -36,7 +36,7 @@ namespace OJTManagementAPI.Repositories
                 .Include(b => b.Roles)
                 .Include(c => c.Student);
         }
-        
+
         public IQueryable<Account> GetAccountListContainName(string name)
         {
             return _context.Account

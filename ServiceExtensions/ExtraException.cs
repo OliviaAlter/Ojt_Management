@@ -5,13 +5,16 @@ namespace OJTManagementAPI.ServiceExtensions
 {
     public class ExtraException : Exception
     {
-        public ExtraException() : base()
+        public ExtraException()
         {
         }
+
         public ExtraException(string message) : base(message)
         {
         }
-        public ExtraException(string message, params object[] args) : base(String.Format(CultureInfo.CurrentCulture, message, args))
+
+        public ExtraException(string message, params object[] args) : base(string.Format(CultureInfo.CurrentCulture,
+            message, args))
         {
         }
     }

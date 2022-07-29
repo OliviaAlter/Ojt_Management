@@ -24,6 +24,7 @@ namespace OJTManagementAPI.DataContext
             if (!optionsBuilder.IsConfigured)
             {
             }
+
             optionsBuilder.EnableSensitiveDataLogging();
         }
 

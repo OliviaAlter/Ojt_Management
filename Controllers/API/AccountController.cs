@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using OJTManagementAPI.Entities;
 using OJTManagementAPI.Enums;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -29,7 +28,6 @@ namespace OJTManagementAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAccountList()
         {
@@ -104,46 +102,46 @@ namespace OJTManagementAPI.Controllers
                 });
             }
         }
-        
+
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginAccount([FromBody] LoginAccountDTO loginAccountDto)
         {
             var newLoginAttempt = new Account
-                {
-                    Email = loginAccountDto.Email,
-                    Password = loginAccountDto.Password,
-                };
+            {
+                Email = loginAccountDto.Email,
+                Password = loginAccountDto.Password
+            };
 
-                var loginAccount = await _accountService.GetAccount(newLoginAttempt);
+            var loginAccount = await _accountService.GetAccount(newLoginAttempt);
 
-                if (loginAccount == null)
-                    return Unauthorized(new ApiResponseMessage
-                    {
-                        StatusCode = 401,
-                        IsSuccess = false,
-                        Message = "Invalid username or password"
-                    });
-                
-                var roleName = new Role
+            if (loginAccount == null)
+                return Unauthorized(new ApiResponseMessage
                 {
-                    RoleName = loginAccount.Roles.RoleName
-                };
-                
-                var finalizeLogin = new Account
-                {
-                    Email = loginAccountDto.Email,
-                    Password = loginAccountDto.Password,
-                    Roles = roleName
-                };
-
-                return Ok(new ApiResponseMessage
-                {
-                    StatusCode = 200,
-                    IsSuccess = true,
-                    Message = "Login successful",
-                    Data = _tokenServices.CreateToken(finalizeLogin)
+                    StatusCode = 401,
+                    IsSuccess = false,
+                    Message = "Invalid username or password"
                 });
+
+            var roleName = new Role
+            {
+                RoleName = loginAccount.Roles.RoleName
+            };
+
+            var finalizeLogin = new Account
+            {
+                Email = loginAccountDto.Email,
+                Password = loginAccountDto.Password,
+                Roles = roleName
+            };
+
+            return Ok(new ApiResponseMessage
+            {
+                StatusCode = 200,
+                IsSuccess = true,
+                Message = "Login successful",
+                Data = _tokenServices.CreateToken(finalizeLogin)
+            });
         }
 
         [HttpPut("{id}")]

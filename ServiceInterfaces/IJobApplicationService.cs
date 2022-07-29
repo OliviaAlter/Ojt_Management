@@ -11,7 +11,7 @@ namespace OJTManagementAPI.ServiceInterfaces
         public Task<IEnumerable<JobApplication>> GetJobApplicationList();
         public Task<JobApplication> AddJobApplication(JobApplication application);
         public Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application);
-       
+
         public Task<JobApplication> UpdateApplicationStatus(int id, JobApplicationStatusUpdateDTO application);
         public Task<bool> DeleteApplication(int jobApplicationId);
         public Task<JobApplication> GetJobApplicationById(int jobApplicationId);

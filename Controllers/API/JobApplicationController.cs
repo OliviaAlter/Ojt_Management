@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,17 +10,18 @@ using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class JobApplicationController : ControllerBase
     {
         private readonly IJobApplicationService _applicationService;
-        private readonly ISemesterCompanyService _semesterCompanyService;
         private readonly IMapper _mapper;
+        private readonly ISemesterCompanyService _semesterCompanyService;
 
-        public JobApplicationController(IJobApplicationService applicationService, IMapper mapper, ISemesterCompanyService semesterCompanyService)
+        public JobApplicationController(IJobApplicationService applicationService, IMapper mapper,
+            ISemesterCompanyService semesterCompanyService)
         {
             _applicationService = applicationService;
             _mapper = mapper;
@@ -182,7 +182,7 @@ namespace OJTManagementAPI.Controllers
 
                 var accountInfo = new Account
                 {
-                    AccountId = Int32.Parse(userId)
+                    AccountId = int.Parse(userId)
                 };
 
                 if (semesterCompanyCheck == null)
@@ -203,7 +203,7 @@ namespace OJTManagementAPI.Controllers
                 {
                     SemesterId = jobApplicationDto.Student.SemesterId,
                     StudentId = accountInfo.Student.StudentId,
-                    AccountId = accountInfo.AccountId,
+                    AccountId = accountInfo.AccountId
                 };
 
                 var newApplication = new JobApplication
@@ -219,7 +219,7 @@ namespace OJTManagementAPI.Controllers
                 }
                 catch
                 {
-                    return 
+                    return
                         StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
                         {
                             StatusCode = 503,
@@ -230,13 +230,13 @@ namespace OJTManagementAPI.Controllers
 
                 //var result = await _applicationService.AddJobApplication(newApplication);
                 //var response = _mapper.Map<AddJobApplicationDTO>(result);
-                
+
                 return Ok(new ApiResponseMessage
-                    {
-                        StatusCode = 201,
-                        IsSuccess = false,
-                        Message = "Application added successfully"
-                    });
+                {
+                    StatusCode = 201,
+                    IsSuccess = false,
+                    Message = "Application added successfully"
+                });
             }
             catch
             {
@@ -266,7 +266,7 @@ namespace OJTManagementAPI.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage()
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
                 {
                     StatusCode = 503,
                     IsSuccess = false,
@@ -274,10 +274,11 @@ namespace OJTManagementAPI.Controllers
                 });
             }
         }
-        
+
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
-        public async Task<IActionResult> StatusChangeJobApplication(int id, JobApplicationStatusUpdateDTO jobApplication)
+        public async Task<IActionResult> StatusChangeJobApplication(int id,
+            JobApplicationStatusUpdateDTO jobApplication)
         {
             try
             {

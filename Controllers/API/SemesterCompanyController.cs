@@ -9,7 +9,7 @@ using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
-namespace OJTManagementAPI.Controllers
+namespace OJTManagementAPI.Controllers.API
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -45,7 +45,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester company list is unavailable"
-                });     
+                });
             }
         }
 
@@ -68,7 +68,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester company list by id is unavailable"
-                });     
+                });
             }
         }
 
@@ -91,7 +91,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester company list by name is unavailable"
-                });     
+                });
             }
         }
 
@@ -115,7 +115,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Getting semester company list by semester is unavailable"
-                });     
+                });
             }
         }
 
@@ -146,7 +146,6 @@ namespace OJTManagementAPI.Controllers
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
-
         public async Task<IActionResult> DeleteSemesterCompany(int id)
         {
             try
@@ -164,7 +163,7 @@ namespace OJTManagementAPI.Controllers
                     StatusCode = 503,
                     IsSuccess = false,
                     Message = "Deleting semester company is unavailable"
-                });            
+                });
             }
         }
 

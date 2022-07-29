@@ -1,5 +1,4 @@
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
