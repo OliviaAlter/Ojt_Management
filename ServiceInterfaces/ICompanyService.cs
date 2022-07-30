@@ -8,6 +8,7 @@ namespace OJTManagementAPI.ServiceInterfaces
     public interface ICompanyService
     {
         public Task<Company> AddCompany(Company company);
+        // TODO : Delete company 
         public Task<bool> DeleteCompany(int companyId);
         public Task<Company> UpdateCompany(int id, CompanyUpdateDTO company);
         public Task<IEnumerable<Company>> GetCompanyList();

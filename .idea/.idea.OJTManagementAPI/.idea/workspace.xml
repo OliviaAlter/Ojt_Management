@@ -5,48 +5,8 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DTOs/JobAddDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTOs/JobDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTOs/JobUpdateDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/Job.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RepoInterfaces/IJobRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/JobRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/JobService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/MajorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/SemesterCompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/SemesterCompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/SemesterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/SemesterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/StudentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/MajorAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/MajorAddDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataContext/OJTManagementContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataContext/OJTManagementContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Company.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Company.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Major.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Major.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Student.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220722041240_InitialCreation.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220722041240_InitialCreation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220723074725_UpdatedCompany.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20220723074725_UpdatedCompany.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/OjtManagementContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/AccountRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AccountRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IAccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IAccountService.cs" afterDir="false" />
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked">
       <change beforePath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +103,7 @@
       <workItem from="1659095717527" duration="21000" />
       <workItem from="1659112906731" duration="2598000" />
       <workItem from="1659189333348" duration="2671000" />
-      <workItem from="1659211985373" duration="7627000" />
+      <workItem from="1659211985373" duration="7952000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -236,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659115894012</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked">
+      <created>1659219815774</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1659219815774</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +237,8 @@
     <MESSAGE value="Idk" />
     <MESSAGE value="Updated to database and make changes to controllers" />
     <MESSAGE value="Fixed mapping with DTOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed mapping with DTOs" />
+    <MESSAGE value="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked" />
+    <option name="LAST_COMMIT_MESSAGE" value="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
