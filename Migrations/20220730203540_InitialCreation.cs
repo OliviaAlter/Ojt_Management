@@ -7,6 +7,23 @@ namespace OJTManagementAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Job",
+                columns: table => new
+                {
+                    JobId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MajorId = table.Column<int>(type: "int", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    JobDescription = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Job", x => x.JobId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Major",
                 columns: table => new
                 {
@@ -46,6 +63,30 @@ namespace OJTManagementAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "JobMajor",
+                columns: table => new
+                {
+                    JobDetailsJobId = table.Column<int>(type: "int", nullable: false),
+                    MajorsMajorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobMajor", x => new { x.JobDetailsJobId, x.MajorsMajorId });
+                    table.ForeignKey(
+                        name: "FK_JobMajor_Job_JobDetailsJobId",
+                        column: x => x.JobDetailsJobId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobMajor_Major_MajorsMajorId",
+                        column: x => x.MajorsMajorId,
+                        principalTable: "Major",
+                        principalColumn: "MajorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Account",
                 columns: table => new
                 {
@@ -76,7 +117,7 @@ namespace OJTManagementAPI.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -128,6 +169,30 @@ namespace OJTManagementAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CompanyJob",
+                columns: table => new
+                {
+                    CompaniesCompanyId = table.Column<int>(type: "int", nullable: false),
+                    JobDetailsJobId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyJob", x => new { x.CompaniesCompanyId, x.JobDetailsJobId });
+                    table.ForeignKey(
+                        name: "FK_CompanyJob_Company_CompaniesCompanyId",
+                        column: x => x.CompaniesCompanyId,
+                        principalTable: "Company",
+                        principalColumn: "CompanyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanyJob_Job_JobDetailsJobId",
+                        column: x => x.JobDetailsJobId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SemesterCompany",
                 columns: table => new
                 {
@@ -160,8 +225,7 @@ namespace OJTManagementAPI.Migrations
                     JobApplicationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ApplicationStatus = table.Column<int>(type: "int", nullable: true),
+                    ApplicationStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -192,6 +256,11 @@ namespace OJTManagementAPI.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CompanyJob_JobDetailsJobId",
+                table: "CompanyJob",
+                column: "JobDetailsJobId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobApplication_CompanyId",
                 table: "JobApplication",
                 column: "CompanyId");
@@ -200,6 +269,11 @@ namespace OJTManagementAPI.Migrations
                 name: "IX_JobApplication_StudentId",
                 table: "JobApplication",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobMajor_MajorsMajorId",
+                table: "JobMajor",
+                column: "MajorsMajorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SemesterCompany_CompanyId",
@@ -231,13 +305,22 @@ namespace OJTManagementAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CompanyJob");
+
+            migrationBuilder.DropTable(
                 name: "JobApplication");
+
+            migrationBuilder.DropTable(
+                name: "JobMajor");
 
             migrationBuilder.DropTable(
                 name: "SemesterCompany");
 
             migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Job");
 
             migrationBuilder.DropTable(
                 name: "Company");

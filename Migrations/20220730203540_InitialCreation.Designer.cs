@@ -10,8 +10,8 @@ using OJTManagementAPI.DataContext;
 namespace OJTManagementAPI.Migrations
 {
     [DbContext(typeof(OjtManagementContext))]
-    [Migration("20220723074725_UpdatedCompany")]
-    partial class UpdatedCompany
+    [Migration("20220730203540_InitialCreation")]
+    partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,36 @@ namespace OJTManagementAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CompanyJob", b =>
+                {
+                    b.Property<int>("CompaniesCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobDetailsJobId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompaniesCompanyId", "JobDetailsJobId");
+
+                    b.HasIndex("JobDetailsJobId");
+
+                    b.ToTable("CompanyJob");
+                });
+
+            modelBuilder.Entity("JobMajor", b =>
+                {
+                    b.Property<int>("JobDetailsJobId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MajorsMajorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobDetailsJobId", "MajorsMajorId");
+
+                    b.HasIndex("MajorsMajorId");
+
+                    b.ToTable("JobMajor");
+                });
 
             modelBuilder.Entity("OJTManagementAPI.Entities.Account", b =>
                 {
@@ -83,6 +113,35 @@ namespace OJTManagementAPI.Migrations
                     b.ToTable("Company");
                 });
 
+            modelBuilder.Entity("OJTManagementAPI.Entities.Job", b =>
+                {
+                    b.Property<int>("JobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobDescription")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MajorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobId");
+
+                    b.ToTable("Job");
+                });
+
             modelBuilder.Entity("OJTManagementAPI.Entities.JobApplication", b =>
                 {
                     b.Property<int>("JobApplicationId")
@@ -90,8 +149,8 @@ namespace OJTManagementAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ApplicationStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("ApplicationStatus")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CompanyId")
                         .HasColumnType("int");
@@ -219,6 +278,36 @@ namespace OJTManagementAPI.Migrations
                     b.HasIndex("SemesterId");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("CompanyJob", b =>
+                {
+                    b.HasOne("OJTManagementAPI.Entities.Company", null)
+                        .WithMany()
+                        .HasForeignKey("CompaniesCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OJTManagementAPI.Entities.Job", null)
+                        .WithMany()
+                        .HasForeignKey("JobDetailsJobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("JobMajor", b =>
+                {
+                    b.HasOne("OJTManagementAPI.Entities.Job", null)
+                        .WithMany()
+                        .HasForeignKey("JobDetailsJobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OJTManagementAPI.Entities.Major", null)
+                        .WithMany()
+                        .HasForeignKey("MajorsMajorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("OJTManagementAPI.Entities.Account", b =>

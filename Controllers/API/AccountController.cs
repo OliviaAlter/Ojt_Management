@@ -58,7 +58,7 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var result = await _accountService.GetAccountListByName(name);
+                var result = await _accountService.GetAccountListContainName(name);
                 if (result == null || !result.Any())
                     return NotFound($"No company found in database with the search value : {name}");
 
@@ -78,7 +78,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("register")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateAccount(RegisterAccountDTO registerAccountDto)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAccount([FromForm] RegisterAccountDTO registerAccountDto)
         {
             try
             {
@@ -146,7 +147,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateAccount(int id, Account account)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateAccount(int id, [FromBody] Account account)
         {
             try
             {

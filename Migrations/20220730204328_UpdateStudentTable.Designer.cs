@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OJTManagementAPI.DataContext;
 
 namespace OJTManagementAPI.Migrations
 {
     [DbContext(typeof(OjtManagementContext))]
-    partial class OjtManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20220730204328_UpdateStudentTable")]
+    partial class UpdateStudentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,21 +282,17 @@ namespace OJTManagementAPI.Migrations
 
             modelBuilder.Entity("OJTManagementAPI.Entities.Job", b =>
                 {
-                    b.HasOne("OJTManagementAPI.Entities.Company", "Company")
+                    b.HasOne("OJTManagementAPI.Entities.Company", null)
                         .WithMany("JobDetails")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OJTManagementAPI.Entities.Major", "Major")
+                    b.HasOne("OJTManagementAPI.Entities.Major", null)
                         .WithMany("JobDetails")
                         .HasForeignKey("MajorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Major");
                 });
 
             modelBuilder.Entity("OJTManagementAPI.Entities.JobApplication", b =>

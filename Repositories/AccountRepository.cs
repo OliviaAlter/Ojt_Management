@@ -56,5 +56,12 @@ namespace OJTManagementAPI.Repositories
             await _context.SaveChangesAsync();
             return account;
         }
+        
+        public async Task<Account> DeleteAccount(Account account)
+        {
+            _context.Account.Update(account);
+            await _context.SaveChangesAsync();
+            return account;
+        }
     }
 }

@@ -121,7 +121,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("add")]
         [Authorize(Roles = "Admin, Company")]
-        public async Task<IActionResult> RegisterSemesterCompany(SemesterCompanyAddDTO semesterCompany)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterSemesterCompany([FromForm] SemesterCompanyAddDTO semesterCompany)
         {
             try
             {
@@ -146,6 +147,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSemesterCompany(int id)
         {
             try
@@ -169,6 +171,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSemesterCompany(int id, [FromBody] SemesterCompanyDTO semesterCompany)
         {
             try

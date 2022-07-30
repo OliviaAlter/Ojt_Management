@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OJTManagementAPI.DTOs;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
@@ -17,6 +18,7 @@ namespace OJTManagementAPI.Mappings
             CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
             CreateMap<JobApplication, JobApplicationDTO>().ReverseMap();
             CreateMap<Student, StudentDTO>().ReverseMap();
+            CreateMap<Job, JobDTO>().ReverseMap();
 
             // Company DTO
             CreateMap<Company, CompanyDTO>().ReverseMap();
@@ -29,7 +31,7 @@ namespace OJTManagementAPI.Mappings
 
             // Major DTOs
             CreateMap<Major, MajorUpdateDTO>().ReverseMap();
-            CreateMap<Major, AddMajorDTO>().ReverseMap();
+            CreateMap<Major, MajorAddDTO>().ReverseMap();
 
             // Semester Company DTOs
             CreateMap<SemesterCompany, SemesterCompanyDTO>().ReverseMap();
@@ -46,6 +48,11 @@ namespace OJTManagementAPI.Mappings
             CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
             CreateMap<JobApplication, AddJobApplicationDTO>().ReverseMap();
             CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
+            
+            // Job DTOs
+            CreateMap<Job, JobAddDTO>().ReverseMap();
+            CreateMap<Job, JobUpdateDTO>().ReverseMap();
+
         }
     }
 }

@@ -7,6 +7,11 @@ namespace OJTManagementAPI.Entities
 {
     public class Company
     {
+        public Company()
+        {
+            JobApplications = new HashSet<JobApplication>();
+            JobDetails = new HashSet<Job>();
+        }
         [Required] public int CompanyId { get; set; }
 
         [Required] public string CompanyName { get; set; }
@@ -19,6 +24,7 @@ namespace OJTManagementAPI.Entities
         [Required] public int AccountId { get; set; }
 
         public virtual ICollection<JobApplication> JobApplications { get; set; }
+        public virtual ICollection<Job> JobDetails { get; set; }
         public virtual Account Account { get; set; }
     }
 }

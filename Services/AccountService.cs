@@ -22,7 +22,7 @@ namespace OJTManagementAPI.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Account>> GetAccountListByName(string name)
+        public async Task<IEnumerable<Account>> GetAccountListContainName(string name)
         {
             return await _accountRepository.GetAccountListContainName(name)
                 .ToListAsync();
@@ -42,6 +42,12 @@ namespace OJTManagementAPI.Services
         {
             return await _accountRepository.GetAccount(account)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<Account> DeleteAccount(Account account)
+        {
+            // TODO : Add delete account, check for constraint
+            throw null!;
         }
     }
 }

@@ -17,5 +17,6 @@ namespace OJTManagementAPI.Entities
         [Required] public string MajorName { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Job> JobDetails { get; set; }
     }
 }

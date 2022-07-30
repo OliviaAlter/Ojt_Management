@@ -49,7 +49,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddCompany(CompanyDTO company)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCompany([FromForm] CompanyDTO company)
         {
             try
             {
@@ -102,6 +103,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyUpdateDTO company)
         {
             try

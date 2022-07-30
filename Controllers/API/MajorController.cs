@@ -86,7 +86,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("add")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddMajor(AddMajorDTO major)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMajor([FromForm] MajorAddDTO major)
         {
             try
             {
@@ -95,7 +96,7 @@ namespace OJTManagementAPI.Controllers.API
                     MajorName = major.MajorName
                 };
                 var result = await _majorService.AddMajor(newMajor);
-                var response = _mapper.Map<AddMajorDTO>(result);
+                var response = _mapper.Map<MajorAddDTO>(result);
                 return StatusCode(201, response);
             }
             catch
@@ -111,6 +112,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteMajor(int id)
         {
             try
@@ -134,6 +136,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateMajor(int id, [FromBody] MajorUpdateDTO major)
         {
             try

@@ -99,7 +99,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("add")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddNewSemester(SemesterDTO semester)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddNewSemester([FromForm] SemesterDTO semester)
         {
             try
             {
@@ -124,7 +125,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateSemester(int id, Semester semester)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateSemester(int id, [FromBody] Semester semester)
         {
             try
             {
@@ -149,6 +151,7 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteSemester(int id)
         {
             try

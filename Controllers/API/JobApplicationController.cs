@@ -153,7 +153,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost("add")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> AddJobApplication(AddJobApplicationDTO jobApplicationDto)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddJobApplication([FromForm] AddJobApplicationDTO jobApplicationDto)
         {
             try
             {
@@ -252,7 +253,8 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> UpdateJobApplication(int id, JobApplicationUpdateDTO jobApplication)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateJobApplication(int id, [FromBody] JobApplicationUpdateDTO jobApplication)
         {
             try
             {
@@ -277,8 +279,9 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> StatusChangeJobApplication(int id,
-            JobApplicationStatusUpdateDTO jobApplication)
+            [FromBody] JobApplicationStatusUpdateDTO jobApplication)
         {
             try
             {
@@ -302,6 +305,8 @@ namespace OJTManagementAPI.Controllers.API
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteApplication(int id)
         {
             try
