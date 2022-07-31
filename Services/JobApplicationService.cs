@@ -53,12 +53,12 @@ namespace OJTManagementAPI.Services
             return await _applicationRepository.AddApplication(application);
         }
 
-        public async Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application)
+        public async Task<JobApplication> UpdateApplication(int id, JobApplication application)
         {
             return await _applicationRepository.UpdateApplication(id, application);
         }
 
-        public async Task<JobApplication> UpdateApplicationStatus(int id, JobApplicationStatusUpdateDTO application)
+        public async Task<JobApplication> UpdateApplicationStatus(int id, JobApplication application)
         {
             return await _applicationRepository.ChangeApplicationStatus(id, application);
         }

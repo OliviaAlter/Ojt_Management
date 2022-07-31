@@ -5,33 +5,38 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Overhaul update to Company, Major and added function to Job Controllers">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/JobController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/JobController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/API/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/MajorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/JobAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobAddDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/JobDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/JobUpdateDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobUpdateDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Company.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Company.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Job.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Job.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IJobRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IJobRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IMajorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IMajorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/JobRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/JobRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/MajorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/MajorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IMajorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IMajorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/CompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/JobService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/JobService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/MajorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/MajorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobApplicationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/JobApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/JobApplicationService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="test-branche" />
+      </map>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Controllers/API/CompanyController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Controllers/API/CompanyController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Entities/Company.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/RepoInterfaces/IJobApplicationRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/RepoInterfaces/IMajorRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/RepoInterfaces/IMajorRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Repositories/JobApplicationRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Repositories/JobRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Repositories/JobRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Repositories/JobRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Services/CompanyService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Services/CompanyService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Services/MajorService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -239,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659248609648</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Overhaul update to Company, Major and added function to Job Controllers">
+      <created>1659261761678</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1659261761678</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +264,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="test-branche" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -276,7 +300,8 @@
     <MESSAGE value="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked" />
     <MESSAGE value="Added TODO : Delete company" />
     <MESSAGE value="Ước được đi chơi AEON với mọi người vào chủ nhật" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ước được đi chơi AEON với mọi người vào chủ nhật" />
+    <MESSAGE value="Overhaul update to Company, Major and added function to Job Controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Overhaul update to Company, Major and added function to Job Controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -252,16 +252,21 @@ namespace OJTManagementAPI.Controllers.API
 
 
         [HttpPut("{id:int}")]
-        [Authorize(Roles = "Student")]
+        [Authorize(Roles = "Admin, Company")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateJobApplication(int id, [FromBody] JobApplicationUpdateDTO jobApplication)
+        public async Task<IActionResult> UpdateJobApplication(int id, [FromBody] JobApplication jobApplication)
         {
             try
             {
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
+                
+                var updateJobApplication = new JobApplication()
+                {
+                    ApplicationStatus = jobApplication.ApplicationStatus
+                };
 
-                var result = await _applicationService.UpdateApplication(id, jobApplication);
+                var result = await _applicationService.UpdateApplication(id, updateJobApplication);
                 if (result != null)
                     return NotFound("Update failed successfully");
                 return Ok("Application updated");
@@ -281,14 +286,19 @@ namespace OJTManagementAPI.Controllers.API
         [Authorize(Roles = "Admin, Company")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> StatusChangeJobApplication(int id,
-            [FromBody] JobApplicationStatusUpdateDTO jobApplication)
+            [FromBody] JobApplication jobApplication)
         {
             try
             {
+                var updateStatusJobApplication = new JobApplication()
+                {
+                    ApplicationStatus = jobApplication.ApplicationStatus
+                };
+                
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
 
-                var result = await _applicationService.UpdateApplicationStatus(id, jobApplication);
+                var result = await _applicationService.UpdateApplicationStatus(id, updateStatusJobApplication);
                 if (result != null)
                     return NotFound("Status failed successfully");
                 return Ok("Application status updated");
