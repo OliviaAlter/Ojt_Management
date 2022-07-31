@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.DTOs;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
 
@@ -27,7 +25,6 @@ namespace OJTManagementAPI.Controllers.API
         }
         
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetJobList()
         {
             try
@@ -76,7 +73,7 @@ namespace OJTManagementAPI.Controllers.API
         }
         
         [HttpPost("register")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Company, Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostNewJob([FromForm] JobAddDTO newJob)
         {
@@ -104,12 +101,14 @@ namespace OJTManagementAPI.Controllers.API
         }
         
         [HttpPut("{id:int}")]
-        //[Authorize(Roles = "Admin, Company")]
+        [Authorize(Roles = "Company, Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateJob(int id, [FromBody] JobUpdateDTO jobUpdate)
         {
             try
             {
+                if (id != jobUpdate.JobId)
+                    return NotFound("Job not found");
                 // TODO : Check if job update
                 var major = new Major()
                 {
@@ -142,7 +141,6 @@ namespace OJTManagementAPI.Controllers.API
         }
 
         [HttpGet("{id:int}")]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetJobDetail(int id)
         {
             try

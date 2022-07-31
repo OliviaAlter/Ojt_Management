@@ -108,7 +108,15 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var result = await _companyService.UpdateCompany(id, company);
+                var updateCompany = new Company()
+                {
+                    CompanyEmail = company.CompanyEmail,
+                    CompanyName = company.CompanyName,
+                    Description = company.Description,
+                    Address = company.Address
+                };
+                
+                var result = await _companyService.UpdateCompany(id, updateCompany);
 
                 if (result == null)
                     return NotFound("Company not found");

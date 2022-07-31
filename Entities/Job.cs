@@ -14,7 +14,7 @@ namespace OJTManagementAPI.Entities
         [Required]
         public int CompanyId { get; set; }
         [Required]
-        public int JobDescription { get; set; }
+        public string JobDescription { get; set; }
         [Required]
         public string Status { get; set; }
         
