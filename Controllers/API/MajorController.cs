@@ -141,7 +141,15 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var result = await _majorService.UpdateMajorById(id, major);
+                var updateMajor = new Major()
+                {
+                    MajorName = major.MajorName
+                };
+
+                if (id != major.MajorId)
+                    return NotFound("Major not found");
+                
+                var result = await _majorService.UpdateMajorById(id, updateMajor);
 
                 if (result == null)
                     return NotFound("Major not found");

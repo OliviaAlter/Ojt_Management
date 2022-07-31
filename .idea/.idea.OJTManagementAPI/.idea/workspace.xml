@@ -7,14 +7,26 @@
   <component name="ChangeListManager">
     <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/API/JobController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/JobController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IAccountRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IAccountRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/API/MajorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/MajorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/JobAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/JobDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/JobUpdateDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobUpdateDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Company.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Company.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Job.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Job.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/ICompanyRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepoInterfaces/IJobRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IJobRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/AccountRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AccountRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepoInterfaces/IMajorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RepoInterfaces/IMajorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/CompanyRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/JobRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/JobRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/StudentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/StudentRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IAccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IAccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AccountService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/MajorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/MajorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/ICompanyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IJobService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IJobService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceInterfaces/IMajorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceInterfaces/IMajorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CompanyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/JobService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/JobService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/MajorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/MajorService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +124,8 @@
       <workItem from="1659112906731" duration="2598000" />
       <workItem from="1659189333348" duration="2671000" />
       <workItem from="1659211985373" duration="7971000" />
-      <workItem from="1659242844856" duration="4185000" />
+      <workItem from="1659242844856" duration="4675000" />
+      <workItem from="1659254734951" duration="4455000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -219,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659219994109</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Ước được đi chơi AEON với mọi người vào chủ nhật">
+      <created>1659248609648</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1659248609648</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +275,8 @@
     <MESSAGE value="Fixed mapping with DTOs" />
     <MESSAGE value="// TODO : Check Job Update and Delete option&#10;Finished database and add some constraint to the database, need to do a second check on the constraint of Job through method : POST / PUT / DELETE because :&#10;- Repository method not checked&#10;- Query method not checked" />
     <MESSAGE value="Added TODO : Delete company" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added TODO : Delete company" />
+    <MESSAGE value="Ước được đi chơi AEON với mọi người vào chủ nhật" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ước được đi chơi AEON với mọi người vào chủ nhật" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

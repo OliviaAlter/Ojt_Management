@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.RepoInterfaces
@@ -12,7 +11,7 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Major> GetMajorById(int majorId);
         public Task<Major> AddMajor(Major major);
         public Task<Major> UpdateMajor(Major major);
-        public Task<Major> UpdateMajorById(int majorId, MajorUpdateDTO major);
+        public Task<Major> UpdateMajorById(int majorId, Major major);
         public Task<bool> DeleteMajor(int majorId);
     }
 }

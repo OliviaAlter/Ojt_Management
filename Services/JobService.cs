@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OJTManagementAPI.DTOs;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 using OJTManagementAPI.ServiceInterfaces;
@@ -51,9 +50,14 @@ namespace OJTManagementAPI.Services
                 .FirstOrDefaultAsync();        
         }
 
-        public async Task<Job> DeleteJob(int id)
+        public async Task<bool> DeleteJobAdmin(int id)
         {
-            return await _jobRepository.DeleteJob(id);
+            return await _jobRepository.DeleteJobAdmin(id);
+        }
+
+        public async Task<bool> DeleteJobCompany(int id, int companyId)
+        {
+            return await _jobRepository.DeleteJobCompany(id, companyId);
         }
     }
 }
