@@ -12,6 +12,7 @@ namespace OJTManagementAPI.Entities
             JobApplications = new HashSet<JobApplication>();
             Jobs = new HashSet<Job>();
         }
+
         [Required] public int CompanyId { get; set; }
 
         [Required] public string CompanyName { get; set; }

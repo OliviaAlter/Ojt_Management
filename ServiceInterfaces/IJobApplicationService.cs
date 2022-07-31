@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OJTManagementAPI.DataContext;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.ServiceInterfaces

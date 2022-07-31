@@ -23,7 +23,7 @@ namespace OJTManagementAPI.Controllers.API
             _jobService = jobService;
             _mapper = mapper;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetJobList()
         {
@@ -47,7 +47,7 @@ namespace OJTManagementAPI.Controllers.API
                 });
             }
         }
-        
+
         [HttpGet("{name}")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetJobListContainName(string name)
@@ -71,7 +71,7 @@ namespace OJTManagementAPI.Controllers.API
                 });
             }
         }
-        
+
         [HttpPost("register")]
         [Authorize(Roles = "Company, Admin")]
         [ValidateAntiForgeryToken]
@@ -79,7 +79,7 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var job = new Job()
+                var job = new Job
                 {
                     JobName = newJob.JobName,
                     JobDescription = newJob.JobDescription,
@@ -99,7 +99,7 @@ namespace OJTManagementAPI.Controllers.API
                 });
             }
         }
-        
+
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Company, Admin")]
         [ValidateAntiForgeryToken]
@@ -110,18 +110,18 @@ namespace OJTManagementAPI.Controllers.API
                 if (id != jobUpdate.JobId)
                     return NotFound("Job not found");
                 // TODO : Check if job update
-                var major = new Major()
+                var major = new Major
                 {
                     MajorName = jobUpdate.Major.MajorName
                 };
-                
-                var job = new Job()
+
+                var job = new Job
                 {
                     JobName = jobUpdate.JobName,
                     JobDescription = jobUpdate.JobDescription,
                     Major = major
                 };
-                    
+
                 var result = await _jobService.UpdateJob(id, job);
 
                 if (result == null)
@@ -146,10 +146,10 @@ namespace OJTManagementAPI.Controllers.API
             try
             {
                 var jobIdCheck = await _jobService.GetJobById(id);
-                
+
                 if (jobIdCheck == null)
                     return NotFound("Job not found");
-                
+
                 var result = await _jobService.GetJobData(jobIdCheck);
                 if (result == null)
                     return NotFound("No job found in database");
@@ -166,6 +166,5 @@ namespace OJTManagementAPI.Controllers.API
                 });
             }
         }
-        
     }
 }

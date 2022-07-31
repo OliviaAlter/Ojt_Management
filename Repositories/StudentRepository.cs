@@ -51,8 +51,9 @@ namespace OJTManagementAPI.Repositories
 
                 var list = await applicationByStudentId.ToListAsync();
 
-                foreach (var applicationId in list) _context.JobApplication
-                    .Remove(applicationId);
+                foreach (var applicationId in list)
+                    _context.JobApplication
+                        .Remove(applicationId);
             }
 
             try

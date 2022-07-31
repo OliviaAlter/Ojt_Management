@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.RepoInterfaces

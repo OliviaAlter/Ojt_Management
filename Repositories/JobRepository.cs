@@ -11,7 +11,7 @@ namespace OJTManagementAPI.Repositories
     public class JobRepository : IJobRepository
     {
         private readonly OjtManagementContext _context;
-        
+
         public JobRepository(OjtManagementContext context)
         {
             _context = context;
@@ -33,7 +33,6 @@ namespace OJTManagementAPI.Repositories
         {
             return _context.Job
                 .Where(x => x.JobId == id);
-            
         }
 
         public IQueryable<Job> GetJobListContainName(string name)
@@ -54,7 +53,7 @@ namespace OJTManagementAPI.Repositories
         {
             await _context.Job.AddAsync(job);
             await _context.SaveChangesAsync();
-            return job;        
+            return job;
         }
 
         public async Task<Job> UpdateJob(int id, Job job)
@@ -83,6 +82,7 @@ namespace OJTManagementAPI.Repositories
                 Console.Write(e.StackTrace);
                 return null;
             }
+
             await _context.SaveChangesAsync();
             return job;
         }
@@ -90,10 +90,7 @@ namespace OJTManagementAPI.Repositories
         public async Task<bool> DeleteJobAdmin(int id)
         {
             var job = await _context.Job.FindAsync(id);
-            if (job == null)
-            {
-                return false;
-            }
+            if (job == null) return false;
             _context.Job.Remove(job);
             await _context.SaveChangesAsync();
             return true;
@@ -104,18 +101,18 @@ namespace OJTManagementAPI.Repositories
             var companyCheck = _context.Company
                 .Where(x => x.CompanyId == companyId)
                 .FirstOrDefaultAsync();
-            
+
             // check if companyId is matched with the current company
             if (companyCheck == null)
                 return false;
-            
+
             var job = _context.Job
                 .Where(x => x.CompanyId == companyId)
                 .FirstOrDefaultAsync(x => x.JobId == id);
-            
+
             if (job == null)
                 return false;
-            
+
             _context.Remove(job);
             await _context.SaveChangesAsync();
             return true;

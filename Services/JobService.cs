@@ -25,7 +25,7 @@ namespace OJTManagementAPI.Services
         public async Task<IEnumerable<Job>> GetJobListContainName(string name)
         {
             return await _jobRepository.GetJobListContainName(name)
-                .ToListAsync();        
+                .ToListAsync();
         }
 
         public async Task<Job> GetJobById(int id)
@@ -43,11 +43,11 @@ namespace OJTManagementAPI.Services
         {
             return await _jobRepository.UpdateJob(id, job);
         }
-        
+
         public async Task<Job> GetJobData(Job job)
         {
             return await _jobRepository.GetJobData(job)
-                .FirstOrDefaultAsync();        
+                .FirstOrDefaultAsync();
         }
 
         public async Task<bool> DeleteJobAdmin(int id)

@@ -56,7 +56,7 @@ namespace OJTManagementAPI.Repositories
             await _context.SaveChangesAsync();
             return account;
         }
-        
+
         public async Task<bool> DeleteAccount(int accountId)
         {
             // find in company table
@@ -64,8 +64,8 @@ namespace OJTManagementAPI.Repositories
                 .FirstOrDefaultAsync(x => x.AccountId == accountId);
 
             if (foundInCompany == null)
-                return false; 
-            
+                return false;
+
             // find in Student table
             var foundInStudent = await _context.Student
                 .FirstOrDefaultAsync(s => s.AccountId == accountId);
@@ -92,8 +92,9 @@ namespace OJTManagementAPI.Repositories
 
                 var list = await applicationByStudentId.ToListAsync();
 
-                foreach (var applicationId in list) _context.JobApplication
-                    .Remove(applicationId);
+                foreach (var applicationId in list)
+                    _context.JobApplication
+                        .Remove(applicationId);
             }
 
             try

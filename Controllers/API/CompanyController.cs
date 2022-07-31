@@ -108,14 +108,14 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var updateCompany = new Company()
+                var updateCompany = new Company
                 {
                     CompanyEmail = company.CompanyEmail,
                     CompanyName = company.CompanyName,
                     Description = company.Description,
                     Address = company.Address
                 };
-                
+
                 var result = await _companyService.UpdateCompany(id, updateCompany);
 
                 if (result == null)

@@ -5,7 +5,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OJTManagementAPI.DataContext;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.ServiceInterfaces;
@@ -260,8 +259,8 @@ namespace OJTManagementAPI.Controllers.API
             {
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
-                
-                var updateJobApplication = new JobApplication()
+
+                var updateJobApplication = new JobApplication
                 {
                     ApplicationStatus = jobApplication.ApplicationStatus
                 };
@@ -290,11 +289,11 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                var updateStatusJobApplication = new JobApplication()
+                var updateStatusJobApplication = new JobApplication
                 {
                     ApplicationStatus = jobApplication.ApplicationStatus
                 };
-                
+
                 if (id != jobApplication.JobApplicationId)
                     return BadRequest();
 

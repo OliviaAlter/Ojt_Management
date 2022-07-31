@@ -48,11 +48,10 @@ namespace OJTManagementAPI.Mappings
             CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
             CreateMap<JobApplication, AddJobApplicationDTO>().ReverseMap();
             CreateMap<JobApplication, JobApplicationUpdateDTO>().ReverseMap();
-            
+
             // Job DTOs
             CreateMap<Job, JobAddDTO>().ReverseMap();
             CreateMap<Job, JobUpdateDTO>().ReverseMap();
-
         }
     }
 }
