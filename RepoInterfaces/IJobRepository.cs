@@ -13,6 +13,7 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<Job> GetJobData(Job job);
         public Task<Job> AddJob(Job job);
         public Task<Job> UpdateJob(int id, Job job);
-        public Task<Job> DeleteJob(int id);
+        public Task<bool> DeleteJobAdmin(int id);
+        public Task<bool> DeleteJobCompany(int id);
     }
 }

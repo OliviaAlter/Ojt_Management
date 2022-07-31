@@ -57,11 +57,64 @@ namespace OJTManagementAPI.Repositories
             return account;
         }
         
-        public async Task<Account> DeleteAccount(Account account)
+        public async Task<bool> DeleteAccount(int accountId)
         {
-            _context.Account.Update(account);
+            // find in company table
+            var foundInCompany = await _context.Company
+                .FirstOrDefaultAsync(x => x.AccountId == accountId);
+
+            if (foundInCompany == null)
+                return false; 
+            
+            // find in Student table
+            var foundInStudent = await _context.Student
+                .FirstOrDefaultAsync(s => s.AccountId == accountId);
+
+            if (foundInStudent == null)
+                return false;
+
+            // found in Account table
+            var foundInAccount = await GetAccountById(accountId)
+                .FirstOrDefaultAsync();
+
+            if (foundInAccount == null)
+                return false;
+
+            // found if there are any ongoing application
+            var foundInApplication = foundInStudent.JobApplications
+                .Where(x => x.Student.AccountId == accountId);
+
+            // if there is, delete them from the list
+            if (!foundInApplication.Any())
+            {
+                var applicationByStudentId = _context.JobApplication
+                    .Where(x => x.Student.AccountId == accountId);
+
+                var list = await applicationByStudentId.ToListAsync();
+
+                foreach (var applicationId in list) _context.JobApplication
+                    .Remove(applicationId);
+            }
+
+            try
+            {
+                _context.Company.Remove(foundInCompany);
+                _context.Student.Remove(foundInStudent);
+                _context.Account.Remove(foundInAccount);
+            }
+            catch
+            {
+                return false;
+            }
+
             await _context.SaveChangesAsync();
-            return account;
+            return true;
+        }
+
+        private IQueryable<Account> GetAccountById(int accountId)
+        {
+            return _context.Account
+                .Where(a => a.AccountId == accountId);
         }
     }
 }

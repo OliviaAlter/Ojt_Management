@@ -40,7 +40,8 @@ namespace OJTManagementAPI.Repositories
                 return false;
 
             // found if there are any ongoing application
-            var foundInApplication = foundInStudent.JobApplications.Where(x => x.StudentId == studentId);
+            var foundInApplication = foundInStudent.JobApplications
+                .Where(x => x.StudentId == studentId);
 
             // if there is, delete them from the list
             if (!foundInApplication.Any())
@@ -50,7 +51,8 @@ namespace OJTManagementAPI.Repositories
 
                 var list = await applicationByStudentId.ToListAsync();
 
-                foreach (var applicationId in list) _context.JobApplication.Remove(applicationId);
+                foreach (var applicationId in list) _context.JobApplication
+                    .Remove(applicationId);
             }
 
             try

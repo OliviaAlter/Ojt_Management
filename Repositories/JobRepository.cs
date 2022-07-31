@@ -65,10 +65,21 @@ namespace OJTManagementAPI.Repositories
             return job;
         }
 
-        public async Task<Job> DeleteJob(int id)
+        public async Task<bool> DeleteJobAdmin(int id)
         {
-            // TODO : Check if the job is in use or not.
-            return null;
+            var job = await _context.Job.FindAsync(id);
+            if (job == null)
+            {
+                return false;
+            }
+            _context.Job.Remove(job);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public Task<bool> DeleteJobCompany(int id)
+        {
+            
         }
     }
 }

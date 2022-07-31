@@ -110,7 +110,7 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
-                // TODO : Check if major update
+                // TODO : Check if job update
                 var major = new Major()
                 {
                     MajorName = jobUpdate.Major.MajorName

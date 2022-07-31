@@ -44,10 +44,9 @@ namespace OJTManagementAPI.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Account> DeleteAccount(Account account)
+        public async Task<bool> DeleteAccount(int accountId)
         {
-            // TODO : Add delete account, check for constraint
-            throw null!;
+            return await _accountRepository.DeleteAccount(accountId);
         }
     }
 }
