@@ -14,8 +14,8 @@ namespace OJTManagementAPI.RepoInterfaces
         public IQueryable<JobApplication> GetJobApplicationListByCompanyId(int companyId);
         public IQueryable<JobApplication> GetJobApplicationListByMajorId(int majorId);
         public Task<JobApplication> AddApplication(JobApplication application);
-        public Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application);
-        public Task<JobApplication> ChangeApplicationStatus(int id, JobApplicationStatusUpdateDTO application);
+        public Task<JobApplication> UpdateApplication(int id, JobApplication application);
+        public Task<JobApplication> ChangeApplicationStatus(int id, JobApplication application);
         public Task<bool> DeleteApplication(int applicationId);
     }
 }

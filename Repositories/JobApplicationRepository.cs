@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OJTManagementAPI.DataContext;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 using OJTManagementAPI.RepoInterfaces;
 
@@ -54,7 +53,7 @@ namespace OJTManagementAPI.Repositories
             return application;
         }
 
-        public async Task<JobApplication> UpdateApplication(int id, JobApplicationUpdateDTO application)
+        public async Task<JobApplication> UpdateApplication(int id, JobApplication application)
         {
             var applicationData = await _context.JobApplication
                 .FirstOrDefaultAsync(x => x.JobApplicationId == id);
@@ -85,7 +84,7 @@ namespace OJTManagementAPI.Repositories
             return applicationData;
         }
 
-        public async Task<JobApplication> ChangeApplicationStatus(int id, JobApplicationStatusUpdateDTO application)
+        public async Task<JobApplication> ChangeApplicationStatus(int id, JobApplication application)
         {
             var applicationData = await _context.JobApplication
                 .FirstOrDefaultAsync(x => x.JobApplicationId == id);
