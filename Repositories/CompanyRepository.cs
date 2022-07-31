@@ -49,7 +49,7 @@ namespace OJTManagementAPI.Repositories
             return company;
         }
 
-        public async Task<Company> UpdateCompany(int id, CompanyUpdateDTO company)
+        public async Task<Company> UpdateCompany(int id, Company company)
         {
             var companyData = await _context.Company
                 .FirstOrDefaultAsync(x => x.CompanyId == id);
@@ -57,10 +57,10 @@ namespace OJTManagementAPI.Repositories
             {
                 if (companyData != null)
                 {
-                    companyData.Address = company.Address;
-                    companyData.CompanyEmail = company.CompanyEmail;
-                    companyData.CompanyName = company.CompanyName;
-                    companyData.Description = company.Description;
+                    companyData.Address ??= company.Address;
+                    companyData.CompanyEmail ??= company.CompanyEmail;
+                    companyData.CompanyName ??= company.CompanyName;
+                    companyData.Description ??= company.Description;
 
                     await _context.SaveChangesAsync();
                 }

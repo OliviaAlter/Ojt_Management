@@ -59,8 +59,30 @@ namespace OJTManagementAPI.Repositories
 
         public async Task<Job> UpdateJob(int id, Job job)
         {
-            // TODO : update job with constraint
-            _context.Job.Update(job);
+            var jobData = await _context.Job
+                .Where(x => x.JobId == id)
+                .Include(y => y.Major)
+                .FirstOrDefaultAsync();
+            try
+            {
+                if (jobData != null)
+                {
+                    jobData.JobDescription ??= job.JobDescription;
+                    jobData.JobName ??= job.JobName;
+                    jobData.Major.MajorName ??= job.Major.MajorName;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
             await _context.SaveChangesAsync();
             return job;
         }
@@ -77,9 +99,26 @@ namespace OJTManagementAPI.Repositories
             return true;
         }
 
-        public Task<bool> DeleteJobCompany(int id)
+        public async Task<bool> DeleteJobCompany(int id, int companyId)
         {
+            var companyCheck = _context.Company
+                .Where(x => x.CompanyId == companyId)
+                .FirstOrDefaultAsync();
             
+            // check if companyId is matched with the current company
+            if (companyCheck == null)
+                return false;
+            
+            var job = _context.Job
+                .Where(x => x.CompanyId == companyId)
+                .FirstOrDefaultAsync(x => x.JobId == id);
+            
+            if (job == null)
+                return false;
+            
+            _context.Remove(job);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

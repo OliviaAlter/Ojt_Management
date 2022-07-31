@@ -45,7 +45,7 @@ namespace OJTManagementAPI.Services
             return await _majorRepository.UpdateMajor(major);
         }
 
-        public async Task<Major> UpdateMajorById(int id, MajorUpdateDTO major)
+        public async Task<Major> UpdateMajorById(int id, Major major)
         {
             return await _majorRepository.UpdateMajorById(id, major);
         }

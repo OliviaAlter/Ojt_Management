@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
 
 namespace OJTManagementAPI.ServiceInterfaces
@@ -12,7 +11,7 @@ namespace OJTManagementAPI.ServiceInterfaces
         public Task<Major> GetMajorById(int majorId);
         public Task<Major> AddMajor(Major major);
         public Task<Major> UpdateMajor(Major major);
-        public Task<Major> UpdateMajorById(int id, MajorUpdateDTO major);
+        public Task<Major> UpdateMajorById(int id, Major major);
         public Task<bool> DeleteMajor(int majorId);
     }
 }
