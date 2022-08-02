@@ -4,7 +4,7 @@ namespace OJTManagementAPI.Entities
 {
     public class Account
     {
-        [Required] public int AccountId { get; set; }
+        public int AccountId { get; set; }
 
         [Required] public string Username { get; set; }
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OJTManagementAPI.DTOS;
 using OJTManagementAPI.Entities;
+using OJTManagementAPI.Enums;
 using OJTManagementAPI.ServiceInterfaces;
 
 namespace OJTManagementAPI.Controllers.API
@@ -16,12 +17,14 @@ namespace OJTManagementAPI.Controllers.API
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyService _companyService;
+        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
-        public CompanyController(ICompanyService companyService, IMapper mapper)
+        public CompanyController(ICompanyService companyService, IMapper mapper, IAccountService accountService)
         {
             _companyService = companyService;
             _mapper = mapper;
+            _accountService = accountService;
         }
 
         //TODO : Put option failed
@@ -49,20 +52,42 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddCompany([FromForm] CompanyDTO company)
+        public async Task<IActionResult> AddCompany([FromForm] CompanyAddDTO company)
         {
             try
             {
+                var newAccount = new Account
+                {
+                    Username = company.Account.Username,
+                    Password = company.Account.Password,
+                    Email = company.Account.Email,
+                    RoleId = (int)RoleEnum.Company
+                };
+                
+                var accountResult = await _accountService.AddAccount(newAccount);
+                
+                if (accountResult == null)
+                    return StatusCode(StatusCodes.Status503ServiceUnavailable, new ApiResponseMessage
+                {
+                    StatusCode = 503,
+                    IsSuccess = false,
+                    Message = "Adding new account is unable to load"
+                });
+                
                 var newCompany = new Company
                 {
+                    AccountId = accountResult.AccountId,
                     CompanyName = company.CompanyName,
                     Description = company.Description,
                     Address = company.Address,
                     CompanyEmail = company.CompanyEmail
                 };
+                
                 var result = await _companyService.AddCompany(newCompany);
-                return StatusCode(201, result);
+                
+                var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
+
+                return StatusCode(201, response);
             }
             catch
             {

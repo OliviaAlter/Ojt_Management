@@ -13,7 +13,5 @@ namespace OJTManagementAPI.DTOS
         [MinLength(6)]
         [MaxLength(32)]
         public string Password { get; set; }
-
-        [Required] public int RoleId { get; set; }
     }
 }
