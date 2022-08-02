@@ -160,6 +160,14 @@ namespace OJTManagementAPI.Controllers.API
                 var semesterCompanyCheck = await _semesterCompanyService
                     .GetSemesterCompanyByCompanyId(jobApplicationDto.Company.CompanyId);
 
+                if (semesterCompanyCheck == null)
+                    return NotFound(new ApiResponseMessage
+                    {
+                        StatusCode = 404,
+                        IsSuccess = false,
+                        Message = "Semester company is not registered in this semester"
+                    });
+                
                 if (User.Identity == null)
                     return NotFound(new ApiResponseMessage
                         {
@@ -185,25 +193,17 @@ namespace OJTManagementAPI.Controllers.API
                     AccountId = int.Parse(userId)
                 };
 
-                if (semesterCompanyCheck == null)
-                    return NotFound(new ApiResponseMessage
-                    {
-                        StatusCode = 404,
-                        IsSuccess = false,
-                        Message = "Semester company is not registered in this semester"
-                    });
-                
                 var companyInfo = new Company
                 {
                     CompanyId = jobApplicationDto.Company.CompanyId,
-                    CompanyName = jobApplicationDto.Company.CompanyName
                 };
 
                 var studentInfo = new Student
                 {
                     SemesterId = jobApplicationDto.Student.SemesterId,
                     StudentId = accountInfo.Student.StudentId,
-                    AccountId = accountInfo.AccountId
+                    AccountId = accountInfo.AccountId,
+                    MajorId = jobApplicationDto.Student.MajorId
                 };
 
                 var newApplication = new JobApplication

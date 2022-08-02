@@ -100,7 +100,7 @@ namespace OJTManagementAPI.Controllers.API
         [HttpPost("add")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNewSemester([FromForm] SemesterDTO semester)
+        public async Task<IActionResult> AddNewSemester([FromForm] SemesterAddDTO semester)
         {
             try
             {

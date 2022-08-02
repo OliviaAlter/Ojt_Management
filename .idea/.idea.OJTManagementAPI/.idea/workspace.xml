@@ -5,14 +5,26 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Fixed CompanyController.cs with HTTP Post method">
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Fixed method">
+      <change afterPath="$PROJECT_DIR$/DTOs/CompanyAddJobDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTOs/StudentAddJobDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/CompanyDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/CompanyDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/JobApplicationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/API/SemesterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/SemesterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/JobApplicationAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/JobApplicationAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/MajorAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/MajorAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/SemesterAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTOs/SemesterCompanyAddDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/SemesterCompanyAddDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mappings/AutoMapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +40,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Controllers/API/CompanyController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Entities/Account.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -127,7 +140,7 @@
       <workItem from="1659330801296" duration="350000" />
       <workItem from="1659366505660" duration="6068000" />
       <workItem from="1659430498995" duration="1349000" />
-      <workItem from="1659461920661" duration="3363000" />
+      <workItem from="1659461920661" duration="9500000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -276,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659465945501</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Fixed method">
+      <created>1659466150849</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1659466150849</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +350,8 @@
     <MESSAGE value="Reformatting code" />
     <MESSAGE value="AAA" />
     <MESSAGE value="Fixed CompanyController.cs with HTTP Post method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed CompanyController.cs with HTTP Post method" />
+    <MESSAGE value="Fixed method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

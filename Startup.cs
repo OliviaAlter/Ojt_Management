@@ -90,7 +90,7 @@ namespace OJTManagementAPI
 
             app.UseCors(x =>
                 x.AllowAnyHeader().AllowAnyMethod()
-                    .WithOrigins("http://localhost:3000", "https://localhost:3001"));
+                    .WithOrigins("http://localhost:3000", "https://localhost:3001", "http://localhost:5000", "https://localhost:5001"));
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 

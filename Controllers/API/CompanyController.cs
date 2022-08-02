@@ -85,8 +85,6 @@ namespace OJTManagementAPI.Controllers.API
                 
                 var result = await _companyService.AddCompany(newCompany);
                 
-                //var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
-
                 return StatusCode(201, result);
             }
             catch
@@ -128,7 +126,6 @@ namespace OJTManagementAPI.Controllers.API
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Admin, Company")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCompany(int id, [FromBody] CompanyUpdateDTO company)
         {
             try
