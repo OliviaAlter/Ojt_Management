@@ -19,6 +19,7 @@ namespace OJTManagementAPI.DataContext
         public virtual DbSet<SemesterCompany> SemesterCompany { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Job> Job { get; set; }
+        public virtual DbSet<CompanyJob> CompanyJob { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

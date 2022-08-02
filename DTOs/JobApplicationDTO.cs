@@ -9,7 +9,7 @@ namespace OJTManagementAPI.DTOS
         public string ImageUrl { get; set; }
         public string ApplicationStatus { get; set; }
 
-        public virtual Student Student { get; set; }
-        public virtual Company Company { get; set; }
+        public virtual StudentDTO Student { get; set; }
+        public virtual CompanyDTO Company { get; set; }
     }
 }

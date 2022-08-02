@@ -192,7 +192,7 @@ namespace OJTManagementAPI.Controllers.API
                         IsSuccess = false,
                         Message = "Semester company is not registered in this semester"
                     });
-
+                
                 var companyInfo = new Company
                 {
                     CompanyId = jobApplicationDto.Company.CompanyId,
@@ -210,7 +210,7 @@ namespace OJTManagementAPI.Controllers.API
                 {
                     Company = companyInfo,
                     ApplicationStatus = null,
-                    Student = studentInfo
+                    Student = studentInfo,
                 };
 
                 try
@@ -227,10 +227,7 @@ namespace OJTManagementAPI.Controllers.API
                             Message = "Application failed to create"
                         });
                 }
-
-                //var result = await _applicationService.AddJobApplication(newApplication);
-                //var response = _mapper.Map<AddJobApplicationDTO>(result);
-
+                
                 return Ok(new ApiResponseMessage
                 {
                     StatusCode = 201,

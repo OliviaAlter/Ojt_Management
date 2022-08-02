@@ -79,12 +79,12 @@ namespace OJTManagementAPI.Controllers.API
         {
             try
             {
+                // TODO : Fix post new job
                 var job = new Job
                 {
                     JobName = newJob.JobName,
                     JobDescription = newJob.JobDescription,
                     MajorId = newJob.MajorId,
-                    CompanyId = newJob.CompanyId
                 };
                 var result = await _jobService.AddJob(job);
                 return StatusCode(201, result);
@@ -109,7 +109,7 @@ namespace OJTManagementAPI.Controllers.API
             {
                 if (id != jobUpdate.JobId)
                     return NotFound("Job not found");
-                // TODO : Check if job update
+                
                 var major = new Major
                 {
                     MajorName = jobUpdate.Major.MajorName
@@ -125,9 +125,9 @@ namespace OJTManagementAPI.Controllers.API
                 var result = await _jobService.UpdateJob(id, job);
 
                 if (result == null)
-                    return NotFound("Major not found");
+                    return NotFound("Job not found");
 
-                return Ok("Major updated");
+                return Ok("Job updated");
             }
             catch
             {

@@ -34,6 +34,9 @@ namespace OJTManagementAPI.ServiceExtensions
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
 
+            services.AddScoped<ICompanyJobService, CompanyJobService>();
+            services.AddScoped<ICompanyJobRepository, CompanyJobRepository>();
+
             services.AddScoped<ITokenServices, TokenServices>();
 
             return services;

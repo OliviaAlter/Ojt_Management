@@ -17,7 +17,6 @@ namespace OJTManagementAPI.Repositories
             _context = context;
         }
 
-
         public IQueryable<Job> GetJobList()
         {
             return _context.Job;
@@ -43,15 +42,54 @@ namespace OJTManagementAPI.Repositories
 
         public IQueryable<Job> GetJobData(Job job)
         {
-            return _context.Job
-                .Where(a => a.JobId == job.JobId)
-                .Include(b => b.Company)
-                .Include(c => c.Major);
+            // TODO : Add get job data
+            return null;
         }
 
         public async Task<Job> AddJob(Job job)
         {
             await _context.Job.AddAsync(job);
+            await _context.SaveChangesAsync();
+            return job;
+        }
+
+        public Task<Job> UpdateJobByCompany(int companyId, int id, Job job)
+        {
+            return null;
+        }
+
+        public Task<Job> UpdateJobByAdmin(int id, Job job)
+        {
+            return null;
+        }
+
+        public async Task<Job> UpdateJobCompany(int id, Job job)
+        {
+            var jobData = await _context.Job
+                .Where(x => x.JobId == id)
+                .Include(y => y.Major)
+                .FirstOrDefaultAsync();
+            try
+            {
+                if (jobData != null)
+                {
+                    jobData.JobDescription ??= job.JobDescription;
+                    jobData.JobName ??= job.JobName;
+                    jobData.Major.MajorName ??= job.Major.MajorName;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return null;
+            }
+
             await _context.SaveChangesAsync();
             return job;
         }
@@ -86,7 +124,7 @@ namespace OJTManagementAPI.Repositories
             await _context.SaveChangesAsync();
             return job;
         }
-
+        
         public async Task<bool> DeleteJobAdmin(int id)
         {
             var job = await _context.Job.FindAsync(id);
@@ -106,14 +144,17 @@ namespace OJTManagementAPI.Repositories
             if (companyCheck == null)
                 return false;
 
+            /*
             var job = _context.Job
                 .Where(x => x.CompanyId == companyId)
                 .FirstOrDefaultAsync(x => x.JobId == id);
 
             if (job == null)
                 return false;
-
+            
             _context.Remove(job);
+            */
+            
             await _context.SaveChangesAsync();
             return true;
         }
