@@ -13,6 +13,6 @@ namespace OJTManagementAPI.DTOS
         public string Address { get; set; }
         public string CompanyEmail { get; set; }
 
-        //public virtual Account Account { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

@@ -85,9 +85,9 @@ namespace OJTManagementAPI.Controllers.API
                 
                 var result = await _companyService.AddCompany(newCompany);
                 
-                var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
+                //var response = _mapper.Map<IEnumerable<CompanyDTO>>(result);
 
-                return StatusCode(201, response);
+                return StatusCode(201, result);
             }
             catch
             {

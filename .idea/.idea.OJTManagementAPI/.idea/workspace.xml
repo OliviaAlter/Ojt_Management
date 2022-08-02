@@ -5,23 +5,14 @@
     <projectFile profileName="OJTManagementAPI">OJTManagementAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DTOs/CompanyAddDTO.cs" afterDir="false" />
+    <list default="true" id="a49f7755-5547-4701-a5c3-baddfead5981" name="Changes" comment="Fixed CompanyController.cs with HTTP Post method">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OJTManagementAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/API/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AccountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AccountLoginDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountLoginDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/AccountRegisterDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AccountRegisterDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTOs/CompanyDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/CompanyDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Account.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enums/RoleEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enums/RoleEnum.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/OJTManagementAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/OJTManagementAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/refint/OJTManagementAPI.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +28,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/697050deb22a2642d1f1311dc2abbff272e4d5575d8f69d97af9f902d985b27/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/innoc/Desktop/OJTManagementAPI/OJTManagementAPI/Entities/Account.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -135,7 +127,7 @@
       <workItem from="1659330801296" duration="350000" />
       <workItem from="1659366505660" duration="6068000" />
       <workItem from="1659430498995" duration="1349000" />
-      <workItem from="1659461920661" duration="3186000" />
+      <workItem from="1659461920661" duration="3363000" />
     </task>
     <task id="LOCAL-00001" summary="AAAAAAAAAAA">
       <created>1658300354597</created>
@@ -277,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659447449701</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fixed CompanyController.cs with HTTP Post method">
+      <created>1659465945501</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1659465945501</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +329,8 @@
     <MESSAGE value="Smol fixes to JobApplicationController.cs" />
     <MESSAGE value="Reformatting code" />
     <MESSAGE value="AAA" />
-    <option name="LAST_COMMIT_MESSAGE" value="AAA" />
+    <MESSAGE value="Fixed CompanyController.cs with HTTP Post method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed CompanyController.cs with HTTP Post method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
